@@ -1,0 +1,3254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.10" />
+<title>ccache news</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>ccache news</h1>
+<span id="revnumber">version 3.6</span>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_ccache_3_6">ccache 3.6</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2019-01-14</p></div>
+<div class="sect2">
+<h3 id="_changes">Changes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+ccache now has an opt-in &#8220;depend mode&#8221;. When enabled, ccache never executes
+  the preprocessor, which results in much lower cache miss overhead at the
+  expense of a lower potential cache hit rate. The depend mode is only possible
+  to use when the compiler option <code>-MD</code> or <code>-MMD</code> is used.
+</p>
+</li>
+<li>
+<p>
+Added support for GCC&#8217;s <code>-ffile-prefix-map</code> option. The <code>-fmacro-prefix-map</code>
+  option is now also skipped from the hash.
+</p>
+</li>
+<li>
+<p>
+Added support for multiple <code>-fsanitize-blacklist</code> arguments.
+</p>
+</li>
+<li>
+<p>
+ccache now includes the environment variables <code>LANG</code>, <code>LC_ALL</code>, <code>LC_CTYPE</code>
+  and <code>LC_MESSAGES</code> in the hash since they may affect localization of compiler
+  warning messages. Set sloppiness to <code>locale</code> to opt out of this.
+</p>
+</li>
+<li>
+<p>
+Fixed a problem due to Clang overwriting the output file when compiling an
+  assembler file.
+</p>
+</li>
+<li>
+<p>
+Clarified the manual to explain the reasoning behind the “file_macro”
+  sloppiness setting in a better way.
+</p>
+</li>
+<li>
+<p>
+ccache now handles several levels of nonexistent directories when rewriting
+  absolute paths to relative.
+</p>
+</li>
+<li>
+<p>
+A new sloppiness setting <code>clang_index_store</code> makes ccache skip the Clang
+  compiler option <code>-index-store-path</code> and its argument when computing the
+  manifest hash. This is useful if you use Xcode, which uses an index store
+  path derived from the local project path. Note that the index store won&#8217;t be
+  updated correctly on cache hits if you enable this option.
+</p>
+</li>
+<li>
+<p>
+Rename sloppiness <code>no_system_headers</code> to <code>system_headers</code> for consistency
+  with other options. <code>no_system_headers</code> can still be used as an
+  (undocumented) alias.
+</p>
+</li>
+<li>
+<p>
+The GCC variables “DEPENDENCIES_OUTPUT” and “SUNPRO_DEPENDENCIES” are now
+  supported correctly.
+</p>
+</li>
+<li>
+<p>
+The algorithm that scans for <code>__DATE_</code> and <code>__TIME__</code> tokens in the hashed
+  source code now doesn&#8217;t produce false positives for tokens where <code>__DATE__</code>
+  or <code>__TIME__</code> is a substring.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_5_1">ccache 3.5.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2019-01-02</p></div>
+<div class="sect2">
+<h3 id="_changes_2">Changes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added missing getopt_long.c source file to release archive.
+</p>
+</li>
+<li>
+<p>
+Fixed (harmless) compiler warnings when building ccache object files.
+</p>
+</li>
+<li>
+<p>
+CFLAGS is no longer passed to the linker when linking ccache.
+</p>
+</li>
+<li>
+<p>
+Improved development mode build flags.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_5">ccache 3.5</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2018-10-15</p></div>
+<div class="sect2">
+<h3 id="_changes_3">Changes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added a boolean <code>debug</code> (<code>CCACHE_DEBUG</code>) configuration option. When enabled,
+  ccache will create per-object debug files that are helpful e.g. when
+  debugging unexpected cache misses. See also the new &#8220;Cache debugging&#8221;
+  section in the manual.
+</p>
+</li>
+<li>
+<p>
+Renamed <code>CCACHE_CC</code> to <code>CCACHE_COMPILER</code> (keeping the former as a deprecated
+  alias).
+</p>
+</li>
+<li>
+<p>
+Added a new command-line option <code>-k/--get-config</code> that prints the value of a
+  config key.
+</p>
+</li>
+<li>
+<p>
+It is now possible to let ccache hash a precomputed checksum file instead of
+  the full content of a precompiled header. This can save time for large
+  precompiled headers. Note that the build system needs to keep the checksum
+  file in sync with the precompiled header for this to work.
+</p>
+</li>
+<li>
+<p>
+Improved performance substantially when using <code>hash_dir = false</code> on platforms
+  like macOS where <code>getcwd()</code> is slow.
+</p>
+</li>
+<li>
+<p>
+Added &#8220;stats updated&#8221; timestamp in <code>ccache -s</code> output. This can be useful
+  if you wonder whether ccache actually was used for your last build.
+</p>
+</li>
+<li>
+<p>
+Renamed &#8220;stats zero time&#8221; to &#8220;stats zeroed&#8221; and documented it. The
+  counter is also now only present in <code>ccache -s</code> output when <code>ccache -z</code>
+  actually has been called.
+</p>
+</li>
+<li>
+<p>
+The content of the <code>-fsanitize-blacklist</code> file is now included in the hash,
+  so updates to the file will now correctly result in separate cache entries.
+</p>
+</li>
+<li>
+<p>
+It&#8217;s now possible to opt out of building and installing man pages when
+  running <code>make install</code> in the source repository.
+</p>
+</li>
+<li>
+<p>
+If the compiler type can&#8217;t be detected (e.g. if it is named <code>cc</code>), use safer
+  defaults that won&#8217;t trip up Clang.
+</p>
+</li>
+<li>
+<p>
+Made the ccache test suite work on FreeBSD.
+</p>
+</li>
+<li>
+<p>
+Added <code>file_stat_matches_ctime</code> option to disable ctime check if
+  <code>file_stat_matches</code> is enabled.
+</p>
+</li>
+<li>
+<p>
+Made “./configure --without-bundled-zlib” do what’s intended.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_4_3">ccache 3.4.3</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2018-09-02</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a race condition when creating the initial config file in the cache
+  directory.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard Clang option <code>-MJ</code>.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard option <code>-save-temps=obj</code>.
+</p>
+</li>
+<li>
+<p>
+Handle separate parameter to Clang option <code>-target</code> correctly.
+</p>
+</li>
+<li>
+<p>
+Upgraded bundled zlib to version 1.2.11.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_4_2">ccache 3.4.2</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2018-03-25</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_2">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The cleanup algorithm has been fixed to not misbehave when files are removed
+  by another process while the cleanup process is running. Previously, too many
+  files could be removed from the cache if multiple cleanup processes were
+  triggered at the same time, in extreme cases trimming the cache to a much
+  smaller size than the configured limits.
+</p>
+</li>
+<li>
+<p>
+Correctly hash preprocessed headers located in a &#8220;.gch directory&#8221;.
+  Previously, ccache would not pick up changes to such precompiled headers,
+  risking false positive cache hits.
+</p>
+</li>
+<li>
+<p>
+Fixed build failure when using the bundled zlib sources.
+</p>
+</li>
+<li>
+<p>
+ccache 3.3.5 added a workaround for not triggering Clang errors when a
+  precompiled header&#8217;s dependency has an updated timestamp (but identical
+  content). That workaround is now only applied when the compiler is Clang.
+</p>
+</li>
+<li>
+<p>
+Made it possible to perform out-of-source builds in dev mode again.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_4_1">ccache 3.4.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2018-02-11</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_3">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed printing of version number in <code>ccache --version</code>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_4">ccache 3.4</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2018-02-11</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The compiler option form <code>--sysroot arg</code> is now handled like the documented
+  <code>--sysroot=arg</code> form.
+</p>
+</li>
+<li>
+<p>
+Added support for caching <code>.su</code> files generated by GCC flag <code>-fstack-usage</code>.
+</p>
+</li>
+<li>
+<p>
+ccache should now work with distcc&#8217;s &#8220;pump&#8221; wrapper.
+</p>
+</li>
+<li>
+<p>
+The optional unifier is no longer disabled when the direct mode is enabled.
+</p>
+</li>
+<li>
+<p>
+Added support for NVCC compiler options <code>--compiler-bindir/-ccbin</code>,
+  <code>--output-directory/-odir</code> and <code>--libdevice-directory/-ldir</code>.
+</p>
+</li>
+<li>
+<p>
+Boolean environment variable settings no longer accept the following
+  (case-insensitive) values: <code>0</code>, <code>false</code>, <code>disable</code> and <code>no</code>. All other values
+  are accepted and taken to mean &#8220;true&#8221;. This is to stop users from setting
+  e.g. <code>CCACHE_DISABLE=0</code> and then expect the cache to be used.
+</p>
+</li>
+<li>
+<p>
+Improved support for <code>run_second_cpp = false</code>: If combined with passing
+  <code>-fdirectives-only</code> (GCC) or <code>frewrite-includes</code> (Clang) to the compiler,
+  diagnostics warnings and similar will be correct.
+</p>
+</li>
+<li>
+<p>
+An implicit <code>-MQ</code> is now passed to the preprocessor only if the object file
+  extension is non-standard. This should make it easier to use EDG-based
+  compilers (e.g. GHS) which don&#8217;t understand <code>-MQ</code>.
+</p>
+</li>
+<li>
+<p>
+ccache now treats an unreadable configuration file just like a missing
+  configuration file.
+</p>
+</li>
+<li>
+<p>
+Documented more pitfalls with enabling <code>hard_links</code> (<code>CCACHE_HARDLINK</code>).
+</p>
+</li>
+<li>
+<p>
+Documented caveats related to colored warnings from compilers.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_4">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+File size and number counters are now updated correctly when files are
+  overwritten in the cache, e.g. when using <code>CCACHE_RECACHE</code>.
+</p>
+</li>
+<li>
+<p>
+<code>run_second_cpp</code> is now forced for NVCC.
+</p>
+</li>
+<li>
+<p>
+Fixed how the NVCC options <code>-optf</code> and <code>-odir</code> are handled.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_3_6">ccache 3.3.6</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2018-01-28</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_2">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Improved instructions on how to get cache hits between different working
+  directories.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_5">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed regression in ccache 3.3.5 related to the <code>UNCACHED_ERR_FD</code> feature.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_3_5">ccache 3.3.5</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2018-01-13</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_3">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Documented how automatic cache cleanup works.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_6">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a regression where the original order of debug options could be lost.
+  This reverts the &#8220;Improved parsing of <code>-g*</code> options&#8221; feature in ccache 3.3.
+</p>
+</li>
+<li>
+<p>
+Multiple <code>-fdebug-prefix-map</code> options should now be handled correctly.
+</p>
+</li>
+<li>
+<p>
+Fixed matching of directories in the <code>ignore_headers_in_manifest</code>
+  configuration option.
+</p>
+</li>
+<li>
+<p>
+Fixed detection of missing argument to <code>-opt</code>/<code>--options-file</code>.
+</p>
+</li>
+<li>
+<p>
+ccache now bails out when building a precompiled header if any of the
+  corresponding header files has an updated timestamp. This fixes complaints
+  from Clang.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug related to erroneously storing a dependency file with absolute
+  paths in the cache on a preprocessed hit.
+</p>
+</li>
+<li>
+<p>
+<code>ccache -c/--cleanup</code> now works like documented: it just recalculates size
+  counters and trims the cache to not exceed the max size and file number
+  limits. Previously, the forced cleanup took &#8220;limit_multiple&#8221; into account,
+  so that <code>ccache -c/--cleanup</code> by default would trim the cache to 80% of the
+  max limit.
+</p>
+</li>
+<li>
+<p>
+ccache no longer ignores linker arguments for Clang since Clang warns about
+  them.
+</p>
+</li>
+<li>
+<p>
+Plugged a couple of file descriptor leaks.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug where ccache would skip hashing the compiler argument following a
+  <code>-fno-working-directory</code>, <code>-fworking-directory</code>, <code>-nostdinc</code>, <code>-nostdinc++</code>,
+  <code>-remap</code> or <code>-trigraphs</code> option in preprocessor mode.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_3_4">ccache 3.3.4</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2017-02-17</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_4">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Documented the different cache statistics counters.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_7">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a regression in ccache 3.3 related to potentially bad content of
+  dependency files when compiling identical source code but with different
+  source paths. This was only partially fixed in 3.3.2 and reverts the new
+  &#8220;Names of included files are no longer included in the hash of the
+  compiler&#8217;s preprocessed output&#8221; feature in 3.3.
+</p>
+</li>
+<li>
+<p>
+Corrected statistics counter for <code>-optf</code>/<code>--options-file</code> failure.
+</p>
+</li>
+<li>
+<p>
+Fixed undefined behavior warnings in ccache found by <code>-fsanitize=undefined</code>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_3_3">ccache 3.3.3</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-10-26</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_8">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+ccache now detects usage of <code>.incbin</code> assembler directives in the source code
+  and avoids caching such compilations.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_3_2">ccache 3.3.2</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-09-28</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_9">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a regression in ccache 3.3 related to potentially bad content of
+  dependency files when compiling identical source code but with different
+  source paths.
+</p>
+</li>
+<li>
+<p>
+Fixed a regression in ccache 3.3.1: ccache could get confused when using the
+  compiler option <code>-Wp,</code> to pass multiple options to the preprocessor,
+  resulting in missing dependency files from direct mode cache hits.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_3_1">ccache 3.3.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-09-07</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_10">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a problem in the &#8220;multiple <code>-arch</code> options&#8221; support introduced in
+  3.3. When using the direct mode (the default), different combinations of
+  <code>-arch</code> options were not detected properly.
+</p>
+</li>
+<li>
+<p>
+Fixed an issue when compiler option <code>-Wp,-MT,path</code> is used instead of <code>-MT
+  path</code> (and similar for <code>-MF</code>, <code>-MP</code> and <code>-MQ</code>) and <code>run_second_cpp</code>
+  (<code>CCACHE_CPP2</code>) is enabled.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_3">ccache 3.3</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-08-27</p></div>
+<div class="sect2">
+<h3 id="_notes">Notes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+A C99-compatible compiler is now required to build ccache.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_5">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The configuration option <code>run_second_cpp</code> (<code>CCACHE_CPP2</code>) now defaults to
+  true. This improves ccache&#8217;s out-of-the-box experience for compilers that
+  can&#8217;t compile their own preprocessed output with the same outcome as if they
+  compiled the real source code directly, e.g. newer versions of GCC and Clang.
+</p>
+</li>
+<li>
+<p>
+The configuration option <code>hash_dir</code> (<code>CCACHE_HASHDIR</code>) now defaults to true.
+</p>
+</li>
+<li>
+<p>
+Added a new <code>ignore_headers_in_manifest</code> configuration option, which
+  specifies headers that should be ignored in the direct mode.
+</p>
+</li>
+<li>
+<p>
+Added a new <code>prefix_command_cpp</code> (<code>CCACHE_PREFIX_CPP</code>) configuration option,
+  which specifies one or several prefixes to add to the command line ccache
+  uses when invoking the preprocessor.
+</p>
+</li>
+<li>
+<p>
+Added a new <code>limit_multiple</code> (<code>CCACHE_LIMIT_MULTIPLE</code>) configuration option,
+  which specifies how much of the cache to remove when cleaning.
+</p>
+</li>
+<li>
+<p>
+Added a new <code>keep_comments_cpp</code> (<code>CCACHE_COMMENTS</code>) configuration option,
+  which tells ccache not to discard the comments before hashing preprocessor
+  output. This can be used to check documentation with <code>-Wdocumentation</code>.
+</p>
+</li>
+<li>
+<p>
+Added a new sloppiness option <code>no_system_headers</code>, which tells ccache not to
+  include system headers in manifest files.
+</p>
+</li>
+<li>
+<p>
+Added a new statistics counter that tracks the number of performed cleanups
+  due to the cache size being over the limit. The value is shown in the output
+  of &#8220;ccache -s&#8221;.
+</p>
+</li>
+<li>
+<p>
+Added support for relocating debug info directory using <code>-fdebug-prefix-map</code>.
+  This allows for cache hits even when <code>hash_dir</code> is used in combination with
+  <code>base_dir</code>.
+</p>
+</li>
+<li>
+<p>
+Added a new &#8220;cache hit rate&#8221; field to the output of &#8220;ccache -s&#8221;.
+</p>
+</li>
+<li>
+<p>
+Added support for caching compilation of assembler code produced by e.g.
+  &#8220;gcc -S file.c&#8221;.
+</p>
+</li>
+<li>
+<p>
+Added support for cuda including the -optf/--options-file option.
+</p>
+</li>
+<li>
+<p>
+Added support for Fortran 77.
+</p>
+</li>
+<li>
+<p>
+Added support for multiple <code>-arch</code> options to produce "fat binaries".
+</p>
+</li>
+<li>
+<p>
+Multiple identical <code>-arch</code> arguments are now handled without bailing.
+</p>
+</li>
+<li>
+<p>
+The concatenated form of some long compiler options is now recognized, for
+  example when using <code>-isystemPATH</code> instead of <code>-isystem PATH</code>.
+</p>
+</li>
+<li>
+<p>
+If hard-linking is enabled and but fails (e.g. due to cross-device linking),
+  ccache now falls back to copying instead of running the compiler.
+</p>
+</li>
+<li>
+<p>
+Made the <code>hash_dir</code> option only have effect when generating debug info.
+</p>
+</li>
+<li>
+<p>
+ccache now knows how to convert absolute paths to relative paths inside
+  dependency files when using <code>base_dir</code>.
+</p>
+</li>
+<li>
+<p>
+Improved parsing of <code>-g*</code> options.
+</p>
+</li>
+<li>
+<p>
+Made ccache understand <code>-Wp,-D*</code> options.
+</p>
+</li>
+<li>
+<p>
+ccache now understands the undocumented <code>-coverage</code> (only one dash) GCC
+  option.
+</p>
+</li>
+<li>
+<p>
+Names of included files are no longer included in the hash of the compiler&#8217;s
+  preprocessed output. This leads to more potential cache hits when not using
+  the direct mode.
+</p>
+</li>
+<li>
+<p>
+Increased buffer size used when reading file data. This improves performance
+  slightly.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_11">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Bail out on too hard compiler option <code>-P</code>.
+</p>
+</li>
+<li>
+<p>
+Fixed Clang test suite when running on Linux.
+</p>
+</li>
+<li>
+<p>
+Fixed build and test for MinGW32 and Windows.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_9">ccache 3.2.9</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-09-28</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_12">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a regression in ccache 3.2.8: ccache could get confused when using the
+  compiler option <code>-Wp,</code> to pass multiple options to the preprocessor,
+  resulting in missing dependency files from direct mode cache hits.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_8">ccache 3.2.8</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-09-07</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_13">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed an issue when compiler option <code>-Wp,-MT,path</code> is used instead of <code>-MT
+  path</code> (and similar for <code>-MF</code>, <code>-MP</code> and <code>-MQ</code>) and <code>run_second_cpp</code>
+  (<code>CCACHE_CPP2</code>) is enabled.
+</p>
+</li>
+<li>
+<p>
+ccache now understands the undocumented <code>-coverage</code> (only one dash) GCC
+  option.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_7">ccache 3.2.7</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-07-20</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_14">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a bug which could lead to false cache hits for compiler command lines
+  with a missing argument to an option that takes an argument.
+</p>
+</li>
+<li>
+<p>
+ccache now knows how to work around a glitch in the output of GCC 6&#8217;s
+  preprocessor.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_6">ccache 3.2.6</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-07-12</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_15">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed build problem on QNX, which lacks &#8220;SA_RESTART&#8221;.
+</p>
+</li>
+<li>
+<p>
+Bail out on compiler option <code>-fstack-usage</code> since it creates a <code>.su</code> file
+  which ccache currently doesn&#8217;t handle.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug where (due to ccache rewriting paths) the compiler could choose
+  incorrect include files if <code>CCACHE_BASEDIR</code> is used and the source file path
+  is absolute and is a symlink.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_5">ccache 3.2.5</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-04-17</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_6">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Only pass Clang-specific <code>-stdlib=</code> to the preprocessor.
+</p>
+</li>
+<li>
+<p>
+Improved handling of stale NFS handles.
+</p>
+</li>
+<li>
+<p>
+Made it harder to misinterpret documentation of boolean environment settings'
+  semantics.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_16">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Include m4 files used by configure.ac in the source dist archives.
+</p>
+</li>
+<li>
+<p>
+Corrected "Performance" section in the manual regarding <code>__DATE_</code>, <code>__TIME__</code>
+  and <code>__FILE__</code> macros.
+</p>
+</li>
+<li>
+<p>
+Fixed build on Solaris 10+ and AIX 7.
+</p>
+</li>
+<li>
+<p>
+Fixed failure to create directories on QNX.
+</p>
+</li>
+<li>
+<p>
+Don&#8217;t (try to) update manifest file in &#8220;read-only&#8221; and &#8220;read-only direct&#8221;
+  modes.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug in caching of <code>stat</code> system calls in &#8220;file_stat_matches
+  sloppiness mode&#8221;.
+</p>
+</li>
+<li>
+<p>
+Fixed bug in hashing of Clang plugins, leading to unnecessary cache misses.
+</p>
+</li>
+<li>
+<p>
+Fixed --print-config to show &#8220;pch_defines sloppiness&#8221;.
+</p>
+</li>
+<li>
+<p>
+The man page is now built when running &#8220;make install&#8221; from Git repository
+  sources.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_4">ccache 3.2.4</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2015-10-08</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_17">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed build error related to zlib on systems with older make versions
+  (regression in ccache 3.2.3).
+</p>
+</li>
+<li>
+<p>
+Made conversion-to-bool explicit to avoid build warnings (and potential
+  runtime errors) on legacy systems.
+</p>
+</li>
+<li>
+<p>
+Improved signal handling: Kill compiler on SIGTERM; wait for compiler to exit
+  before exiting; die appropriately.
+</p>
+</li>
+<li>
+<p>
+Minor fixes related to Windows support.
+</p>
+</li>
+<li>
+<p>
+The correct compression level is now used if compression is requested.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug where cache cleanup could be run too early for caches larger than
+  64 GiB on 32-bit systems.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_3">ccache 3.2.3</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2015-08-16</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_7">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added support for compiler option <code>-gsplit-dwarf</code>.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_18">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Support external zlib in nonstandard directory.
+</p>
+</li>
+<li>
+<p>
+Avoid calling <code>exit()</code> inside an exit handler.
+</p>
+</li>
+<li>
+<p>
+Let exit handler terminate properly.
+</p>
+</li>
+<li>
+<p>
+Bail out on compiler option <code>--save-temps</code> in addition to <code>-save-temps</code>.
+</p>
+</li>
+<li>
+<p>
+Only log "Disabling direct mode" once when failing to read potential include
+  files.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_2">ccache 3.2.2</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2015-05-10</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_8">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added support for <code>CCACHE_COMPILERCHECK=string:&lt;value&gt;</code>. This is a faster
+  alternative to <code>CCACHE_COMPILERCHECK=&lt;command&gt;</code> if the command&#8217;s output can
+  be precalculated by the build system.
+</p>
+</li>
+<li>
+<p>
+Add support for caching code coverage results (compiling for gcov).
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_19">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Made hash of cached result created with and without <code>CCACHE_CPP2</code> different.
+  This makes it possible to rebuild with <code>CCACHE_CPP2</code> set without having to
+  clear the cache to get new results.
+</p>
+</li>
+<li>
+<p>
+Don&#8217;t try to reset a nonexistent stats file. This avoids &#8220;No such file or
+  directory&#8221; messages in the ccache log when the cache directory doesn&#8217;t
+  exist.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug where ccache deleted Clang diagnostics after compiler failures.
+</p>
+</li>
+<li>
+<p>
+Avoid performing an unnecessary copy of the object file on a cache miss.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard compiler option <code>-fmodules</code>.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard compiler option <code>-fplugin=libcc1plugin</code> (interaction
+  with GDB).
+</p>
+</li>
+<li>
+<p>
+Fixed build error when compiling ccache with recent Clang versions.
+</p>
+</li>
+<li>
+<p>
+Removed signal-unsafe code from signal handler.
+</p>
+</li>
+<li>
+<p>
+Corrected logic for when to output cached stderr.
+</p>
+</li>
+<li>
+<p>
+Wipe the whole cached result on failure retrieving a cached file.
+</p>
+</li>
+<li>
+<p>
+Fixed build error when compiling ccache with recent Clang versions.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2_1">ccache 3.2.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2014-12-10</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_20">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed regression in temporary file handling, which lead to incorrect
+  permissions for stats, manifest and ccache.conf files in the cache.
+</p>
+</li>
+<li>
+<p>
+<code>CACHEDIR.TAG</code> files are now created in the [0-9a-f] subdirectories so that
+  ccache.conf is not lost in backups.
+</p>
+</li>
+<li>
+<p>
+Made the default cache size suffix <code>G</code>, as previously documented.
+</p>
+</li>
+<li>
+<p>
+<code>-fdiagnostics-color=auto</code> is now passed to the compiler even if stderr is
+  redirected. This fixes a problem when, for instance, a configure test probes
+  if the compiler (wrapped via ccache) supports <code>-fdiagnostics-color=auto</code>.
+</p>
+</li>
+<li>
+<p>
+Added missing documentation for <code>max_files</code> and <code>max_size</code> configuration
+  options.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_2">ccache 3.2</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2014-11-17</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_9">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added support for configuring ccache via one or several configuration files
+  instead of via environment variables. Environment variables still have
+  priority but are no longer the recommended way of customizing ccache
+  behavior. See the manual for more information.
+</p>
+</li>
+<li>
+<p>
+Added support for compiler error/warning messages with color.
+</p>
+</li>
+<li>
+<p>
+Made creation of temporary directories and cache directories smarter to avoid
+  unnecessary <code>stat</code> calls.
+</p>
+</li>
+<li>
+<p>
+Improved efficiency of the algorithm that scans for <code>__DATE_</code> and <code>__TIME__</code>
+  tokens in the hashed source code.
+</p>
+</li>
+<li>
+<p>
+Added support for several binaries (separated by space) in <code>CCACHE_PREFIX</code>.
+</p>
+</li>
+<li>
+<p>
+The <code>-c</code> option is no longer passed to the preprocessor. This fixes problems
+  with Clang and Solaris&#8217;s C++ compiler.
+</p>
+</li>
+<li>
+<p>
+ccache no longer passes preprocessor options like <code>-D</code> and <code>-I</code> to the
+  compiler when compiling preprocessed output. This fixes warnings emitted by
+  Clang.
+</p>
+</li>
+<li>
+<p>
+Compiler options <code>-fprofile-generate</code>, <code>-fprofile-arcs</code>, <code>-fprofile-use</code> and
+  <code>-fbranch-probabilities</code> are now handled without bailing.
+</p>
+</li>
+<li>
+<p>
+Added support for Clang&#8217;s <code>--serialize-diagnostic</code> option, storing the
+  diagnostic file (<code>.dia</code>) in the cache.
+</p>
+</li>
+<li>
+<p>
+Added support for precompiled headers when using Clang.
+</p>
+</li>
+<li>
+<p>
+Added support for Clang <code>.pth</code> (pretokenized header) files.
+</p>
+</li>
+<li>
+<p>
+Changed the <code>-x</code> language option to use the new objective C standard for GCC
+  and Clang.
+</p>
+</li>
+<li>
+<p>
+On a cache miss, ccache now instructs the compiler to create the object file
+  at the real destination and then copies the file into the cache instead of
+  the other way around. This is needed to support compiler options like
+  <code>-fprofile-arcs</code> and <code>--serialize-diagnostics</code>.
+</p>
+</li>
+<li>
+<p>
+ccache now checks that included files' ctimes aren&#8217;t too new. This check can
+  be turned off by adding <code>include_file_ctime</code> to the &#8220;ccache sloppiness&#8221;
+  setting.
+</p>
+</li>
+<li>
+<p>
+Added possibility to get cache hits based on filename, size, mtime and ctime
+  only. On other words, source code files are not even read, only stat-ed. This
+  operation mode is opt-in by adding <code>file_stat_matches</code> to the &#8220;ccache
+  sloppiness&#8221; setting.
+</p>
+</li>
+<li>
+<p>
+The filename part of options like <code>-Wp,-MDfilename</code> is no longer included in
+  the hash since the filename doesn&#8217;t have any bearing on the result.
+</p>
+</li>
+<li>
+<p>
+Added a &#8220;read-only direct&#8221; configuration setting, which is like the
+  ordinary read-only setting except that ccache will only try to retrieve
+  results from the cache using the direct mode, not the preprocessor mode.
+</p>
+</li>
+<li>
+<p>
+The display and interpretation of cache size has been changed to use SI
+  units.
+</p>
+</li>
+<li>
+<p>
+Default cache size is now 5 GB (was previously 1 GiB).
+</p>
+</li>
+<li>
+<p>
+Added configuration option to set the compression level of compressed object
+  files in the cache.
+</p>
+</li>
+<li>
+<p>
+Added support for <code>@file</code> and <code>-@file</code> arguments (reading options from a
+  file).
+</p>
+</li>
+<li>
+<p>
+<code>-Wl,</code> options are no longer included in the hash since they don&#8217;t affect
+  compilation.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard compiler option <code>-Wp,-P</code>.
+</p>
+</li>
+<li>
+<p>
+Optimized MD4 calculation code on little-endian systems.
+</p>
+</li>
+<li>
+<p>
+Various improvements and fixes on win32.
+</p>
+</li>
+<li>
+<p>
+Improved logging to the ccache log file.
+</p>
+</li>
+<li>
+<p>
+Added <code>--dump-manifest</code> command-line option for debugging purposes.
+</p>
+</li>
+<li>
+<p>
+Added <code>--with-bundled-zlib</code> configure option.
+</p>
+</li>
+<li>
+<p>
+Upgraded bundled zlib to version 1.2.8.
+</p>
+</li>
+<li>
+<p>
+Improved <code>dev.mk</code> to be more platform independent.
+</p>
+</li>
+<li>
+<p>
+Made the test suite work with Clang and gcc-llvm on OS X.
+</p>
+</li>
+<li>
+<p>
+Various other improvements of the test suite.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_21">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Any previous <code>.stderr</code> is now removed from the cache when recaching.
+</p>
+</li>
+<li>
+<p>
+Fixed an issue when handling the <code>-arch</code> compiler option with an argument.
+</p>
+</li>
+<li>
+<p>
+Fixed race condition when creating the initial cache directory.
+</p>
+</li>
+<li>
+<p>
+Fixed test suite failures when <code>CC</code> is a ccache-wrapped compiler.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_12">ccache 3.1.12</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2016-07-12</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_22">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a bug where (due to ccache rewriting paths) the compiler could choose
+  incorrect include files if <code>CCACHE_BASEDIR</code> is used and the source file path
+  is absolute and is a symlink.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_11">ccache 3.1.11</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2015-03-07</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_23">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed bug which could result in false cache hits when source code contains
+  <code>'"'</code> followed by <code>" /*"</code> or <code>" //"</code> (with variations).
+</p>
+</li>
+<li>
+<p>
+Made hash of cached result created with and without <code>CCACHE_CPP2</code> different.
+  This makes it possible to rebuild with <code>CCACHE_CPP2</code> set without having to
+  clear the cache to get new results.
+</p>
+</li>
+<li>
+<p>
+Don&#8217;t try to reset a nonexistent stats file. This avoids &#8220;No such file or
+  directory&#8221; messages in the ccache log when the cache directory doesn&#8217;t
+  exist.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_10">ccache 3.1.10</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2014-10-19</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_10">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added support for the <code>-Xclang</code> compiler option.
+</p>
+</li>
+<li>
+<p>
+Improved handling of exit code of internally executed processes.
+</p>
+</li>
+<li>
+<p>
+Zero length object files in the cache are now rejected as invalid.
+</p>
+</li>
+<li>
+<p>
+Bail out on option <code>-gsplit-dwarf</code> (since it produces multiple output files).
+</p>
+</li>
+<li>
+<p>
+Compiler option <code>-fdebug-prefix-map</code> is now ignored (not part of the hash).
+  (The <code>-fdebug-prefix-map</code> option may be used in combination with
+  <code>CCACHE_BASEDIR</code> to reuse results across different directories.)
+</p>
+</li>
+<li>
+<p>
+Added note in documentation that <code>--ccache-skip</code> currently does not mean
+  &#8220;don&#8217;t hash the following option&#8221;.
+</p>
+</li>
+<li>
+<p>
+To enable support for precompiled headers (PCH), <code>CCACHE_SLOPPINESS</code> now also
+  needs to include the new <code>pch_defines</code> sloppiness. This is because ccache
+  can&#8217;t detect changes in the source code when only defined macros have been
+  changed.
+</p>
+</li>
+<li>
+<p>
+Stale files in the internal temporary directory (<code>&lt;ccache_dir&gt;/tmp</code>) are now
+  cleaned up if they are older than one hour.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_24">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed path canonicalization in <code>make_relative_path()</code> when path doesn&#8217;t
+  exist.
+</p>
+</li>
+<li>
+<p>
+Fixed bug in <code>common_dir_prefix_length()</code>. This corrects the <code>CCACHE_BASEDIR</code>
+  behavior.
+</p>
+</li>
+<li>
+<p>
+ccache no longer tries to create the cache directory when <code>CCACHE_DISABLE</code> is
+  set.
+</p>
+</li>
+<li>
+<p>
+Fixed bug when reading manifests with a very large number of file info
+  entries.
+</p>
+</li>
+<li>
+<p>
+Fixed problem with logging of current working directory.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_9">ccache 3.1.9</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2013-01-06</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_25">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The EAGAIN signal is now handled correctly when emitting cached stderr
+  output. This fixes a problem triggered by large error outputs from the
+  compiler.
+</p>
+</li>
+<li>
+<p>
+Subdirectories in the cache are no longer created in read-only mode.
+</p>
+</li>
+<li>
+<p>
+Fixed so that ccache&#8217;s log file descriptor is not made available to the
+  compiler.
+</p>
+</li>
+<li>
+<p>
+Improved error reporting when failing to create temporary stdout/stderr files
+  when executing the compiler.
+</p>
+</li>
+<li>
+<p>
+Disappearing temporary stdout/stderr files are now handled gracefully.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other">Other</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed test suite to work on ecryptfs.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_8">ccache 3.1.8</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2012-08-11</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_11">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Made paths to dependency files relative in order to increase cache hits.
+</p>
+</li>
+<li>
+<p>
+Added work-around to make ccache work with buggy GCC 4.1 when creating a
+  pre-compiled header.
+</p>
+</li>
+<li>
+<p>
+Clang plugins are now hashed to catch plugin upgrades.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_26">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed crash when the current working directory has been removed.
+</p>
+</li>
+<li>
+<p>
+Fixed crash when stderr is closed.
+</p>
+</li>
+<li>
+<p>
+Corrected a corner case when parsing backslash escapes in string
+  literals.
+</p>
+</li>
+<li>
+<p>
+Paths are now correctly canonicalized when computing paths relative to the
+  base directory.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other_2">Other</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Made git version macro work when compiling outside of the source directory.
+</p>
+</li>
+<li>
+<p>
+Fixed <code>static_assert</code> macro definition clash with GCC 4.7.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_7">ccache 3.1.7</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2012-01-08</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_27">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Non-writable <code>CCACHE_DIR</code> is now handled gracefully when <code>CCACHE_READONLY</code> is
+  set.
+</p>
+</li>
+<li>
+<p>
+Made failure to create files (typically due to bad directory permissions) in
+  the cache directory fatal. Previously, such failures were silently and
+  erroneously flagged as "compiler produced stdout".
+</p>
+</li>
+<li>
+<p>
+Both the <code>-specs=file</code> and <code>--specs=file</code> forms are now recognized.
+</p>
+</li>
+<li>
+<p>
+Added recognition and hashing of GCC plugins specified with <code>-fplugin=file</code>.
+</p>
+</li>
+<li>
+<p>
+<code>CCACHE_COMPILERCHECK</code> now also determines how to hash explicit specs files
+  (<code>-specs=file</code>).
+</p>
+</li>
+<li>
+<p>
+Added <code>CPATH</code>, <code>C_INCLUDE_PATH</code> and similar environment variables to the hash
+  to avoid false cache hits when such variables have changed.
+</p>
+</li>
+<li>
+<p>
+Corrected log message when unify mode is enabled.
+</p>
+</li>
+<li>
+<p>
+Reverted the GCC bug compatibility introduced in ccache 3.1.5 for <code>-MT</code>/<code>-MQ</code>
+  options with concatenated arguments. (The bug is fixed in recent GCC
+  versions.)
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other_3">Other</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Corrected license header for <code>mdfour.c</code>.
+</p>
+</li>
+<li>
+<p>
+Improved documentation on how to fix bad object files in the cache.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_6">ccache 3.1.6</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2011-08-21</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_12">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Rewrite argument to <code>--sysroot</code> if <code>CCACHE_BASEDIR</code> is used.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_28">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Don&#8217;t crash if <code>getcwd()</code> fails.
+</p>
+</li>
+<li>
+<p>
+Fixed alignment of &#8220;called for preprocessing&#8221; counter.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_5">ccache 3.1.5</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2011-05-29</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_13">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added a new statistics counter named &#8220;called for preprocessing&#8221;.
+</p>
+</li>
+<li>
+<p>
+The original command line is now logged to the file specified with
+  <code>CCACHE_LOGFILE</code>.
+</p>
+</li>
+<li>
+<p>
+Improved error logging when system calls fail.
+</p>
+</li>
+<li>
+<p>
+Added support for rewriting absolute paths in <code>-F</code>/<code>-iframework</code> GCC
+  options.
+</p>
+</li>
+<li>
+<p>
+Improved order of statistics counters in <code>ccache -s</code> output.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_29">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The <code>-MF</code>/<code>-MT</code>/<code>-MQ</code> options with concatenated argument are now handled
+  correctly when they are last on the command line.
+</p>
+</li>
+<li>
+<p>
+ccache is now bug compatible with GCC for the <code>-MT</code>/<code>-MQ</code> options with
+  concatenated arguments.
+</p>
+</li>
+<li>
+<p>
+Fixed a minor memory leak.
+</p>
+</li>
+<li>
+<p>
+Systems that lack (and don&#8217;t need to be linked with) libm are now supported.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_4">ccache 3.1.4</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2011-01-09</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_30">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Made a work-around for a bug in <code>gzputc()</code> in zlib 1.2.5.
+</p>
+</li>
+<li>
+<p>
+Corrupt manifest files are now removed so that they won&#8217;t block direct mode
+  hits.
+</p>
+</li>
+<li>
+<p>
+ccache now copes with file systems that don&#8217;t know about symbolic links.
+</p>
+</li>
+<li>
+<p>
+The file handle in now correctly closed on write error when trying to create
+  a cache dir tag.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_3">ccache 3.1.3</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2010-11-28</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_31">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The -MFarg, -MTarg and -MQarg compiler options (i.e, without space between
+  option and argument) are now handled correctly.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other_4">Other</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Portability fixes for HP-UX 11.00 and other esoteric systems.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_2">ccache 3.1.2</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2010-11-21</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_32">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Bail out on too hard compiler options <code>-fdump-*</code>.
+</p>
+</li>
+<li>
+<p>
+NULL return values from malloc/calloc of zero bytes are now handled
+  correctly.
+</p>
+</li>
+<li>
+<p>
+Fixed issue when parsing precompiler output on AIX.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other_5">Other</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Improved documentation on which information is included in the hash sum.
+</p>
+</li>
+<li>
+<p>
+Made the &#8220;too new header file&#8221; test case work on file systems with
+  unsynchronized clocks.
+</p>
+</li>
+<li>
+<p>
+The test suite now also works on systems that lack a /dev/zero.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1_1">ccache 3.1.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2010-11-07</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_33">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+ccache now falls back to preprocessor mode when a non-regular include file
+  (device, socket, etc) has been detected so that potential hanging due to
+  blocking reads is avoided.
+</p>
+</li>
+<li>
+<p>
+CRC errors are now detected when decompressing compressed files in the cache.
+</p>
+</li>
+<li>
+<p>
+Fixed potential object file corruption race on NFS.
+</p>
+</li>
+<li>
+<p>
+Minor documentation corrections.
+</p>
+</li>
+<li>
+<p>
+Fixed configure detection of ar.
+</p>
+</li>
+<li>
+<p>
+ccache development version (set by dev.mk) now works with gits whose
+  <code>describe</code> command doesn&#8217;t understand <code>--dirty</code>.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other_6">Other</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Minor debug log message improvements.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_1">ccache 3.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2010-09-16</p></div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_14">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added support for hashing the output of a custom command (e.g. <code>%compiler%
+  --version</code>) to identify the compiler instead of stat-ing or hashing the
+  compiler binary. This can improve robustness when the compiler (as seen by
+  ccache) actually isn&#8217;t the real compiler but another compiler wrapper.
+</p>
+</li>
+<li>
+<p>
+Added support for caching compilations that use precompiled headers. (See the
+  manual for important instructions regarding this.)
+</p>
+</li>
+<li>
+<p>
+Locking of the files containing statistics counters is now done using
+  symlinks instead of POSIX locks. This should make ccache behave a lot better
+  on file systems where POSIX locks are slow or broken (e.g. NFS on some
+  systems).
+</p>
+</li>
+<li>
+<p>
+Manifest files are now updated without the need of taking locks.
+</p>
+</li>
+<li>
+<p>
+Updates of statistics counters are now always done in one of the sub-level
+  statistics files. This reduces lock contention, which especially improves
+  performance on slow NFS mounts.
+</p>
+</li>
+<li>
+<p>
+Reading and writing of statistics counters has been made forward-compatible
+  (unknown counters are retained).
+</p>
+</li>
+<li>
+<p>
+Files are now read without using <code>mmap()</code>. This has two benefits: it&#8217;s more
+  robust against file changes during reading and it improves performance on
+  poor systems where <code>mmap()</code> doesn&#8217;t use the disk cache.
+</p>
+</li>
+<li>
+<p>
+Added <code>.cp</code> and <code>.CP</code> as known C++ suffixes.
+</p>
+</li>
+<li>
+<p>
+Improved logging.
+</p>
+</li>
+<li>
+<p>
+Added <code>-install_name</code> as an option known to take an argument. (This improves
+  statistics when using the Darwin linker.)
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_34">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Non-fatal error messages are now never printed to stderr but logged instead.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug affecting failing commands when <code>--ccache-skip</code> is used.
+</p>
+</li>
+<li>
+<p>
+Made <code>--ccache-skip</code> work for all options.
+</p>
+</li>
+<li>
+<p>
+EINTR is now handled correctly.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other_7">Other</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Work on porting ccache to win32 (native), mostly done by Ramiro Polla. The
+  port is not yet finished, but will hopefully be complete in some subsequent
+  release.
+</p>
+</li>
+<li>
+<p>
+Added a <code>--nostats</code> flag to the performance benchmark program.
+</p>
+</li>
+<li>
+<p>
+Made the performance benchmark program more accurate when measuring cache
+  hits.
+</p>
+</li>
+<li>
+<p>
+Added a new test framework for unit tests written in C.
+</p>
+</li>
+<li>
+<p>
+Got rid of <code>configure-dev</code>; dev mode is now given by <code>dev.mk.in</code> presence.
+</p>
+</li>
+<li>
+<p>
+Improved documentation on how to combine ccache with other compiler wrappers
+  (like <code>distcc</code>).
+</p>
+</li>
+<li>
+<p>
+New <code>LICENSE.txt</code> file with licensing and copyright details about bundled
+  source code.
+</p>
+</li>
+<li>
+<p>
+New <code>AUTHORS.txt</code> file with a list of ccache contributors.
+</p>
+</li>
+<li>
+<p>
+New <code>HACKING.txt</code> file with some notes about ccache code conventions.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_0_1">ccache 3.0.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2010-07-15</p></div>
+<div class="sect2">
+<h3 id="_bug_fixes_35">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The statistics counter &#8220;called for link&#8221; is now correctly updated when
+  linking with a single object file.
+</p>
+</li>
+<li>
+<p>
+Fixed a problem with out-of-source builds.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_0">ccache 3.0</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2010-06-20</p></div>
+<div class="sect2">
+<h3 id="_general">General</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+ccache is now licensed under the GNU General Public License (GPL) version 3
+  or later.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_upgrade_notes">Upgrade notes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The way the hashes are calculated has changed, so you won&#8217;t get cache hits
+  for compilation results stored by older ccache versions. Because of this, you
+  might as well clear the old cache directory with <code>ccache --clear</code> if you
+  want, unless you plan to keep using an older ccache version.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_new_features_and_enhancements_15">New features and enhancements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+ccache now has a &#8220;direct mode&#8221; where it computes a hash of the source code
+  (including all included files) and compiler options without running the
+  preprocessor. By not running the preprocessor, CPU usage is reduced; the
+  speed is somewhere between 1 and 5 times that of ccache running in
+  traditional mode, depending on the circumstances. The speedup will be higher
+  when I/O is fast (e.g., when files are in the disk cache). The direct mode
+  can be disabled by setting <code>CCACHE_NODIRECT</code>.
+</p>
+</li>
+<li>
+<p>
+Support has been added for rewriting absolute paths to relative paths when
+  hashing, in order to increase cache hit rate when building the same source
+  code in different directories even when compiling with <code>-g</code> and when using
+  absolute include directory paths. This is done by setting the
+  <code>CCACHE_BASEDIR</code> environment variable to an absolute path that specifies
+  which paths to rewrite.
+</p>
+</li>
+<li>
+<p>
+Object files are now optionally stored compressed in the cache. The runtime
+  cost is negligible, and more files will fit in the ccache directory and in
+  the disk cache. Set <code>CCACHE_COMPRESS</code> to enable object file compression. Note
+  that you can&#8217;t use compression in combination with the hard link feature.
+</p>
+</li>
+<li>
+<p>
+A <code>CCACHE_COMPILERCHECK</code> option has been added. This option tells ccache what
+  compiler-identifying information to hash to ensure that results retrieved
+  from the cache are accurate. Possible values are: none (don&#8217;t hash anything),
+  mtime (hash the compiler&#8217;s mtime and size) and content (hash the content of
+  the compiler binary). The default is mtime.
+</p>
+</li>
+<li>
+<p>
+It is now possible to specify extra files whose contents should be included
+  in the hash sum by setting the <code>CCACHE_EXTRAFILES</code> option.
+</p>
+</li>
+<li>
+<p>
+Added support for Objective-C and Objective-C++. The statistics counter
+  &#8220;not a C/C++ file&#8221; has been renamed to &#8220;unsupported source language&#8221;.
+</p>
+</li>
+<li>
+<p>
+Added support for the <code>-x</code> compiler option.
+</p>
+</li>
+<li>
+<p>
+Added support for long command-line options.
+</p>
+</li>
+<li>
+<p>
+A <code>CACHEDIR.TAG</code> file is now created in the cache directory. See
+  <a href="http://www.brynosaurus.com/cachedir/">http://www.brynosaurus.com/cachedir/</a>.
+</p>
+</li>
+<li>
+<p>
+Messages printed to the debug log (specified by <code>CCACHE_LOGFILE</code>) have been
+  improved.
+</p>
+</li>
+<li>
+<p>
+You can relax some checks that ccache does in direct mode by setting
+  <code>CCACHE_SLOPPINESS</code>. See the manual for more information.
+</p>
+</li>
+<li>
+<p>
+<code>CCACHE_TEMPDIR</code> no longer needs to be on the same filesystem as
+  <code>CCACHE_DIR</code>.
+</p>
+</li>
+<li>
+<p>
+The default value of <code>CCACHE_TEMPDIR</code> has been changed to <code>$CCACHE_DIR/tmp</code>
+  to avoid cluttering the top directory.
+</p>
+</li>
+<li>
+<p>
+Temporary files that later will be moved into the cache are now created in
+  the cache directory they will end up in. This makes ccache more friendly to
+  Linux&#8217;s directory layout.
+</p>
+</li>
+<li>
+<p>
+Improved the test suite and added tests for most of the new functionality.
+  It&#8217;s now also possible to specify a subset of tests to run.
+</p>
+</li>
+<li>
+<p>
+Standard error output from the compiler is now only stored in the cache if
+  it&#8217;s non-empty.
+</p>
+</li>
+<li>
+<p>
+If the compiler produces no object file or an empty object file, but gives a
+  zero exit status (could be due to a file system problem, a buggy program
+  specified by <code>CCACHE_PREFIX</code>, etc.), ccache copes with it properly.
+</p>
+</li>
+<li>
+<p>
+Added <code>installcheck</code> and <code>distcheck</code> make targets.
+</p>
+</li>
+<li>
+<p>
+Clarified cache size limit options' and cleanup semantics.
+</p>
+</li>
+<li>
+<p>
+Improved display of cache max size values.
+</p>
+</li>
+<li>
+<p>
+The following options are no longer hashed in the preprocessor mode:
+  <code>-imacros</code>, <code>-imultilib</code>, <code>-iprefix</code>, <code>-iquote</code>, <code>-isysroot</code>, <code>-iwithprefix</code>,
+  <code>-iwithprefixbefore</code>, <code>-nostdinc</code>, <code>-nostdinc++</code> and <code>-U</code>.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_36">Bug fixes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Various portability improvements.
+</p>
+</li>
+<li>
+<p>
+Improved detection of home directory.
+</p>
+</li>
+<li>
+<p>
+User-defined <code>CPPFLAGS</code> and <code>LDFLAGS</code> are now respected in the Makefile.
+</p>
+</li>
+<li>
+<p>
+Fixed NFS issues.
+</p>
+</li>
+<li>
+<p>
+Computation of the hash sum has been improved to decrease the risk of hash
+  collisions. For instance, the compiler options <code>-X -Y</code> and <code>-X-Y</code> previously
+  contributed equally to the hash sum.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard compiler options <code>--coverage</code>, <code>-fprofile-arcs</code>,
+  <code>-fprofile-generate</code>, <code>-fprofile-use</code>, <code>-frepo</code>, <code>-ftest-coverage</code> and
+  <code>-save-temps</code>. Also bail out on <code>@file</code> style options.
+</p>
+</li>
+<li>
+<p>
+Errors when using multiple <code>-arch</code> compiler options are now noted as
+  &#8220;unsupported compiler option&#8221;.
+</p>
+</li>
+<li>
+<p>
+<code>-MD</code>/<code>-MMD</code> options without <code>-MT</code>/<code>-MF</code> are now handled correctly.
+</p>
+</li>
+<li>
+<p>
+The <code>-finput-charset</code> option is now handled correctly.
+</p>
+</li>
+<li>
+<p>
+Added support for <code>-Wp,-MD</code> and <code>-Wp,-MMD</code> options.
+</p>
+</li>
+<li>
+<p>
+The compiler options <code>-Xassembler</code>, <code>-b</code>, <code>-G</code> and <code>-V</code> are now correctly
+  recognized as taking an argument.
+</p>
+</li>
+<li>
+<p>
+Debug information containing line numbers of predefined and command-line
+  macros (enabled with the compiler option <code>-g3</code>) will now be correct.
+</p>
+</li>
+<li>
+<p>
+Corrected LRU cleanup handling of object files.
+</p>
+</li>
+<li>
+<p>
+<code>utimes()</code> is now used instead of <code>utime()</code> when available.
+</p>
+</li>
+<li>
+<p>
+Non-writable cache directories are now handled gracefully.
+</p>
+</li>
+<li>
+<p>
+Corrected documentation about sharing the cache directory.
+</p>
+</li>
+<li>
+<p>
+Fixed compilation warnings from GCC 4.3.
+</p>
+</li>
+<li>
+<p>
+The command specified by <code>CCACHE_PREFIX</code> is no longer part of the hash.
+</p>
+</li>
+<li>
+<p>
+Fixed bad memory access spotted by Valgrind.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug in <code>x_realloc</code>.
+</p>
+</li>
+<li>
+<p>
+Freed memory is no longer referenced when compiling a <code>.i</code>/<code>.ii</code> file and
+  falling back to running the real compiler.
+</p>
+</li>
+<li>
+<p>
+The test suite is now immune to external values of the <code>CCACHE_*</code> environment
+  variables.
+</p>
+</li>
+<li>
+<p>
+Improved detection of recursive invocation.
+</p>
+</li>
+<li>
+<p>
+The ccache binary is now not unconditionally stripped when installing.
+</p>
+</li>
+<li>
+<p>
+Statistics counters are now correctly updated for -E option failures and
+  internal errors.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Version 3.6<br />
+Last updated
+ 2019-03-18 22:26:33 CET
+</div>
+</div>
+</body>
+</html>

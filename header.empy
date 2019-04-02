@@ -1,0 +1,96 @@
+@# -*- html -*-
+
+@# Globals that must be set before including this file:
+@#
+@# page_id     (without .empy or .html)
+@# page_title
+
+@#####################################################################
+
+@{import re}
+
+@[def nav_link(id, name, link=None)]
+    @[if link is None]
+        @{link = id + ".html"}
+    @[end if]
+    @[if id == page_id]
+        @{cl = ' class="current"'}
+    @[else]
+        @{cl = ""}
+    @[end if]
+    <li@cl><a href="@link">@name</a></li>
+@[end def]
+
+@[def ext_link(name, link, level=1)]
+    @[if level == 2]
+        @{pre = "&ndash; "}
+    @[else]
+        @{pre = ""}
+    @[end if]
+    <li class="level@level"><a href="@link">@pre@name</a></li>
+@[end def]
+
+@[def ext_link2(name, link)]
+    @ext_link(name, link, 2)
+@[end def]
+
+@#####################################################################
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>ccache &mdash; @page_title</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="ccache.css" type="text/css">
+<meta name="google-site-verification" content="cVP6RySzgeBmWbeEtVBvQ3eJuXc5gH31LGLfqnNpC1g" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<div id="banner">
+<a href=".">
+<span style="font-size: 500%; text-shadow: 5px 5px 5px #aaa">ccache</span>
+<span style="font-size: 150%">&mdash; a fast C/C++ compiler cache</span>
+</a>
+</div>
+
+<div id="navigation">
+
+<div class="group" style="margin-top: 0">About it:</div>
+<ul>
+@nav_link("overview", "Overview", ".")
+@nav_link("performance", "Performance")
+@nav_link("news", "News")
+@nav_link("credits", "Credits")
+@nav_link("license", "License", "license.html")
+</ul>
+
+<div class="group">Get it:</div>
+<ul>
+@nav_link("download", "Download")
+</ul>
+
+<div class="group">Use it:</div>
+<ul>
+@nav_link("documentation", "Documentation", "documentation.html")
+@ext_link("Mailing list", "http://lists.samba.org/mailman/listinfo/ccache/")
+@ext_link2("Archive", "http://www.mail-archive.com/ccache@lists.samba.org")
+</ul>
+
+<div class="group">Improve it:</div>
+<ul>
+@nav_link("bugs", "Bug report", "bugs.html")
+@ext_link2("View existing", "https://github.com/ccache/ccache/issues")
+@ext_link("Mailing list", "https://lists.samba.org/mailman/listinfo/ccache/")
+@ext_link2("Archive", "http://www.mail-archive.com/ccache@lists.samba.org")
+@nav_link("repo", "Source repository")
+@ext_link2("Browse", "https://github.com/ccache/ccache")
+</ul>
+
+</div>
+
+<div id="content">
+<h1>@page_title</h1>

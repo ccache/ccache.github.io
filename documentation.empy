@@ -1,0 +1,61 @@
+@# -*- html -*-
+
+@{page_id = "documentation"}
+@{page_title = "Documentation"}
+@empy.include("header.empy")
+
+@{
+import os
+
+def s(x):
+    return ".".join(str(n) for n in x)
+
+all_versions = [
+    tuple(int(n) for n in x.replace(".html", "").split("."))
+    for x in os.listdir("manual") if x != "latest.html"
+]
+all_versions.sort(reverse=True)
+
+latest_version = s(all_versions[0])
+all_manual_versions = [s(x) for x in all_versions]
+all_release_notes_versions = all_manual_versions[:-1]
+}@
+
+<h2>Manual</h2>
+
+<ul>
+  <li>
+    <a href="manual/latest.html">Latest version</a> (currently @latest_version)
+  </li>
+  <li>
+    <a onclick="$(this).parent().hide(); $('.manual-version').show()">
+      Older versions
+    </a>
+  </li>
+@[for x in all_manual_versions]
+  <li class="manual-version" style="display: none">
+    <a href="manual/@{print x}.html">Version @x</a>
+  </li>
+@[end for]
+</ul>
+
+<h2>Installation</h2>
+
+<ul>
+  <li>
+    <a href="https://github.com/ccache/ccache/blob/master/doc/INSTALL.md">From a Git source repository</a>
+  </li>
+  <li>
+    <a href="https://github.com/ccache/ccache/blob/master/doc/INSTALL-from-release-archive.md">From a release archive</a>
+  </li>
+</ul>
+
+<h2>Contribution</h2>
+
+<ul>
+  <li>
+    <a href="https://github.com/ccache/ccache/blob/master/CONTRIBUTING.md#contributing-code">Notes on ccache code style and commit messages</a>
+  </li>
+</ul>
+
+@empy.include("footer.empy")

@@ -1,0 +1,17 @@
+@# -*- html -*-
+
+@{page_id = "news"}
+@{page_title = "News"}
+@empy.include("header.empy")
+
+@{
+import yaml
+news = yaml.load_all(open("news.yaml"))
+}@
+
+@[for x in news]
+    <h2 id="@(x["date"])">@(x["date"]): @(x["header"])</h2>
+    @(x["body"])
+@[end for]
+
+@empy.include("footer.empy")

@@ -1,0 +1,173 @@
+body {
+    margin: 1em 1em 1em 1em;
+    background-color: #e3e8ee;
+    color: black;
+}
+
+li {
+    list-style-type: square;
+}
+
+a {
+    color: #001a87;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #826bd3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+h1 {
+    font-family: georgia, times, "times new roman", serif;
+    font-size: 220%;
+    margin: 0 0 0 0;
+}
+
+h2 {
+    font-family: georgia, times, "times new roman", serif;
+    font-size: 150%;
+    margin: 1em 0 1em 0;
+    padding-left: 0.2em;
+    background-color: #d9e1eb;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+    font-family: georgia, times, "times new roman", serif;
+    font-size: 100%;
+    margin: 1em 0 1em 0;
+    padding-left: 0.2em;
+    background-color: #d9e1eb;
+    border-bottom: 1px #999 solid;
+}
+
+p, li {
+    line-height: 140%;
+}
+
+pre {
+    font-family: monospace;
+    background-color: #d9e1eb;
+    padding: 0.2em 0.2em 0.2em 0.2em;
+    border: 1px solid #c8d0da;
+}
+
+code {
+    font-family: monospace;
+    background-color: #d9e1eb;
+    padding: 0.2em 0.2em 0.2em 0.2em;
+    border: 1px solid #c8d0da;
+}
+
+ul.news {
+    padding: 0;
+}
+
+ul.news li {
+    list-style-type: none;
+    margin: 0;
+}
+
+th {
+    text-align: left;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+table th {
+    background-color: #e3e8ee;
+}
+
+table th.empty {
+    background-color: #fff;
+}
+
+table.perf tr td {
+    background: #d9e1eb;
+}
+
+table.perf td.num {
+    text-align: right;
+}
+
+table.perf {
+    border-spacing: 0.3em;
+}
+
+table.perf td.text {
+    text-align: left;
+}
+
+#navigation {
+    float: left;
+    border-radius: 4px;
+    width: 11em;
+    background-color: #fff;
+    padding: 0.5em;
+    margin: 0;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}
+
+#navigation a {
+    color: #182c7c;
+}
+
+#navigation a:hover {
+    color: #3958da;
+}
+
+#navigation div.group {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 1em 0 0 0;
+}
+
+#navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navigation li {
+    text-align: left;
+    margin: 0 0 0 1em;
+    padding: 0;
+    list-style-type: none;
+}
+
+#navigation li.current {
+    font-weight: bold;
+}
+
+#navigation li.level2 {
+    margin-left: 2.5em;
+    font-size: 80%;
+}
+
+#navigation li a {
+    margin: 0;
+}
+
+#banner {
+    font-family: georgia, times, "times new roman", serif;
+    margin: 0 0 1em 0;
+}
+
+#banner a {
+    text-decoration: none;
+    color: #000;
+}
+
+#content {
+    background-color: #fff;
+    margin-left: 13em;
+    border-radius: 4px;
+    padding: 1em;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}

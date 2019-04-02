@@ -1,0 +1,30 @@
+@# -*- html -*-
+
+@{page_id = "repo"}
+@{page_title = "Source repository"}
+@empy.include("header.empy")
+
+<p>The ccache source repository is available via
+<a href="http://git-scm.com/">Git</a>:</p>
+
+<pre>
+git clone https://github.com/ccache/ccache.git
+</pre>
+
+<p>You can also <a href="https://github.com/ccache/ccache">browse the source
+code</a>.</p>
+
+<p>The official repository contains these branches:</p>
+
+<ul>
+  <li><b>master</b>: This branch contains changes that will end up in the next
+  feature release (version X.Y). Most development takes place here.</li>
+  <li><b>X.Y-maint</b>: This branch contains changes that will end up in the
+  next bugfix release of the X.Y series (version X.Y.Z).</li>
+  <li><b>dev/<i>X</i></b>: These are feature branches (where <i>X</i> is the
+  feature name), which are used for larger features that may be unstable,
+  experimental or whose target release hasn't been decided yet. These branches
+  can be rebased or deleted without any special notice.</li>
+</ul>
+
+@empy.include("footer.empy")

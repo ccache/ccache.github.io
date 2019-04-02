@@ -1,0 +1,27 @@
+@# -*- html -*-
+
+@{page_id = "bugs"}
+@{page_title = "Bugs"}
+@empy.include("header.empy")
+
+<p>So, you found a bug?</p>
+
+<ul>
+  <li>If you're not using the <a href="download.html">latest released
+  version</a>, please upgrade and see if the bug has already been fixed.</li>
+  <li>Check <a href="https://github.com/ccache/ccache/issues">existing bug
+  reports</a> to see if the bug has already been reported.</li>
+</ul>
+
+<p>To report a bug or request a feature, or maybe contribute with a patch, you
+may:</p>
+
+<ul>
+  <li><a href="https://github.com/ccache/ccache/issues/new">Report an issue on
+  github</a>.</li>
+  <li>Discuss it on
+  the <a href="https://lists.samba.org/mailman/listinfo/ccache">mailing
+  list</a>.</li>
+</ul>
+
+@empy.include("footer.empy")

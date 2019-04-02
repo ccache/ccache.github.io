@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ccache &mdash; Performance</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="ccache.css" type="text/css">
+<meta name="google-site-verification" content="cVP6RySzgeBmWbeEtVBvQ3eJuXc5gH31LGLfqnNpC1g" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div id="banner">
+<a href=".">
+<span style="font-size: 500%; text-shadow: 5px 5px 5px #aaa">ccache</span>
+<span style="font-size: 150%">&mdash; a fast C/C++ compiler cache</span>
+</a>
+</div>
+<div id="navigation">
+<div class="group" style="margin-top: 0">About it:</div>
+<ul>
+<li><a href=".">Overview</a></li>
+<li class="current"><a href="performance.html">Performance</a></li>
+<li><a href="news.html">News</a></li>
+<li><a href="credits.html">Credits</a></li>
+<li><a href="license.html">License</a></li>
+</ul>
+<div class="group">Get it:</div>
+<ul>
+<li><a href="download.html">Download</a></li>
+</ul>
+<div class="group">Use it:</div>
+<ul>
+<li><a href="documentation.html">Documentation</a></li>
+<li class="level1"><a href="http://lists.samba.org/mailman/listinfo/ccache/">Mailing list</a></li>
+<li class="level2"><a href="http://www.mail-archive.com/ccache@lists.samba.org">&ndash; Archive</a></li>
+</ul>
+<div class="group">Improve it:</div>
+<ul>
+<li><a href="bugs.html">Bug report</a></li>
+<li class="level2"><a href="https://github.com/ccache/ccache/issues">&ndash; View existing</a></li>
+<li class="level1"><a href="https://lists.samba.org/mailman/listinfo/ccache/">Mailing list</a></li>
+<li class="level2"><a href="http://www.mail-archive.com/ccache@lists.samba.org">&ndash; Archive</a></li>
+<li><a href="repo.html">Source repository</a></li>
+<li class="level2"><a href="https://github.com/ccache/ccache">&ndash; Browse</a></li>
+</ul>
+</div>
+<div id="content">
+<h1>Performance</h1>
+<p>The performance of ccache depends on a lot of factors, which makes it quite
+hard to predict the improvement for a given use case. This page contains some
+different performance measurements that try to give an idea about the potential
+speedup.</p>
+<p>It should also be noted that if the expected hit rate is low, there may be a
+net performance loss when using ccache because of the overhead of cache misses
+(typically 5%-20%). Also, if the build machine is short on memory compared to
+the amount of memory used by the build tools (compiler, linker, etc), usage of
+ccache could decrease performance due the fact that ccache's cached files may
+flush other files from the OS's disk cache.
+See <a href="http://www.mail-archive.com/ccache@lists.samba.org/msg00576.html">this
+mailing list post</a> by Christopher Tate for a good write-up on this issue. So
+to sum it up: it is probably wise to perform some measurements with and without
+ccache for your typical use case before enabling it!</p>
+<p>The following measurements were made on a fairly standard Linux-based
+desktop system: Intel Core i5-750, standard SATA disk, Ubuntu 10.04 with Linux
+2.6.32 x86_64.</p>
+<p>&ldquo;ccache 3.0 direct&rdquo; in the tables below means running ccache
+with direct mode enabled (which is the default) and &ldquo;ccache 3.0
+prepr.&rdquo; means running ccache with <code>CCACHE_NODIRECT=1</code>, thus
+disabling the direct mode and enabling the preprocessor mode. (A side note: The
+performance of ccache 2.4 is very close to ccache 3.0 in preprocessor
+mode.)</p>
+<h2>ccache.c</h2>
+<p>Here are the results of building ccache's
+own <a href="https://github.com/ccache/ccache/blob/master/ccache.c">ccache.c</a>
+source code file 1000 times
+using <a href="https://github.com/ccache/ccache/blob/master/perf/perf.py">perf.py</a>
+with the flags <code>-g -O2</code>.</p>
+<table class="perf">
+<tr>
+<th class="empty"></th>
+<th>Elapsed time</th>
+<th>Percent</th>
+<th>Factor</th>
+</tr>
+<tr>
+<th>Without ccache</th>
+<td class="num">367.11 s</td>
+<td class="num">100.00 %</td>
+<td class="num">1.0000 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, first time</th>
+<td class="num">385.67 s</td>
+<td class="num">105.06 %</td>
+<td class="num">0.9519 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, second time</th>
+<td class="num">9.70 s</td>
+<td class="num">2.64 %</td>
+<td class="num">37.8464 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., first time</th>
+<td class="num">382.26 s</td>
+<td class="num">104.13 %</td>
+<td class="num">0.9604 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., second time</th>
+<td class="num">23.90 s</td>
+<td class="num">6.51 %</td>
+<td class="num">15.3603 x</td>
+</tr>
+</table>
+<p>As can be seen above, cache hits in the direct mode are about 2.5 times
+faster than in preprocessor mode. The speedup compared to compiling without
+ccache is very large since the compilation costs a relatively large amount of
+CPU time. The overhead of cache misses can also be seen, though in this case,
+it's relatively small.</p>
+<h2>c++_includes.cc</h2>
+<p>This is a test that aims to measure preprocessor-intensive compilation.
+Here, <a href="c++_includes.cc">c++_includes.cc</a> (a file including nine
+common include files from the C++ standard library) was compiled 1000 times
+using
+<a href="https://github.com/ccache/ccache/blob/master/perf/perf.py">perf.py</a>
+with no special flags.
+<table class="perf">
+<tr>
+<th class="empty"></th>
+<th>Elapsed time</th>
+<th>Percent</th>
+<th>Factor</th>
+</tr>
+<tr>
+<th>Without ccache</th>
+<td class="num">189.17 s</td>
+<td class="num">100.00 %</td>
+<td class="num">1.0000 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, first time</th>
+<td class="num">225.86 s</td>
+<td class="num">119.40 %</td>
+<td class="num">0.8376 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, second time</th>
+<td class="num">9.05 s</td>
+<td class="num">4.78 %</td>
+<td class="num">20.9028 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., first time</th>
+<td class="num">215.90 s</td>
+<td class="num">114.13 %</td>
+<td class="num">0.8762 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., second time</th>
+<td class="num">40.86 s</td>
+<td class="num">21.60 %</td>
+<td class="num">4.6297 x</td>
+</tr>
+</table>
+<p>The difference between direct and preprocessor mode is about a factor 4.5
+&mdash; much higher than for the ccache.c test because the preprocessor
+overhead is higher.</p>
+<h2>Samba 3.5.3</h2>
+<p>Here is a perhaps more realistic use case. First,
+the <a href="https://www.samba.org">Samba</a> 3.5.3 source code was
+unpacked, <code>./configure</code> was run and then <code>make</code>
+(without <code>-j</code>) was run and timed. All tests were run eight times and
+only the best results were kept. Note that the figures also include linking and
+other things that aren't affected by ccache.</p>
+<h3>Warm disk cache</h3>
+<table class="perf">
+<tr>
+<th class="empty"></th>
+<th>Elapsed time</th>
+<th>Percent</th>
+<th>Factor</th>
+</tr>
+<tr>
+<th>Without ccache</th>
+<td class="num">316.23 s</td>
+<td class="num">100.00 %</td>
+<td class="num">1.0000 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, first time</th>
+<td class="num">375.16 s</td>
+<td class="num">118.64 %</td>
+<td class="num">0.8429 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, second time</th>
+<td class="num">32.09 s</td>
+<td class="num">10.15 %</td>
+<td class="num">9.8545 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., first time</th>
+<td class="num">360.62 s</td>
+<td class="num">114.04 %</td>
+<td class="num">0.8769 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., second time</th>
+<td class="num">161.44 s</td>
+<td class="num">51.05 %</td>
+<td class="num">1.9588 x</td>
+</tr>
+<tr>
+<th>ccache 2.4, first time</th>
+<td class="num">359.42 s</td>
+<td class="num">113.66 %</td>
+<td class="num">0.8798 x</td>
+</tr>
+<tr>
+<th>ccache 2.4, second time</th>
+<td class="num">159.31 s</td>
+<td class="num">50.38 %</td>
+<td class="num">1.9850 x</td>
+</tr>
+</table>
+<p>The cost of cache misses is relatively high: 14% for the preprocessor mode
+and 19% for the direct mode. The direct mode has higher overhead than the
+preprocessor mode for cache misses, but is much faster for cache hits. In fact,
+the speedup is in this case so high that it may become interesting to optimize
+how the Makefile is written. The rule for compiling a C file in Samba 3.5.3
+looks like this:</p>
+<pre>
+.c.o:
+	@if (: &gt;&gt; $@ || : &gt; $@) &gt;/dev/null 2&gt;&amp;1; then rm -f $@; else \
+	 dir=`echo $@ | sed 's,/[^/]*$$,,;s,^$$,.,'` $(MAKEDIR); fi
+	@if test -n "$(CC_CHECKER)"; then \
+	  echo "Checking  $*.c with '$(CC_CHECKER)'";\
+	  $(CHECK_CC); \
+	 fi
+	@echo Compiling $*.c
+	@$(COMPILE) &amp;&amp; exit 0;\
+		echo "The following command failed:" 1&gt;&amp;2;\
+		echo "$(subst ",\",$(COMPILE_CC))" 1&gt;&amp;2;\
+		$(COMPILE_CC) &gt;/dev/null 2&gt;&amp;1
+</pre>
+By rewriting this to
+<pre>
+.c.o:
+	@echo Compiling $*.c
+	@$(COMPILE)
+</pre>
+<p>the build time goes down from 32 seconds to about 23 seconds!</p>
+<h3>Cold disk cache</h3>
+<p>To measure the speed when the disk cache is cold, the disk cache was dropped
+with <code>sync; echo 3 >/proc/sys/vm/drop_caches</code> before
+running <code>make</code>.</p>
+<table class="perf">
+<tr>
+<th class="empty"></th>
+<th>Elapsed time</th>
+<th>Percent</th>
+<th>Factor</th>
+</tr>
+<tr>
+<th>Without ccache</th>
+<td class="num">324.08 s</td>
+<td class="num">100.00 %</td>
+<td class="num">1.0000 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, first time</th>
+<td class="num">382.24 s</td>
+<td class="num">120.87 %</td>
+<td class="num">0.8273 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 direct, second time</th>
+<td class="num">44.59 s</td>
+<td class="num">14.10 %</td>
+<td class="num">7.0919 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., first time</th>
+<td class="num">367.82 s</td>
+<td class="num">116.31 %</td>
+<td class="num">0.8597 x</td>
+</tr>
+<tr>
+<th>ccache 3.0 prepr., second time</th>
+<td class="num">172.34 s</td>
+<td class="num">54.50 %</td>
+<td class="num">1.8349 x</td>
+</tr>
+<tr>
+<th>ccache 2.4, first time</th>
+<td class="num">366.48 s</td>
+<td class="num">115.89 %</td>
+<td class="num">0.8629 x</td>
+</tr>
+<tr>
+<th>ccache 2.4, second time</th>
+<td class="num">169.67 s</td>
+<td class="num">53.65 %</td>
+<td class="num">1.8638 x</td>
+</tr>
+</table>
+<p>A cold disk cache makes the performance gain on hits slightly lower because
+of the extra disk cache misses for files in the ccache directory.</p>
+</div>
+</body>
+</html>
