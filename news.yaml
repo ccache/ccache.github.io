@@ -1,3 +1,13 @@
+date: 2019-04-03
+header: Web site moved from ccache.samba.org to ccache.dev
+body: |
+  <p>
+    The ccache web site has a new home: <a
+    href="https://ccache.dev">https://ccache.dev</a>
+  </p>
+
+---
+
 date: 2019-01-14
 header: Version 3.6 has been released
 body:
