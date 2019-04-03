@@ -39,7 +39,7 @@ manual/latest.html: manual/$(version).html
 
 credits.html: authors.adoc extra-credits.txt
 documentation.html: manual/$(version).html
-news.html: news.yaml
+index.html news.html: news.yaml
 
 %.html: %.empy header.empy footer.empy $(version_stamp)
 	empy $< >$@.tmp
