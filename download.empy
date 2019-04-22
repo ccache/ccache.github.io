@@ -7,17 +7,20 @@
 <p>The latest release is <b>3.6</b>:</p>
 
 <ul>
-  <li><a href="https://www.samba.org/ftp/ccache/ccache-3.6.tar.bz2">ccache 3.6
-  source code (tar.bz2)</a> <small>(<a href="https://www.samba.org/ftp/ccache/ccache-3.6.tar.bz2.asc">OpenPGP signature</a>)</small></li>
-  <li><a href="https://www.samba.org/ftp/ccache/ccache-3.6.tar.gz">ccache 3.6
-  source code (tar.gz)</a> <small>(<a href="https://www.samba.org/ftp/ccache/ccache-3.6.tar.gz.asc">OpenPGP signature</a>)</small></li>
-  <li><a href="https://www.samba.org/ftp/ccache/ccache-3.6.tar.xz">ccache 3.6
-  source code (tar.xz)</a> <small>(<a href="https://www.samba.org/ftp/ccache/ccache-3.6.tar.xz.asc">OpenPGP signature</a>)</small></li>
+  <li><a href="https://github.com/ccache/ccache/releases/download/v3.6/ccache-3.6.tar.bz2">ccache 3.6
+  source code (tar.bz2)</a> <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.6/ccache-3.6.tar.bz2.asc">OpenPGP signature</a>)</small></li>
+  <li><a href="https://github.com/ccache/ccache/releases/download/v3.6/ccache-3.6.tar.gz">ccache 3.6
+  source code (tar.gz)</a> <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.6/ccache-3.6.tar.gz.asc">OpenPGP signature</a>)</small></li>
+  <li><a href="https://github.com/ccache/ccache/releases/download/v3.6/ccache-3.6.tar.xz">ccache 3.6
+  source code (tar.xz)</a> <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.6/ccache-3.6.tar.xz.asc">OpenPGP signature</a>)</small></li>
   <li><a href="releasenotes.html#_ccache_3_6">ccache 3.6 release notes</a></li>
 </ul>
 
-<p>You can also find older releases in
-the <a href="https://www.samba.org/ftp/ccache/">download directory</a>.</p>
+<p>
+  You can also find older releases on
+  the <a href="https://github.com/ccache/ccache/releases/">the releases page on
+  GitHub</a>.
+</p>
 
 <p>
   The source archives are signed with
@@ -27,8 +30,10 @@ the <a href="https://www.samba.org/ftp/ccache/">download directory</a>.</p>
   file and run <code>gpg --verify <b><i>file.asc</i></b></code>.
 </p>
 
-<p>Note that the releases above only are meant to be used when installing
-ccache. If you want to develop ccache, fix bugs, etc, you should check out the
-full source code from the <a href="repo.html">repository</a> instead.</p>
+<p>
+  Note that the releases above only are meant to be used when installing
+  ccache. If you want to develop ccache, fix bugs, etc, you should check out
+  the full source code from the <a href="repo.html">repository</a> instead.
+</p>
 
 @empy.include("footer.empy")
