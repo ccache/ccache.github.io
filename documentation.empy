@@ -12,7 +12,7 @@ def s(x):
 
 all_versions = [
     tuple(int(n) for n in x.replace(".html", "").split("."))
-    for x in os.listdir("manual") if x != "latest.html"
+    for x in os.listdir("manual") if x.endswith(".html") and x != "latest.html"
 ]
 all_versions.sort(reverse=True)
 

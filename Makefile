@@ -1,6 +1,8 @@
 version := 3.6
 version_stamp := version_$(version).stamp
 
+CCACHE_REPO := ../ccache
+
 empy_files += $(filter-out footer.empy header.empy, $(wildcard *.empy))
 
 generated += $(empy_files:.empy=.html)
@@ -20,19 +22,19 @@ $(version_stamp):
 
 .INTERMEDIATE: authors.adoc
 authors.adoc: $(version_stamp)
-	wget -q -O $@ $(ccache_github_base)/doc/AUTHORS.adoc
+	git -C $(CCACHE_REPO) show v$(version):doc/AUTHORS.adoc >$@
 
 .INTERMEDIATE: license.adoc
 license.adoc: $(version_stamp)
-	wget -q -O $@ $(ccache_github_base)/LICENSE.adoc
+	git -C $(CCACHE_REPO) show v$(version):LICENSE.adoc >$@
 
-.INTERMEDIATE: manual.adoc
-manual.adoc: $(version_stamp)
-	wget -q -O $@ $(ccache_github_base)/doc/MANUAL.adoc
+.INTERMEDIATE: manual/$(version).adoc
+manual/$(version).adoc: $(version_stamp)
+	git -C $(CCACHE_REPO) show v$(version):doc/MANUAL.adoc >$@
 
 .INTERMEDIATE: releasenotes.adoc
 releasenotes.adoc: $(version_stamp)
-	wget -q -O $@ $(ccache_github_base)/doc/NEWS.adoc
+	git -C $(CCACHE_REPO) show v$(version):doc/NEWS.adoc >$@
 
 manual/latest.html: manual/$(version).html
 	ln -sf $(version).html $@
