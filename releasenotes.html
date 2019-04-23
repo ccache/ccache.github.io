@@ -735,7 +735,7 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>ccache news</h1>
-<span id="revnumber">version 3.6</span>
+<span id="revnumber">version 3.7</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -743,15 +743,167 @@ asciidoc.install(2);
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_ccache_3_6">ccache 3.6</h2>
+<h2 id="_ccache_3_7">ccache 3.7</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Release date: 2019-01-14</p></div>
+<div class="paragraph"><p>Release date: 2019-04-23</p></div>
 <div class="sect2">
 <h3 id="_changes">Changes</h3>
 <div class="ulist"><ul>
 <li>
 <p>
-ccache now has an opt-in &#8220;depend mode&#8221;. When enabled, ccache never executes
+Fixed crash when the debug mode is enabled and the output file is in a
+  non-writable directory, e.g. when the output file is <code>/dev/null</code>.
+</p>
+</li>
+<li>
+<p>
+Fixed an issue when printing very large log messages to the debug log.
+</p>
+</li>
+<li>
+<p>
+Fixed bugs related to support for <code>-gsplit-dwarf</code>. Previously ccache could
+  produce an incorrect link to the <code>.dwo</code> file in the <code>.o</code> file.
+</p>
+</li>
+<li>
+<p>
+Compilations with /dev/null as the input file are now cached.
+</p>
+</li>
+<li>
+<p>
+ccache has learned how to contruct the object filename if no <code>-o</code> option is
+  given and the source filename does not include a <code>.</code> or ends with a <code>.</code>.
+</p>
+</li>
+<li>
+<p>
+Fixed a temporary file leak when the depend mode is enabled and the compiler
+  produces standard error output.
+</p>
+</li>
+<li>
+<p>
+Fixed a bug in the depend mode where a manifest hash only could be associated
+  with one set of header dependencies.
+</p>
+</li>
+<li>
+<p>
+Manifest files did not get marked as used on direct cache hits, so the LRU
+  cache cleanup would incorrectly remove them eventually. This has been fixed.
+</p>
+</li>
+<li>
+<p>
+The rewriting of absolute paths into relative paths in the dependency file
+  has been enabled in the depend mode as well.
+</p>
+</li>
+<li>
+<p>
+ccache now ignores unknown keys in configuration files for forward
+  compatibility.
+</p>
+</li>
+<li>
+<p>
+Rearranged command-line options into sections in the help text.
+</p>
+</li>
+<li>
+<p>
+Documented the previously undocumented <code>--dump-manifest</code> and <code>--hash-file</code>
+  options (only useful for debugging ccache itself).
+</p>
+</li>
+<li>
+<p>
+Added missing documentation for the command-line option <code>-k/--get-config</code>
+  added in ccache 3.5.
+</p>
+</li>
+<li>
+<p>
+Renamed the <code>--print-config</code> command to <code>--show-config</code>.
+</p>
+</li>
+<li>
+<p>
+Added a new <code>--print-stats</code> command that prints statistics counters in
+  machine-parsable (tab-separated) format.
+</p>
+</li>
+<li>
+<p>
+ccache no longer creates a missing output directory, thus mimicking the
+  compiler behavior for <code>-o out/obj.o</code> when “out” doesn’t exist.
+</p>
+</li>
+<li>
+<p>
+<code>-fdebug-prefix-map=ARG</code>, <code>-ffile-prefix-map=ARG</code> and
+  <code>-fmacro-prefix-map=ARG</code> are now included in the hash, but only the part
+  before “ARG”. This fixes a bug where compiler feature detection of said flags
+  would not work correctly with ccache.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard compiler option <code>-gtoggle</code>.
+</p>
+</li>
+<li>
+<p>
+Bail out on too hard Clang options <code>--analyze</code> and <code>-analyze</code>.
+</p>
+</li>
+<li>
+<p>
+Improved debug logging of file hashes in depend mode.
+</p>
+</li>
+<li>
+<p>
+Improved handling of various <code>-g*</code> options. In particular, ccache now
+  understands that <code>-g0</code> cancels out previous <code>-g* options</code>.
+</p>
+</li>
+<li>
+<p>
+Worked around a problem with Automake related to <code>.d</code> files when using the
+  hard link mode.
+</p>
+</li>
+<li>
+<p>
+Added opt-in (at configure time) support for enabling trace logs for
+  profiling ccache itself. See <code>doc/DEVELOPER.md</code> in the code tree for more
+  information
+</p>
+</li>
+<li>
+<p>
+Removed support for Fortran 77 again. Some Fortran support was added in
+  ccache 3.3, but the implementation did not work when Fortran modules are
+  involved.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ccache_3_6">ccache 3.6</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2019-01-14</p></div>
+<div class="sect2">
+<h3 id="_changes_2">Changes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+ccache now has an opt-in “depend mode”. When enabled, ccache never executes
   the preprocessor, which results in much lower cache miss overhead at the
   expense of a lower potential cache hit rate. The depend mode is only possible
   to use when the compiler option <code>-MD</code> or <code>-MMD</code> is used.
@@ -759,7 +911,7 @@ ccache now has an opt-in &#8220;depend mode&#8221;. When enabled, ccache never e
 </li>
 <li>
 <p>
-Added support for GCC&#8217;s <code>-ffile-prefix-map</code> option. The <code>-fmacro-prefix-map</code>
+Added support for GCC’s <code>-ffile-prefix-map</code> option. The <code>-fmacro-prefix-map</code>
   option is now also skipped from the hash.
 </p>
 </li>
@@ -798,7 +950,7 @@ ccache now handles several levels of nonexistent directories when rewriting
 A new sloppiness setting <code>clang_index_store</code> makes ccache skip the Clang
   compiler option <code>-index-store-path</code> and its argument when computing the
   manifest hash. This is useful if you use Xcode, which uses an index store
-  path derived from the local project path. Note that the index store won&#8217;t be
+  path derived from the local project path. Note that the index store won’t be
   updated correctly on cache hits if you enable this option.
 </p>
 </li>
@@ -818,7 +970,7 @@ The GCC variables “DEPENDENCIES_OUTPUT” and “SUNPRO_DEPENDENCIES” are no
 <li>
 <p>
 The algorithm that scans for <code>__DATE_</code> and <code>__TIME__</code> tokens in the hashed
-  source code now doesn&#8217;t produce false positives for tokens where <code>__DATE__</code>
+  source code now doesn’t produce false positives for tokens where <code>__DATE__</code>
   or <code>__TIME__</code> is a substring.
 </p>
 </li>
@@ -831,7 +983,7 @@ The algorithm that scans for <code>__DATE_</code> and <code>__TIME__</code> toke
 <div class="sectionbody">
 <div class="paragraph"><p>Release date: 2019-01-02</p></div>
 <div class="sect2">
-<h3 id="_changes_2">Changes</h3>
+<h3 id="_changes_3">Changes</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -862,14 +1014,14 @@ Improved development mode build flags.
 <div class="sectionbody">
 <div class="paragraph"><p>Release date: 2018-10-15</p></div>
 <div class="sect2">
-<h3 id="_changes_3">Changes</h3>
+<h3 id="_changes_4">Changes</h3>
 <div class="ulist"><ul>
 <li>
 <p>
 Added a boolean <code>debug</code> (<code>CCACHE_DEBUG</code>) configuration option. When enabled,
   ccache will create per-object debug files that are helpful e.g. when
-  debugging unexpected cache misses. See also the new &#8220;Cache debugging&#8221;
-  section in the manual.
+  debugging unexpected cache misses. See also the new “Cache debugging” section
+  in the manual.
 </p>
 </li>
 <li>
@@ -900,15 +1052,15 @@ Improved performance substantially when using <code>hash_dir = false</code> on p
 </li>
 <li>
 <p>
-Added &#8220;stats updated&#8221; timestamp in <code>ccache -s</code> output. This can be useful
-  if you wonder whether ccache actually was used for your last build.
+Added “stats updated” timestamp in <code>ccache -s</code> output. This can be useful if
+  you wonder whether ccache actually was used for your last build.
 </p>
 </li>
 <li>
 <p>
-Renamed &#8220;stats zero time&#8221; to &#8220;stats zeroed&#8221; and documented it. The
-  counter is also now only present in <code>ccache -s</code> output when <code>ccache -z</code>
-  actually has been called.
+Renamed “stats zero time” to “stats zeroed” and documented it. The counter is
+  also now only present in <code>ccache -s</code> output when <code>ccache -z</code> actually has
+  been called.
 </p>
 </li>
 <li>
@@ -919,14 +1071,14 @@ The content of the <code>-fsanitize-blacklist</code> file is now included in the
 </li>
 <li>
 <p>
-It&#8217;s now possible to opt out of building and installing man pages when
+It’s now possible to opt out of building and installing man pages when
   running <code>make install</code> in the source repository.
 </p>
 </li>
 <li>
 <p>
-If the compiler type can&#8217;t be detected (e.g. if it is named <code>cc</code>), use safer
-  defaults that won&#8217;t trip up Clang.
+If the compiler type can’t be detected (e.g. if it is named <code>cc</code>), use safer
+  defaults that won’t trip up Clang.
 </p>
 </li>
 <li>
@@ -1004,7 +1156,7 @@ The cleanup algorithm has been fixed to not misbehave when files are removed
 </li>
 <li>
 <p>
-Correctly hash preprocessed headers located in a &#8220;.gch directory&#8221;.
+Correctly hash preprocessed headers located in a “.gch directory”.
   Previously, ccache would not pick up changes to such precompiled headers,
   risking false positive cache hits.
 </p>
@@ -1017,7 +1169,7 @@ Fixed build failure when using the bundled zlib sources.
 <li>
 <p>
 ccache 3.3.5 added a workaround for not triggering Clang errors when a
-  precompiled header&#8217;s dependency has an updated timestamp (but identical
+  precompiled header’s dependency has an updated timestamp (but identical
   content). That workaround is now only applied when the compiler is Clang.
 </p>
 </li>
@@ -1066,7 +1218,7 @@ Added support for caching <code>.su</code> files generated by GCC flag <code>-fs
 </li>
 <li>
 <p>
-ccache should now work with distcc&#8217;s &#8220;pump&#8221; wrapper.
+ccache should now work with distcc’s “pump” wrapper.
 </p>
 </li>
 <li>
@@ -1084,7 +1236,7 @@ Added support for NVCC compiler options <code>--compiler-bindir/-ccbin</code>,
 <p>
 Boolean environment variable settings no longer accept the following
   (case-insensitive) values: <code>0</code>, <code>false</code>, <code>disable</code> and <code>no</code>. All other values
-  are accepted and taken to mean &#8220;true&#8221;. This is to stop users from setting
+  are accepted and taken to mean “true”. This is to stop users from setting
   e.g. <code>CCACHE_DISABLE=0</code> and then expect the cache to be used.
 </p>
 </li>
@@ -1099,7 +1251,7 @@ Improved support for <code>run_second_cpp = false</code>: If combined with passi
 <p>
 An implicit <code>-MQ</code> is now passed to the preprocessor only if the object file
   extension is non-standard. This should make it easier to use EDG-based
-  compilers (e.g. GHS) which don&#8217;t understand <code>-MQ</code>.
+  compilers (e.g. GHS) which don’t understand <code>-MQ</code>.
 </p>
 </li>
 <li>
@@ -1190,7 +1342,7 @@ Documented how automatic cache cleanup works.
 <li>
 <p>
 Fixed a regression where the original order of debug options could be lost.
-  This reverts the &#8220;Improved parsing of <code>-g*</code> options&#8221; feature in ccache 3.3.
+  This reverts the “Improved parsing of <code>-g*</code> options” feature in ccache 3.3.
 </p>
 </li>
 <li>
@@ -1226,9 +1378,9 @@ Fixed a bug related to erroneously storing a dependency file with absolute
 <p>
 <code>ccache -c/--cleanup</code> now works like documented: it just recalculates size
   counters and trims the cache to not exceed the max size and file number
-  limits. Previously, the forced cleanup took &#8220;limit_multiple&#8221; into account,
-  so that <code>ccache -c/--cleanup</code> by default would trim the cache to 80% of the
-  max limit.
+  limits. Previously, the forced cleanup took “limit_multiple” into account, so
+  that <code>ccache -c/--cleanup</code> by default would trim the cache to 80% of the max
+  limit.
 </p>
 </li>
 <li>
@@ -1275,8 +1427,8 @@ Documented the different cache statistics counters.
 Fixed a regression in ccache 3.3 related to potentially bad content of
   dependency files when compiling identical source code but with different
   source paths. This was only partially fixed in 3.3.2 and reverts the new
-  &#8220;Names of included files are no longer included in the hash of the
-  compiler&#8217;s preprocessed output&#8221; feature in 3.3.
+  “Names of included files are no longer included in the hash of the compiler’s
+  preprocessed output” feature in 3.3.
 </p>
 </li>
 <li>
@@ -1344,9 +1496,9 @@ Fixed a regression in ccache 3.3.1: ccache could get confused when using the
 <div class="ulist"><ul>
 <li>
 <p>
-Fixed a problem in the &#8220;multiple <code>-arch</code> options&#8221; support introduced in
-  3.3. When using the direct mode (the default), different combinations of
-  <code>-arch</code> options were not detected properly.
+Fixed a problem in the “multiple <code>-arch</code> options” support introduced in 3.3.
+  When using the direct mode (the default), different combinations of <code>-arch</code>
+  options were not detected properly.
 </p>
 </li>
 <li>
@@ -1380,8 +1532,8 @@ A C99-compatible compiler is now required to build ccache.
 <li>
 <p>
 The configuration option <code>run_second_cpp</code> (<code>CCACHE_CPP2</code>) now defaults to
-  true. This improves ccache&#8217;s out-of-the-box experience for compilers that
-  can&#8217;t compile their own preprocessed output with the same outcome as if they
+  true. This improves ccache’s out-of-the-box experience for compilers that
+  can’t compile their own preprocessed output with the same outcome as if they
   compiled the real source code directly, e.g. newer versions of GCC and Clang.
 </p>
 </li>
@@ -1426,7 +1578,7 @@ Added a new sloppiness option <code>no_system_headers</code>, which tells ccache
 <p>
 Added a new statistics counter that tracks the number of performed cleanups
   due to the cache size being over the limit. The value is shown in the output
-  of &#8220;ccache -s&#8221;.
+  of “ccache -s”.
 </p>
 </li>
 <li>
@@ -1438,13 +1590,13 @@ Added support for relocating debug info directory using <code>-fdebug-prefix-map
 </li>
 <li>
 <p>
-Added a new &#8220;cache hit rate&#8221; field to the output of &#8220;ccache -s&#8221;.
+Added a new “cache hit rate” field to the output of “ccache -s”.
 </p>
 </li>
 <li>
 <p>
-Added support for caching compilation of assembler code produced by e.g.
-  &#8220;gcc -S file.c&#8221;.
+Added support for caching compilation of assembler code produced by e.g. “gcc
+  -S file.c”.
 </p>
 </li>
 <li>
@@ -1508,7 +1660,7 @@ ccache now understands the undocumented <code>-coverage</code> (only one dash) G
 </li>
 <li>
 <p>
-Names of included files are no longer included in the hash of the compiler&#8217;s
+Names of included files are no longer included in the hash of the compiler’s
   preprocessed output. This leads to more potential cache hits when not using
   the direct mode.
 </p>
@@ -1600,7 +1752,7 @@ Fixed a bug which could lead to false cache hits for compiler command lines
 </li>
 <li>
 <p>
-ccache now knows how to work around a glitch in the output of GCC 6&#8217;s
+ccache now knows how to work around a glitch in the output of GCC 6’s
   preprocessor.
 </p>
 </li>
@@ -1617,13 +1769,13 @@ ccache now knows how to work around a glitch in the output of GCC 6&#8217;s
 <div class="ulist"><ul>
 <li>
 <p>
-Fixed build problem on QNX, which lacks &#8220;SA_RESTART&#8221;.
+Fixed build problem on QNX, which lacks “SA_RESTART”.
 </p>
 </li>
 <li>
 <p>
 Bail out on compiler option <code>-fstack-usage</code> since it creates a <code>.su</code> file
-  which ccache currently doesn&#8217;t handle.
+  which ccache currently doesn’t handle.
 </p>
 </li>
 <li>
@@ -1656,7 +1808,7 @@ Improved handling of stale NFS handles.
 </li>
 <li>
 <p>
-Made it harder to misinterpret documentation of boolean environment settings'
+Made it harder to misinterpret documentation of boolean environment settings’
   semantics.
 </p>
 </li>
@@ -1688,14 +1840,14 @@ Fixed failure to create directories on QNX.
 </li>
 <li>
 <p>
-Don&#8217;t (try to) update manifest file in &#8220;read-only&#8221; and &#8220;read-only direct&#8221;
+Don’t (try to) update manifest file in “read-only” and “read-only direct”
   modes.
 </p>
 </li>
 <li>
 <p>
-Fixed a bug in caching of <code>stat</code> system calls in &#8220;file_stat_matches
-  sloppiness mode&#8221;.
+Fixed a bug in caching of <code>stat</code> system calls in “file_stat_matches
+  sloppiness mode”.
 </p>
 </li>
 <li>
@@ -1705,12 +1857,12 @@ Fixed bug in hashing of Clang plugins, leading to unnecessary cache misses.
 </li>
 <li>
 <p>
-Fixed --print-config to show &#8220;pch_defines sloppiness&#8221;.
+Fixed --print-config to show “pch_defines sloppiness”.
 </p>
 </li>
 <li>
 <p>
-The man page is now built when running &#8220;make install&#8221; from Git repository
+The man page is now built when running “make install” from Git repository
   sources.
 </p>
 </li>
@@ -1820,7 +1972,7 @@ Only log "Disabling direct mode" once when failing to read potential include
 <li>
 <p>
 Added support for <code>CCACHE_COMPILERCHECK=string:&lt;value&gt;</code>. This is a faster
-  alternative to <code>CCACHE_COMPILERCHECK=&lt;command&gt;</code> if the command&#8217;s output can
+  alternative to <code>CCACHE_COMPILERCHECK=&lt;command&gt;</code> if the command’s output can
   be precalculated by the build system.
 </p>
 </li>
@@ -1843,9 +1995,8 @@ Made hash of cached result created with and without <code>CCACHE_CPP2</code> dif
 </li>
 <li>
 <p>
-Don&#8217;t try to reset a nonexistent stats file. This avoids &#8220;No such file or
-  directory&#8221; messages in the ccache log when the cache directory doesn&#8217;t
-  exist.
+Don’t try to reset a nonexistent stats file. This avoids “No such file or
+  directory” messages in the ccache log when the cache directory doesn’t exist.
 </p>
 </li>
 <li>
@@ -1979,7 +2130,7 @@ Added support for several binaries (separated by space) in <code>CCACHE_PREFIX</
 <li>
 <p>
 The <code>-c</code> option is no longer passed to the preprocessor. This fixes problems
-  with Clang and Solaris&#8217;s C++ compiler.
+  with Clang and Solaris’s C++ compiler.
 </p>
 </li>
 <li>
@@ -1997,7 +2148,7 @@ Compiler options <code>-fprofile-generate</code>, <code>-fprofile-arcs</code>, <
 </li>
 <li>
 <p>
-Added support for Clang&#8217;s <code>--serialize-diagnostic</code> option, storing the
+Added support for Clang’s <code>--serialize-diagnostic</code> option, storing the
   diagnostic file (<code>.dia</code>) in the cache.
 </p>
 </li>
@@ -2027,8 +2178,8 @@ On a cache miss, ccache now instructs the compiler to create the object file
 </li>
 <li>
 <p>
-ccache now checks that included files' ctimes aren&#8217;t too new. This check can
-  be turned off by adding <code>include_file_ctime</code> to the &#8220;ccache sloppiness&#8221;
+ccache now checks that included files’ ctimes aren’t too new. This check can
+  be turned off by adding <code>include_file_ctime</code> to the “ccache sloppiness”
   setting.
 </p>
 </li>
@@ -2036,21 +2187,21 @@ ccache now checks that included files' ctimes aren&#8217;t too new. This check c
 <p>
 Added possibility to get cache hits based on filename, size, mtime and ctime
   only. On other words, source code files are not even read, only stat-ed. This
-  operation mode is opt-in by adding <code>file_stat_matches</code> to the &#8220;ccache
-  sloppiness&#8221; setting.
+  operation mode is opt-in by adding <code>file_stat_matches</code> to the “ccache
+  sloppiness” setting.
 </p>
 </li>
 <li>
 <p>
 The filename part of options like <code>-Wp,-MDfilename</code> is no longer included in
-  the hash since the filename doesn&#8217;t have any bearing on the result.
+  the hash since the filename doesn’t have any bearing on the result.
 </p>
 </li>
 <li>
 <p>
-Added a &#8220;read-only direct&#8221; configuration setting, which is like the
-  ordinary read-only setting except that ccache will only try to retrieve
-  results from the cache using the direct mode, not the preprocessor mode.
+Added a “read-only direct” configuration setting, which is like the ordinary
+  read-only setting except that ccache will only try to retrieve results from
+  the cache using the direct mode, not the preprocessor mode.
 </p>
 </li>
 <li>
@@ -2078,7 +2229,7 @@ Added support for <code>@file</code> and <code>-@file</code> arguments (reading 
 </li>
 <li>
 <p>
-<code>-Wl,</code> options are no longer included in the hash since they don&#8217;t affect
+<code>-Wl,</code> options are no longer included in the hash since they don’t affect
   compilation.
 </p>
 </li>
@@ -2201,9 +2352,8 @@ Made hash of cached result created with and without <code>CCACHE_CPP2</code> dif
 </li>
 <li>
 <p>
-Don&#8217;t try to reset a nonexistent stats file. This avoids &#8220;No such file or
-  directory&#8221; messages in the ccache log when the cache directory doesn&#8217;t
-  exist.
+Don’t try to reset a nonexistent stats file. This avoids “No such file or
+  directory” messages in the ccache log when the cache directory doesn’t exist.
 </p>
 </li>
 </ul></div>
@@ -2247,14 +2397,14 @@ Compiler option <code>-fdebug-prefix-map</code> is now ignored (not part of the 
 <li>
 <p>
 Added note in documentation that <code>--ccache-skip</code> currently does not mean
-  &#8220;don&#8217;t hash the following option&#8221;.
+  “don’t hash the following option”.
 </p>
 </li>
 <li>
 <p>
 To enable support for precompiled headers (PCH), <code>CCACHE_SLOPPINESS</code> now also
   needs to include the new <code>pch_defines</code> sloppiness. This is because ccache
-  can&#8217;t detect changes in the source code when only defined macros have been
+  can’t detect changes in the source code when only defined macros have been
   changed.
 </p>
 </li>
@@ -2271,7 +2421,7 @@ Stale files in the internal temporary directory (<code>&lt;ccache_dir&gt;/tmp</c
 <div class="ulist"><ul>
 <li>
 <p>
-Fixed path canonicalization in <code>make_relative_path()</code> when path doesn&#8217;t
+Fixed path canonicalization in <code>make_relative_path()</code> when path doesn’t
   exist.
 </p>
 </li>
@@ -2323,7 +2473,7 @@ Subdirectories in the cache are no longer created in read-only mode.
 </li>
 <li>
 <p>
-Fixed so that ccache&#8217;s log file descriptor is not made available to the
+Fixed so that ccache’s log file descriptor is not made available to the
   compiler.
 </p>
 </li>
@@ -2513,12 +2663,12 @@ Rewrite argument to <code>--sysroot</code> if <code>CCACHE_BASEDIR</code> is use
 <div class="ulist"><ul>
 <li>
 <p>
-Don&#8217;t crash if <code>getcwd()</code> fails.
+Don’t crash if <code>getcwd()</code> fails.
 </p>
 </li>
 <li>
 <p>
-Fixed alignment of &#8220;called for preprocessing&#8221; counter.
+Fixed alignment of “called for preprocessing” counter.
 </p>
 </li>
 </ul></div>
@@ -2534,7 +2684,7 @@ Fixed alignment of &#8220;called for preprocessing&#8221; counter.
 <div class="ulist"><ul>
 <li>
 <p>
-Added a new statistics counter named &#8220;called for preprocessing&#8221;.
+Added a new statistics counter named “called for preprocessing”.
 </p>
 </li>
 <li>
@@ -2583,7 +2733,7 @@ Fixed a minor memory leak.
 </li>
 <li>
 <p>
-Systems that lack (and don&#8217;t need to be linked with) libm are now supported.
+Systems that lack (and don’t need to be linked with) libm are now supported.
 </p>
 </li>
 </ul></div>
@@ -2604,13 +2754,13 @@ Made a work-around for a bug in <code>gzputc()</code> in zlib 1.2.5.
 </li>
 <li>
 <p>
-Corrupt manifest files are now removed so that they won&#8217;t block direct mode
+Corrupt manifest files are now removed so that they won’t block direct mode
   hits.
 </p>
 </li>
 <li>
 <p>
-ccache now copes with file systems that don&#8217;t know about symbolic links.
+ccache now copes with file systems that don’t know about symbolic links.
 </p>
 </li>
 <li>
@@ -2685,7 +2835,7 @@ Improved documentation on which information is included in the hash sum.
 </li>
 <li>
 <p>
-Made the &#8220;too new header file&#8221; test case work on file systems with
+Made the “too new header file” test case work on file systems with
   unsynchronized clocks.
 </p>
 </li>
@@ -2735,7 +2885,7 @@ Fixed configure detection of ar.
 <li>
 <p>
 ccache development version (set by dev.mk) now works with gits whose
-  <code>describe</code> command doesn&#8217;t understand <code>--dirty</code>.
+  <code>describe</code> command doesn’t understand <code>--dirty</code>.
 </p>
 </li>
 </ul></div>
@@ -2764,7 +2914,7 @@ Minor debug log message improvements.
 Added support for hashing the output of a custom command (e.g. <code>%compiler%
   --version</code>) to identify the compiler instead of stat-ing or hashing the
   compiler binary. This can improve robustness when the compiler (as seen by
-  ccache) actually isn&#8217;t the real compiler but another compiler wrapper.
+  ccache) actually isn’t the real compiler but another compiler wrapper.
 </p>
 </li>
 <li>
@@ -2801,9 +2951,9 @@ Reading and writing of statistics counters has been made forward-compatible
 </li>
 <li>
 <p>
-Files are now read without using <code>mmap()</code>. This has two benefits: it&#8217;s more
+Files are now read without using <code>mmap()</code>. This has two benefits: it’s more
   robust against file changes during reading and it improves performance on
-  poor systems where <code>mmap()</code> doesn&#8217;t use the disk cache.
+  poor systems where <code>mmap()</code> doesn’t use the disk cache.
 </p>
 </li>
 <li>
@@ -2915,7 +3065,7 @@ New <code>HACKING.txt</code> file with some notes about ccache code conventions.
 <div class="ulist"><ul>
 <li>
 <p>
-The statistics counter &#8220;called for link&#8221; is now correctly updated when
+The statistics counter “called for link” is now correctly updated when
   linking with a single object file.
 </p>
 </li>
@@ -2948,7 +3098,7 @@ ccache is now licensed under the GNU General Public License (GPL) version 3
 <div class="ulist"><ul>
 <li>
 <p>
-The way the hashes are calculated has changed, so you won&#8217;t get cache hits
+The way the hashes are calculated has changed, so you won’t get cache hits
   for compilation results stored by older ccache versions. Because of this, you
   might as well clear the old cache directory with <code>ccache --clear</code> if you
   want, unless you plan to keep using an older ccache version.
@@ -2961,7 +3111,7 @@ The way the hashes are calculated has changed, so you won&#8217;t get cache hits
 <div class="ulist"><ul>
 <li>
 <p>
-ccache now has a &#8220;direct mode&#8221; where it computes a hash of the source code
+ccache now has a “direct mode” where it computes a hash of the source code
   (including all included files) and compiler options without running the
   preprocessor. By not running the preprocessor, CPU usage is reduced; the
   speed is somewhere between 1 and 5 times that of ccache running in
@@ -2985,15 +3135,15 @@ Support has been added for rewriting absolute paths to relative paths when
 Object files are now optionally stored compressed in the cache. The runtime
   cost is negligible, and more files will fit in the ccache directory and in
   the disk cache. Set <code>CCACHE_COMPRESS</code> to enable object file compression. Note
-  that you can&#8217;t use compression in combination with the hard link feature.
+  that you can’t use compression in combination with the hard link feature.
 </p>
 </li>
 <li>
 <p>
 A <code>CCACHE_COMPILERCHECK</code> option has been added. This option tells ccache what
   compiler-identifying information to hash to ensure that results retrieved
-  from the cache are accurate. Possible values are: none (don&#8217;t hash anything),
-  mtime (hash the compiler&#8217;s mtime and size) and content (hash the content of
+  from the cache are accurate. Possible values are: none (don’t hash anything),
+  mtime (hash the compiler’s mtime and size) and content (hash the content of
   the compiler binary). The default is mtime.
 </p>
 </li>
@@ -3006,7 +3156,7 @@ It is now possible to specify extra files whose contents should be included
 <li>
 <p>
 Added support for Objective-C and Objective-C++. The statistics counter
-  &#8220;not a C/C++ file&#8221; has been renamed to &#8220;unsupported source language&#8221;.
+  “not a C/C++ file” has been renamed to “unsupported source language”.
 </p>
 </li>
 <li>
@@ -3053,19 +3203,19 @@ The default value of <code>CCACHE_TEMPDIR</code> has been changed to <code>$CCAC
 <p>
 Temporary files that later will be moved into the cache are now created in
   the cache directory they will end up in. This makes ccache more friendly to
-  Linux&#8217;s directory layout.
+  Linux’s directory layout.
 </p>
 </li>
 <li>
 <p>
 Improved the test suite and added tests for most of the new functionality.
-  It&#8217;s now also possible to specify a subset of tests to run.
+  It’s now also possible to specify a subset of tests to run.
 </p>
 </li>
 <li>
 <p>
 Standard error output from the compiler is now only stored in the cache if
-  it&#8217;s non-empty.
+  it’s non-empty.
 </p>
 </li>
 <li>
@@ -3082,7 +3232,7 @@ Added <code>installcheck</code> and <code>distcheck</code> make targets.
 </li>
 <li>
 <p>
-Clarified cache size limit options' and cleanup semantics.
+Clarified cache size limit options’ and cleanup semantics.
 </p>
 </li>
 <li>
@@ -3139,7 +3289,7 @@ Bail out on too hard compiler options <code>--coverage</code>, <code>-fprofile-a
 <li>
 <p>
 Errors when using multiple <code>-arch</code> compiler options are now noted as
-  &#8220;unsupported compiler option&#8221;.
+  “unsupported compiler option”.
 </p>
 </li>
 <li>
@@ -3245,9 +3395,9 @@ Statistics counters are now correctly updated for -E option failures and
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 3.6<br />
+Version 3.7<br />
 Last updated
- 2019-03-18 22:26:33 CET
+ 2019-04-23 21:10:37 CEST
 </div>
 </div>
 </body>
