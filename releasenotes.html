@@ -735,7 +735,7 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>ccache news</h1>
-<span id="revnumber">version 3.7</span>
+<span id="revnumber">version 3.7.1</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -743,11 +743,39 @@ asciidoc.install(2);
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_ccache_3_7_1">ccache 3.7.1</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2019-05-01</p></div>
+<div class="sect2">
+<h3 id="_changes">Changes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Fixed a problem when using the compiler option <code>-MF /dev/null</code>.
+</p>
+</li>
+<li>
+<p>
+Long commandlines are now handled gracefully on Windows by using the <code>@file</code>
+  syntax to avoid hitting the commandline size limit.
+</p>
+</li>
+<li>
+<p>
+Fixed complaint from GCC 9’s <code>-Werror=format-overflow</code> when compiling ccache
+  itself.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_ccache_3_7">ccache 3.7</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Release date: 2019-04-23</p></div>
 <div class="sect2">
-<h3 id="_changes">Changes</h3>
+<h3 id="_changes_2">Changes</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -899,7 +927,7 @@ Removed support for Fortran 77 again. Some Fortran support was added in
 <div class="sectionbody">
 <div class="paragraph"><p>Release date: 2019-01-14</p></div>
 <div class="sect2">
-<h3 id="_changes_2">Changes</h3>
+<h3 id="_changes_3">Changes</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -983,7 +1011,7 @@ The algorithm that scans for <code>__DATE_</code> and <code>__TIME__</code> toke
 <div class="sectionbody">
 <div class="paragraph"><p>Release date: 2019-01-02</p></div>
 <div class="sect2">
-<h3 id="_changes_3">Changes</h3>
+<h3 id="_changes_4">Changes</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1014,7 +1042,7 @@ Improved development mode build flags.
 <div class="sectionbody">
 <div class="paragraph"><p>Release date: 2018-10-15</p></div>
 <div class="sect2">
-<h3 id="_changes_4">Changes</h3>
+<h3 id="_changes_5">Changes</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -3395,9 +3423,9 @@ Statistics counters are now correctly updated for -E option failures and
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 3.7<br />
+Version 3.7.1<br />
 Last updated
- 2019-04-23 21:10:37 CEST
+ 2019-05-01 16:35:16 CEST
 </div>
 </div>
 </body>
