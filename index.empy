@@ -4,10 +4,10 @@
 @{page_title = "Compiler cache"}
 @empy.include("header.empy")
 
-<p>ccache is a compiler cache. It <a href="performance.html">speeds up
-recompilation</a> by caching previous compilations and detecting when the same
-compilation is being done again. Supported languages are C, C++, Objective-C
-and Objective-C++.</p>
+<p>ccache (or “Ccache”, not “CCache”) is a compiler cache.
+It <a href="performance.html">speeds up recompilation</a> by caching previous
+compilations and detecting when the same compilation is being done again.
+Supported languages are C, C++, Objective-C and Objective-C++.</p>
 
 <p>ccache is free software, released under
 the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
