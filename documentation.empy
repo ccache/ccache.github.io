@@ -17,22 +17,22 @@ all_versions = [
 all_versions.sort(reverse=True)
 
 latest_version = s(all_versions[0])
-all_manual_versions = [s(x) for x in all_versions]
-all_release_notes_versions = all_manual_versions[:-1]
+older_manual_versions = [s(x) for x in all_versions[1:]]
 }@
 
 <h2>Manual</h2>
 
 <ul>
   <li>
-    <a href="manual/latest.html">Latest version</a> (currently @latest_version)
+    <a href="manual/@(latest_version).html">Version @latest_version</a>
+    (<a href="manual/latest.html">latest</a>)
   </li>
   <li>
     <a onclick="$(this).parent().hide(); $('.manual-version').show()">
       Older versions
     </a>
   </li>
-@[for x in all_manual_versions]
+@[for x in older_manual_versions]
   <li class="manual-version" style="display: none">
     <a href="manual/@{print x}.html">Version @x</a>
   </li>
