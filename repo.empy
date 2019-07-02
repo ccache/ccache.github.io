@@ -17,14 +17,23 @@ code</a>.</p>
 <p>The official repository contains these branches:</p>
 
 <ul>
-  <li><b>master</b>: This branch contains changes that will end up in the next
-  feature release (version X.Y). Most development takes place here.</li>
-  <li><b>X.Y-maint</b>: This branch contains changes that will end up in the
-  next bugfix release of the X.Y series (version X.Y.Z).</li>
-  <li><b>dev/<i>X</i></b>: These are feature branches (where <i>X</i> is the
-  feature name), which are used for larger features that may be unstable,
-  experimental or whose target release hasn't been decided yet. These branches
-  can be rebased or deleted without any special notice.</li>
+  <li>
+    <b>master</b>: This branch contains changes that will end up in the next
+    feature release (version X.Y). Most development takes place here. master is
+    generally safe to use for testing, but functionality may be broken at times
+    and file formats may change in backward incompatible ways during
+    development.
+  </li>
+  <li>
+    <b>X.Y-maint</b>: This branch contains changes that will end up in the next
+    bugfix release of the X.Y series (version X.Y.Z).
+  </li>
+  <li>
+    <b>dev/<i>X</i></b>: These are feature branches (where <i>X</i> is the
+    feature name), which are used for larger features that may be unstable,
+    experimental or whose target release hasn't been decided yet. These
+    branches can be rebased or deleted without any special notice.
+  </li>
 </ul>
 
 @empy.include("footer.empy")
