@@ -13,7 +13,7 @@ authors = [
 ]
 extra_credits = [x.strip() for x in open("extra-credits.txt").readlines()]
 contributors = authors + extra_credits
-contributors.sort()
+contributors.sort(key=lambda x: x.lower())
 }@
 
 <h2>About</h2>
