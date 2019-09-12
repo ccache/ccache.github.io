@@ -735,13 +735,37 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>ccache news</h1>
-<span id="revnumber">version 3.7.3</span>
+<span id="revnumber">version 3.7.4</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_ccache_3_7_4">ccache 3.7.4</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2019-09-12</p></div>
+<div class="sect2">
+<h3 id="_improvements">Improvements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Added support for GCC 9’s <code>-gz[=type]</code> option (previously ccache would think
+  that “-gz” alone would enable debug information, thus potentially including
+  the current directory in the hash).
+</p>
+</li>
+<li>
+<p>
+Added support for converting paths like “/c/users” into relative paths on
+  Windows.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_ccache_3_7_3">ccache 3.7.3</h2>
 <div class="sectionbody">
@@ -3518,9 +3542,9 @@ Statistics counters are now correctly updated for -E option failures and
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 3.7.3<br />
+Version 3.7.4<br />
 Last updated
- 2019-08-17 22:30:49 CEST
+ 2019-09-12 21:17:50 CEST
 </div>
 </div>
 </body>

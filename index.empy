@@ -22,7 +22,7 @@ news = list(yaml.load_all(open("news.yaml")))
 }@
 
 <ul class="news">
-@[for x in news[:5]]
+@[for x in news[:10]]
     <li><i>@(x["date"]):</i> <a href="news.html#@(x["date"])"><b>@(x["header"])</b></a></li>
 @[end for]
 </ul>

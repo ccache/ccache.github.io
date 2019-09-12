@@ -4,12 +4,12 @@
 @{page_title = "Download"}
 @empy.include("header.empy")
 
-<p>The latest release is <b>3.7.3</b>:</p>
+<p>The latest release is <b>3.7.4</b>:</p>
 
 <ul>
-  <li><a href="https://github.com/ccache/ccache/releases/download/v3.7.3/ccache-3.7.3.tar.gz">ccache 3.7.3 source code (tar.gz)</a> <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.7.3/ccache-3.7.3.tar.gz.asc">OpenPGP signature</a>)</small></li>
-  <li><a href="https://github.com/ccache/ccache/releases/download/v3.7.3/ccache-3.7.3.tar.xz">ccache 3.7.3 source code (tar.xz)</a> <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.7.3/ccache-3.7.3.tar.xz.asc">OpenPGP signature</a>)</small></li>
-  <li><a href="releasenotes.html#_ccache_3_7_3">ccache 3.7.3 release notes</a></li>
+  <li><a href="https://github.com/ccache/ccache/releases/download/v3.7.4/ccache-3.7.4.tar.gz">ccache 3.7.4 source code (tar.gz)</a> <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.7.4/ccache-3.7.4.tar.gz.asc">OpenPGP signature</a>)</small></li>
+  <li><a href="https://github.com/ccache/ccache/releases/download/v3.7.4/ccache-3.7.4.tar.xz">ccache 3.7.4 source code (tar.xz)</a> <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.7.4/ccache-3.7.4.tar.xz.asc">OpenPGP signature</a>)</small></li>
+  <li><a href="releasenotes.html#_ccache_3_7_4">ccache 3.7.4 release notes</a></li>
 </ul>
 
 <p>
