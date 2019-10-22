@@ -34,7 +34,7 @@ older_manual_versions = [s(x) for x in all_versions[1:]]
   </li>
 @[for x in older_manual_versions]
   <li class="manual-version" style="display: none">
-    <a href="manual/@{print x}.html">Version @x</a>
+    <a href="manual/@(x).html">Version @x</a>
   </li>
 @[end for]
 </ul>
