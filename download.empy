@@ -4,7 +4,7 @@
 @{page_title = "Download"}
 @empy.include("header.empy")
 
-@{latest_version = "3.7.6"}
+@{latest_version = "3.7.7"}
 
 <p>The latest release is <b>@(latest_version)</b>:</p>
 
