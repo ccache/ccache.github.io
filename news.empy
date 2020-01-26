@@ -6,7 +6,7 @@
 
 @{
 import yaml
-news = yaml.load_all(open("news.yaml"))
+news = yaml.safe_load_all(open("news.yaml"))
 }@
 
 @[for x in news]

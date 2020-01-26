@@ -18,7 +18,7 @@ page</a>.</p>
 
 @{
 import yaml
-news = list(yaml.load_all(open("news.yaml")))
+news = list(yaml.safe_load_all(open("news.yaml")))
 }@
 
 <ul class="news">
