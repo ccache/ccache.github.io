@@ -20,9 +20,10 @@ mailing list post</a> by Christopher Tate for a good write-up on this issue. So
 to sum it up: it is probably wise to perform some measurements with and without
 ccache for your typical use case before enabling it!</p>
 
-<p>The following measurements were made on a fairly standard Linux-based
-desktop system: Intel Core i5-4690K, standard SSD disk, Ubuntu 19.04 with Linux
-5.0.0.</p>
+<p>
+  The following measurements were made on a fairly standard Linux-based desktop
+  system with an Intel Core i5-4690K and a standard SSD disk.
+</p>
 
 <p>&ldquo;ccache 3.7.1 direct&rdquo; in the tables below means running ccache
 with direct mode enabled (which is the default) and &ldquo;ccache 3.7.1
@@ -38,9 +39,11 @@ ccache with the depend mode enabled.</p>
 
 <h2>ccache.c</h2>
 
-<p>Here are the results of building ccache's
-own <a href="https://github.com/ccache/ccache/blob/master/ccache.c">ccache.c</a>
-with <code>-g -O2 -MD</code> and needed <code>-I</code> flags:</p>
+<p>
+  Here are the results of building ccache's own
+  <a href="https://github.com/ccache/ccache/blob/v3.7.1/src/ccache.c">ccache.c</a>
+  with <code>-g -O2 -MD</code> and needed <code>-I</code> flags:
+</p>
 
 <table class="perf">
 <tr>
@@ -53,43 +56,43 @@ with <code>-g -O2 -MD</code> and needed <code>-I</code> flags:</p>
   <th>Without ccache</th>
   <td class="num">0.6988 s</td>
   <td class="num">100.00 %</td>
-  <td class="num">1.0000 x</td>
+  <td class="num">1.00 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 prepr., first time</th>
   <td class="num">0.7251 s</td>
-  <td class="num">103.7708 %</td>
-  <td class="num">0.9637 x</td>
+  <td class="num">103.77 %</td>
+  <td class="num">0.96 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 prepr., second time</th>
   <td class="num">0.0247 s</td>
-  <td class="num">3.5296 %</td>
-  <td class="num">28.3321 x</td>
+  <td class="num">3.53 %</td>
+  <td class="num">28.33 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 direct, first time</th>
   <td class="num">0.7268 s</td>
-  <td class="num">104.0137 %</td>
-  <td class="num">0.9614 x</td>
+  <td class="num">104.01 %</td>
+  <td class="num">0.96 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 direct, second time</th>
   <td class="num">0.0048 s</td>
-  <td class="num">0.6878 %</td>
-  <td class="num">145.3918 x</td>
+  <td class="num">0.69 %</td>
+  <td class="num">145.39 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 depend, first time</th>
   <td class="num">0.7102 s</td>
-  <td class="num">101.6393 %</td>
-  <td class="num">0.9839 x</td>
+  <td class="num">101.64 %</td>
+  <td class="num">0.98 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 depend, second time</th>
   <td class="num">0.0051 s</td>
-  <td class="num">0.7256 %</td>
-  <td class="num">137.8137 x</td>
+  <td class="num">0.73 %</td>
+  <td class="num">137.81 x</td>
 </tr>
 </table>
 
@@ -118,43 +121,43 @@ mode:</p>
   <th>Without ccache</th>
   <td class="num">0.2421 s</td>
   <td class="num">100.00 %</td>
-  <td class="num">1.0000 x</td>
+  <td class="num">1.00 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 prepr., first time</th>
   <td class="num">0.2892 s</td>
-  <td class="num">119.4580 %</td>
-  <td class="num">0.8371 x</td>
+  <td class="num">119.46 %</td>
+  <td class="num">0.84 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 prepr., second time</th>
   <td class="num">0.0496 s</td>
-  <td class="num">19.6508 %</td>
-  <td class="num">5.0888 x</td>
+  <td class="num">19.65 %</td>
+  <td class="num">5.09 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 direct, first time</th>
   <td class="num">0.2919 s</td>
-  <td class="num">120.5838 %</td>
-  <td class="num">0.8293 x</td>
+  <td class="num">120.58 %</td>
+  <td class="num">0.83 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 direct, second time</th>
   <td class="num">0.0083 s</td>
-  <td class="num">3.3464 %</td>
-  <td class="num">29.1004 x</td>
+  <td class="num">3.35 %</td>
+  <td class="num">29.10 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 depend, first time</th>
   <td class="num">0.2495 s</td>
-  <td class="num">103.0848 %</td>
-  <td class="num">0.9701 x</td>
+  <td class="num">103.08 %</td>
+  <td class="num">0.97 x</td>
 </tr>
 <tr>
   <th>ccache 3.7.1 depend, second time</th>
   <td class="num">0.0083 s</td>
-  <td class="num">3.4106 %</td>
-  <td class="num">29.3206 x</td>
+  <td class="num">3.41 %</td>
+  <td class="num">29.32 x</td>
 </tr>
 </table>
 
@@ -162,140 +165,5 @@ mode:</p>
 &mdash; slightly higher than for the ccache.c test because the preprocessor
 overhead is higher. The depend mode really shines here since running the
 preprocessor on cache misses in the depend mode is costly.</p>
-
-<h2>Samba 3.5.3</h2>
-
-<p>
-  (<b>NOTE:</b> This section was written in 2010 when ccache 3.0 was released
-  so it's a bit dated.)
-</p>
-
-<p>Here is a perhaps more realistic use case. First,
-the <a href="https://www.samba.org">Samba</a> 3.5.3 source code was
-unpacked, <code>./configure</code> was run and then <code>make</code>
-(without <code>-j</code>) was run and timed. All tests were run eight times and
-only the best results were kept. Note that the figures also include linking and
-other things that aren't affected by ccache.</p>
-
-<h3>Warm disk cache</h3>
-
-<table class="perf">
-<tr>
-  <th class="empty"></th>
-  <th>Elapsed time</th>
-  <th>Percent</th>
-  <th>Factor</th>
-</tr>
-<tr>
-  <th>Without ccache</th>
-  <td class="num">316.23 s</td>
-  <td class="num">100.00 %</td>
-  <td class="num">1.0000 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 prepr., first time</th>
-  <td class="num">360.62 s</td>
-  <td class="num">114.04 %</td>
-  <td class="num">0.8769 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 prepr., second time</th>
-  <td class="num">161.44 s</td>
-  <td class="num">51.05 %</td>
-  <td class="num">1.9588 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 direct, first time</th>
-  <td class="num">375.16 s</td>
-  <td class="num">118.64 %</td>
-  <td class="num">0.8429 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 direct, second time</th>
-  <td class="num">32.09 s</td>
-  <td class="num">10.15 %</td>
-  <td class="num">9.8545 x</td>
-</tr>
-</table>
-
-<p>The cost of cache misses is relatively high: 14% for the preprocessor mode
-and 19% for the direct mode. The direct mode has higher overhead than the
-preprocessor mode for cache misses, but is much faster for cache hits. In fact,
-the speedup is in this case so high that it may become interesting to optimize
-how the Makefile is written. The rule for compiling a C file in Samba 3.5.3
-looks like this:</p>
-
-<pre>
-.c.o:
-	@@if (: &gt;&gt; $@@ || : &gt; $@@) &gt;/dev/null 2&gt;&amp;1; then rm -f $@@; else \
-	 dir=`echo $@@ | sed 's,/[^/]*$$,,;s,^$$,.,'` $(MAKEDIR); fi
-	@@if test -n "$(CC_CHECKER)"; then \
-	  echo "Checking  $*.c with '$(CC_CHECKER)'";\
-	  $(CHECK_CC); \
-	 fi
-	@@echo Compiling $*.c
-	@@$(COMPILE) &amp;&amp; exit 0;\
-		echo "The following command failed:" 1&gt;&amp;2;\
-		echo "$(subst ",\",$(COMPILE_CC))" 1&gt;&amp;2;\
-		$(COMPILE_CC) &gt;/dev/null 2&gt;&amp;1
-</pre>
-
-By rewriting this to
-
-<pre>
-.c.o:
-	@@echo Compiling $*.c
-	@@$(COMPILE)
-</pre>
-
-<p>the build time goes down from 32 seconds to about 23 seconds!</p>
-
-<h3>Cold disk cache</h3>
-
-<p>To measure the speed when the disk cache is cold, the disk cache was dropped
-with <code>sync; echo 3 >/proc/sys/vm/drop_caches</code> before
-running <code>make</code>.</p>
-
-<table class="perf">
-<tr>
-  <th class="empty"></th>
-  <th>Elapsed time</th>
-  <th>Percent</th>
-  <th>Factor</th>
-</tr>
-<tr>
-  <th>Without ccache</th>
-  <td class="num">324.08 s</td>
-  <td class="num">100.00 %</td>
-  <td class="num">1.0000 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 prepr., first time</th>
-  <td class="num">367.82 s</td>
-  <td class="num">116.31 %</td>
-  <td class="num">0.8597 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 prepr., second time</th>
-  <td class="num">172.34 s</td>
-  <td class="num">54.50 %</td>
-  <td class="num">1.8349 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 direct, first time</th>
-  <td class="num">382.24 s</td>
-  <td class="num">120.87 %</td>
-  <td class="num">0.8273 x</td>
-</tr>
-<tr>
-  <th>ccache 3.0 direct, second time</th>
-  <td class="num">44.59 s</td>
-  <td class="num">14.10 %</td>
-  <td class="num">7.0919 x</td>
-</tr>
-</table>
-
-<p>A cold disk cache makes the performance gain on hits slightly lower because
-of the extra disk cache misses for files in the ccache directory.</p>
 
 @empy.include("footer.empy")
