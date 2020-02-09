@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ccache &mdash; Supported platforms, compilers and languages</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="ccache.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div id="banner">
+<a href=".">
+<span style="font-size: 500%; text-shadow: 5px 5px 5px #aaa">ccache</span>
+<span style="font-size: 150%">&mdash; a fast C/C++ compiler cache</span>
+</a>
+</div>
+<div id="navigation">
+<div class="group" style="margin-top: 0">About it:</div>
+<ul>
+<li><a href=".">Overview</a></li>
+<li class="current"><a href="platform-compiler-language-support.html">Supported platforms and compilers</a></li>
+<li><a href="performance.html">Performance</a></li>
+<li><a href="news.html">News</a></li>
+<li><a href="credits.html">Credits</a></li>
+<li><a href="license.html">License</a></li>
+</ul>
+<div class="group">Get it:</div>
+<ul>
+<li><a href="download.html">Download</a></li>
+</ul>
+<div class="group">Use it:</div>
+<ul>
+<li><a href="documentation.html">Documentation</a></li>
+<li class="level1"><a href="http://lists.samba.org/mailman/listinfo/ccache/">Mailing list</a></li>
+<li class="level2"><a href="http://www.mail-archive.com/ccache@lists.samba.org">&ndash; Archive</a></li>
+</ul>
+<div class="group">Improve it:</div>
+<ul>
+<li><a href="bugs.html">Bug report</a></li>
+<li class="level2"><a href="https://github.com/ccache/ccache/issues">&ndash; View existing</a></li>
+<li class="level1"><a href="https://lists.samba.org/mailman/listinfo/ccache/">Mailing list</a></li>
+<li class="level2"><a href="http://www.mail-archive.com/ccache@lists.samba.org">&ndash; Archive</a></li>
+<li><a href="repo.html">Source repository</a></li>
+<li class="level2"><a href="https://github.com/ccache/ccache">&ndash; Browse</a></li>
+</ul>
+</div>
+<div id="content">
+<h1>Supported platforms, compilers and languages</h1>
+<p>
+This page collects information on platforms (operating systems), compilers and
+source code languages that are supported by the latest released ccache
+version, currently <b>3.7.7</b>. The information below aims to be
+correct, but new versions of e.g. an OS or a compiler may introduce new
+behavior that breaks some of ccache's assumptions.
+</p>
+<p>
+If you want to contribute with new or updated information, please
+<a href="https://github.com/ccache/ccache.github.io/issues/new">open an
+issue</a> or maybe even create a pull request for
+the <a href="https://github.com/ccache/ccache.github.io">web site
+repository</a>.
+</p>
+<h3>Support levels</h3>
+<table>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>
+Supported. Built and tested regularly and before new releases. High
+attention to bug reports.
+</td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>
+Probably works, may work or is partially supported. Not part of the test
+procedure before a new release. Bug fixing and testing largely depend on
+contributions from the community.
+</td>
+</tr>
+<tr>
+<td class="support-level-c">C</td>
+<td>Not supported.</td>
+</tr>
+</table>
+<h2 style="clear: right;">Run-time support (i.e., using ccache)</h2>
+<h3>Platforms</h3>
+<table>
+<tr>
+<th>Level</th>
+<th>Platform</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
+<td>Regularly tested on Ubuntu 16.04 and 19.10.</td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
+<td>
+Regularly tested on the
+current <a href="https://docs.travis-ci.com/user/reference/osx">macOS
+version supported by Travis CI</a>.
+</td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Other Unix-like platforms</td>
+<td>
+See also the <a href="https://repology.org/project/ccache/versions">ccache
+page on Repology</a>.
+</td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>
+Windows with <a href="https://www.msys2.org/">MSYS2</a>
+</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>
+Windows native
+</td>
+<td>
+Regularly built with <a href="http://mingw-w64.org">Mingw-w64</a> but
+not regularly tested.
+</td>
+</tr>
+</table>
+<p class="contribute">
+Want to add or correct something?
+<a href="https://github.com/ccache/ccache.github.io/issues/new">Open an
+issue</a>.
+</p>
+<h3>Compilers</h3>
+<table>
+<tr>
+<th>Level</th>
+<th>Compiler</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://gcc.gnu.org/">GCC</a></td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://clang.llvm.org/">Clang</a></td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>
+<a href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/#introduction">NVCC</a>
+(Nvidia CUDA compiler)
+</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>
+<a href="https://software.intel.com/en-us/c-compilers">ICC</a> (Intel C++
+compiler)
+</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Other GCC-like compilers</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-c">C</td>
+<td>
+<a href="https://www.edg.com">EDG</a>-based,
+e.g. <a href="https://www.ghs.com/products/compiler.html">GHS</a> (Green
+Hills)
+</td>
+<td>
+Will get B-level support in ccache 4.0. See issue
+<a href="https://github.com/ccache/ccache/issues/460#issuecomment-570945579">#460</a>.
+</td>
+</tr>
+<tr>
+<td class="support-level-c">C</td>
+<td>
+<a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
+C++)
+</td>
+<td>
+May get partial B-level support in ccache 4.0. See pull request
+<a href="https://github.com/ccache/ccache/pull/506">#506</a>.
+</td>
+</tr>
+</table>
+<p class="contribute">
+Want to add or correct something?
+<a href="https://github.com/ccache/ccache.github.io/issues/new">Open an
+issue</a>.
+</p>
+<h3>Source code languages</h3>
+<table>
+<tr>
+<th>Level</th>
+<th>Language</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>Assembler (<code>.s</code>, <code>.sx</code>, <code>.S</code>)</td>
+<td>
+<code>.sx</code> and <code>.S</code> are assembler with a C preprocessor
+pass.
+</td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>C (<code>.c</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>C header (<code>.h</code>)</td>
+<td>For precompilation.</td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>C preprocessed (<code>.i</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>
+C++
+(<code>.cc</code>, <code>.cpp</code>, <code>.cp</code>, <code>.cxx</code>,
+<code>.c++</code>, <code>.C</code>)
+</td>
+<td>
+Also uppercase variants of extensions.
+</td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>
+C++ header
+(<code>.hh</code>, <code>.hpp</code>, <code>.hp</code>, <code>.hxx</code>,
+<code>.h++</code>, <code>.H</code>)
+</td>
+<td>
+For precompilation. Also uppercase variants of extensions.
+</td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>
+C++ preprocessed
+(<code>.ii</code>)
+</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td>
+<a href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/#introduction">CUDA</a>
+(<code>.cu</code>)
+</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Objective-C (<code>.m</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Objective-C preprocessed (<code>.mi</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Objective-C++ (<code>.mm</code>, <code>.M</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Objective-C++ preprocessed (<code>.mii</code>)</td>
+<td></td>
+</tr>
+</table>
+<p class="contribute">
+Want to add or correct something?
+<a href="https://github.com/ccache/ccache.github.io/issues/new">Open an
+issue</a>.
+</p>
+<h2>Build-time support (i.e., building ccache itself)</h2>
+Building ccache requires a C++11-compliant compiler such as GCC or Clang.
+<h3>Platforms</h3>
+<table>
+<tr>
+<th>Level</th>
+<th>Platform</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
+<td>Regularly tested on Ubuntu 16.04 and 19.10.</td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
+<td>
+Regularly tested on the
+current <a href="https://docs.travis-ci.com/user/reference/osx">macOS
+version supported by Travis CI</a>.
+</td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Other Unix-like platforms</td>
+<td>
+See also the <a href="https://repology.org/project/ccache/versions">ccache
+page on Repology</a>.
+</td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>
+Windows with <a href="https://www.msys2.org/">MSYS2</a>
+</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>
+Windows native with <a href="http://mingw-w64.org">Mingw-w64</a>
+</td>
+<td>Regularly built but not regularly tested.</td>
+</tr>
+<tr>
+<td class="support-level-c">C</td>
+<td>
+Windows native with
+<a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
+C++)
+</td>
+<td></td>
+</tr>
+</table>
+<p class="contribute">
+Want to add or correct something?
+<a href="https://github.com/ccache/ccache.github.io/issues/new">Open an
+issue</a>.
+</p>
+<h3>Compilers</h3>
+<table>
+<tr>
+<th>Level</th>
+<th>Compiler</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://gcc.gnu.org/">GCC</a></td>
+<td>GCC 4.8.5+</td>
+</tr>
+<tr>
+<td class="support-level-a">A</td>
+<td><a href="https://clang.llvm.org/">Clang</a></td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-b">B</td>
+<td>Other C++-11 compilers on Unix-like systems</td>
+<td></td>
+</tr>
+<tr>
+<td class="support-level-c">C</td>
+<td>
+<a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
+C++)
+</td>
+<td></td>
+</tr>
+</table>
+<p class="contribute">
+Want to add or correct something?
+<a href="https://github.com/ccache/ccache.github.io/issues/new">Open an
+issue</a>.
+</p>
+</div>
+</body>
+</html>

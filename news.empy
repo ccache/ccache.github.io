@@ -10,7 +10,7 @@ news = yaml.safe_load_all(open("news.yaml"))
 }@
 
 @[for x in news]
-    <h2 id="@(x["date"])">@(x["date"]): @(x["header"])</h2>
+    <h3 id="@(x["date"])">@(x["date"]): @(x["header"])</h3>
     @(x["body"])
 @[end for]
 

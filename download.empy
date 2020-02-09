@@ -4,7 +4,7 @@
 @{page_title = "Download"}
 @empy.include("header.empy")
 
-@{latest_version = "3.7.7"}
+<h2>Source code releases</h2>
 
 <p>The latest release is <b>@(latest_version)</b>:</p>
 
@@ -29,9 +29,19 @@
 </p>
 
 <p>
-  Note that the releases above only are meant to be used when installing
-  ccache. If you want to develop ccache, fix bugs, etc, you should check out
-  the full source code from the <a href="repo.html">repository</a> instead.
+  Note that the releases above only are meant to be used when installing ccache.
+  If you want to develop ccache, fix bugs, etc, you should get the full source
+  code from the <a href="repo.html">repository</a> instead.
+</p>
+
+<h2>Binary releases</h2>
+
+<p>
+  The ccache project currently doesn't provide any prebuilt binary releases. You
+  can have a look at the
+  <a href="https://repology.org/project/ccache/versions">ccache page on
+  Repology</a> to see if your favorite OS or package source has a prebuilt
+  ccache package.
 </p>
 
 @empy.include("footer.empy")

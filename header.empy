@@ -34,6 +34,8 @@
     @ext_link(name, link, 2)
 @[end def]
 
+@{latest_version = "3.7.7"}
+
 @#####################################################################
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -61,6 +63,7 @@
 <div class="group" style="margin-top: 0">About it:</div>
 <ul>
 @nav_link("overview", "Overview", ".")
+@nav_link("platform-compiler-language-support", "Supported platforms and compilers")
 @nav_link("performance", "Performance")
 @nav_link("news", "News")
 @nav_link("credits", "Credits")
@@ -92,4 +95,6 @@
 </div>
 
 <div id="content">
+@[if page_title != "Compiler cache"]
 <h1>@page_title</h1>
+@[end if]

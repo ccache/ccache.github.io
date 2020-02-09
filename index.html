@@ -18,6 +18,7 @@
 <div class="group" style="margin-top: 0">About it:</div>
 <ul>
 <li class="current"><a href=".">Overview</a></li>
+<li><a href="platform-compiler-language-support.html">Supported platforms and compilers</a></li>
 <li><a href="performance.html">Performance</a></li>
 <li><a href="news.html">News</a></li>
 <li><a href="credits.html">Credits</a></li>
@@ -44,16 +45,8 @@
 </ul>
 </div>
 <div id="content">
-<h1>Compiler cache</h1>
-<p>ccache (or “Ccache”) is a compiler cache. It
-<a href="performance.html">speeds up recompilation</a> by caching previous
-compilations and detecting when the same compilation is being done again.
-Supported languages are C, C++, Objective-C and Objective-C++.</p>
-<p>ccache is free software, released under
-the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
-version 3</a> or later. See also the <a href="license.html">license
-page</a>.</p>
-<h2>Latest news</h2>
+<div style="float: right; font-size: 90%; margin: 0 1em 0 2em;">
+<h1>News</h1>
 <ul class="news">
 <li><i>2020-01-05:</i> <a href="news.html#2020-01-05"><b>Version 3.7.7 has been released</b></a></li>
 <li><i>2019-11-17:</i> <a href="news.html#2019-11-17"><b>Version 3.7.6 has been released</b></a></li>
@@ -63,31 +56,84 @@ page</a>.</p>
 <li><i>2019-07-19:</i> <a href="news.html#2019-07-19"><b>Version 3.7.2 has been released</b></a></li>
 <li><i>2019-05-01:</i> <a href="news.html#2019-05-01"><b>Version 3.7.1 has been released</b></a></li>
 <li><i>2019-04-23:</i> <a href="news.html#2019-04-23"><b>Version 3.7 has been released</b></a></li>
-<li><i>2019-04-03:</i> <a href="news.html#2019-04-03"><b>Web site moved from ccache.samba.org to ccache.dev</b></a></li>
+<li><i>2019-04-03:</i> <a href="news.html#2019-04-03"><b>Web site moved to ccache.dev</b></a></li>
 <li><i>2019-01-14:</i> <a href="news.html#2019-01-14"><b>Version 3.6 has been released</b></a></li>
+<li><a href="news.html">All news</a></li>
 </ul>
-<p class="news">
-<a href="news.html">All news</a>
+</div>
+<h1>About</h1>
+<p>
+Ccache (or “ccache”) is a compiler cache. It
+<a href="performance.html">speeds up recompilation</a> by caching previous
+compilations and detecting when the same compilation is being done again.
+Ccache is free software, released under the
+<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
+version 3</a> or later. See also the <a href="license.html">license page</a>.
 </p>
-<h2>Features</h2>
+<p>Latest release: <a href="download.html">version 3.7.7</a></p>
+<h2 style="clear: right;">Features</h2>
 <ul>
-<li>Keeps statistics on hits/misses.</li>
-<li>Automatic cache size management.</li>
-<li>Can cache compilations that generate warnings.</li>
-<li>Easy installation.</li>
-<li>Low overhead.</li>
+<li>
+Supports GCC, Clang and other similar
+compilers<sup class="footnote">[1]</sup>.
+(<a href="platform-compiler-language-support.html">details</a>)
+</li>
+<li>
+Works on Linux, macOS, other Unix-like operating
+systems<sup class="footnote">[1]</sup> and
+Windows<sup class="footnote">[1]</sup>.
+(<a href="platform-compiler-language-support.html">details</a>)
+</li>
+<li>
+Understands C, C++, assembler, CUDA,
+Objective-C<sup class="footnote">[1]</sup> and
+Objective-C++<sup class="footnote">[1]</sup>.
+(<a href="platform-compiler-language-support.html">details</a>)
+</li>
+<li>
+Supports fast "direct" and "depend" modes that don't rely on using the
+preprocessor.
+(<a href="manual/3.7.7.html#_how_ccache_works">details</a>)
+</li>
+<li>
+Keeps statistics on hits/misses.
+(<a href="manual/3.7.7.html#_cache_statistics">details</a>)
+</li>
+<li>
+Automatic cache size management.
+(<a href="manual/3.7.7.html#_cache_size_management">details</a>)
+</li>
+<li>
+Easy installation.
+(<a href="manual/3.7.7.html#_run_modes">details</a>)
+</li>
+<li>
+Low overhead. (<a href="performance.html">details</a>)
+</li>
 <li>Optionally uses hard links where possible to avoid copies.</li>
 </ul>
+<p>
+<sup>[1]</sup> Might have limited support &mdash; see
+<a href="platform-compiler-language-support.html">supported platforms,
+compilers and languages</a>.
+</p>
 <h2>Limitations</h2>
 <ul>
-<li>Only knows how to cache the compilation of a single
-C/C++/Objective-C/Objective-C++ file. Other types of compilations (multi-file
-compilation, linking, etc) will silently fall back to running the real
-compiler.</li>
-<li>Only works with <a href="http://gcc.gnu.org">GCC</a> and compilers that
-behave similar enough.</li>
-<li>Some compiler flags are not supported. If such a flag is detected, ccache
-will silently fall back to running the real compiler.</li>
+<li>
+Only knows how to cache the compilation of a single file. Other types of
+compilations (multi-file compilation, linking, etc) will silently fall back
+to running the real compiler.
+</li>
+<li>
+Some compiler flags are not supported. If such a flag is detected, ccache
+will silently fall back to running the real compiler.
+</li>
+<li>
+The fastest mode (the "direct mode") has a corner case which can result in
+false positive cache hits. This and other minor limitations are listed
+under <a href="manual/3.7.7.html#_caveats">caveats</a> in the
+manual.
+</li>
 </ul>
 <h2>Why bother?</h2>
 <p>If you ever run <code>make clean; make</code>, you can probably benefit from
@@ -118,10 +164,9 @@ hard for ccache to handle the compiler behaviors in a good way, especially
 in a way that is backward compatible with legacy compilers.
 </li>
 <li>
-There are some known corner cases where ccache can fail to detect that
-source code files have changed since a previous compilation. These
-limitations are listed
-under <a href="manual/latest.html#_caveats">caveats</a> in the manual.
+The fastest mode (the "direct mode") has a corner case which can result in
+false positive cache hits. This and other minor limitations are listed under
+<a href="manual/3.7.7.html#_caveats">caveats</a> in the manual.
 </li>
 </ul>
 <p>If you experience any bugs or undocumented limitations, please

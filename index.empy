@@ -4,56 +4,103 @@
 @{page_title = "Compiler cache"}
 @empy.include("header.empy")
 
-<p>ccache (or “Ccache”) is a compiler cache. It
-<a href="performance.html">speeds up recompilation</a> by caching previous
-compilations and detecting when the same compilation is being done again.
-Supported languages are C, C++, Objective-C and Objective-C++.</p>
+<div style="float: right; font-size: 90%; margin: 0 1em 0 2em;">
 
-<p>ccache is free software, released under
-the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
-version 3</a> or later. See also the <a href="license.html">license
-page</a>.</p>
-
-<h2>Latest news</h2>
+<h1>News</h1>
 
 @{
 import yaml
 news = list(yaml.safe_load_all(open("news.yaml")))
 }@
 
-<ul class="news">
-@[for x in news[:10]]
+  <ul class="news">
+    @[for x in news[:10]]
     <li><i>@(x["date"]):</i> <a href="news.html#@(x["date"])"><b>@(x["header"])</b></a></li>
-@[end for]
-</ul>
+    @[end for]
+    <li><a href="news.html">All news</a></li>
+  </ul>
+</div>
 
-<p class="news">
-<a href="news.html">All news</a>
+<h1>About</h1>
+
+<p>
+  Ccache (or “ccache”) is a compiler cache. It
+  <a href="performance.html">speeds up recompilation</a> by caching previous
+  compilations and detecting when the same compilation is being done again.
+  Ccache is free software, released under the
+  <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
+  version 3</a> or later. See also the <a href="license.html">license page</a>.
 </p>
 
+<p>Latest release: <a href="download.html">version @(latest_version)</a></p>
 
-<h2>Features</h2>
+<h2 style="clear: right;">Features</h2>
 
 <ul>
-<li>Keeps statistics on hits/misses.</li>
-<li>Automatic cache size management.</li>
-<li>Can cache compilations that generate warnings.</li>
-<li>Easy installation.</li>
-<li>Low overhead.</li>
-<li>Optionally uses hard links where possible to avoid copies.</li>
+  <li>
+    Supports GCC, Clang and other similar
+    compilers<sup class="footnote">[1]</sup>.
+    (<a href="platform-compiler-language-support.html">details</a>)
+  </li>
+  <li>
+    Works on Linux, macOS, other Unix-like operating
+    systems<sup class="footnote">[1]</sup> and
+    Windows<sup class="footnote">[1]</sup>.
+    (<a href="platform-compiler-language-support.html">details</a>)
+  </li>
+  <li>
+    Understands C, C++, assembler, CUDA,
+    Objective-C<sup class="footnote">[1]</sup> and
+    Objective-C++<sup class="footnote">[1]</sup>.
+    (<a href="platform-compiler-language-support.html">details</a>)
+  </li>
+  <li>
+    Supports fast "direct" and "depend" modes that don't rely on using the
+    preprocessor.
+    (<a href="manual/@(latest_version).html#_how_ccache_works">details</a>)
+  </li>
+  <li>
+    Keeps statistics on hits/misses.
+    (<a href="manual/@(latest_version).html#_cache_statistics">details</a>)
+  </li>
+  <li>
+    Automatic cache size management.
+    (<a href="manual/@(latest_version).html#_cache_size_management">details</a>)
+  </li>
+  <li>
+    Easy installation.
+    (<a href="manual/@(latest_version).html#_run_modes">details</a>)
+  </li>
+  <li>
+    Low overhead. (<a href="performance.html">details</a>)
+  </li>
+  <li>Optionally uses hard links where possible to avoid copies.</li>
 </ul>
+
+<p>
+  <sup>[1]</sup> Might have limited support &mdash; see
+  <a href="platform-compiler-language-support.html">supported platforms,
+  compilers and languages</a>.
+</p>
 
 <h2>Limitations</h2>
 
 <ul>
-<li>Only knows how to cache the compilation of a single
-C/C++/Objective-C/Objective-C++ file. Other types of compilations (multi-file
-compilation, linking, etc) will silently fall back to running the real
-compiler.</li>
-<li>Only works with <a href="http://gcc.gnu.org">GCC</a> and compilers that
-behave similar enough.</li>
-<li>Some compiler flags are not supported. If such a flag is detected, ccache
-will silently fall back to running the real compiler.</li>
+  <li>
+    Only knows how to cache the compilation of a single file. Other types of
+    compilations (multi-file compilation, linking, etc) will silently fall back
+    to running the real compiler.
+  </li>
+  <li>
+    Some compiler flags are not supported. If such a flag is detected, ccache
+    will silently fall back to running the real compiler.
+  </li>
+  <li>
+    The fastest mode (the "direct mode") has a corner case which can result in
+    false positive cache hits. This and other minor limitations are listed
+    under <a href="manual/@(latest_version).html#_caveats">caveats</a> in the
+    manual.
+  </li>
 </ul>
 
 <h2>Why bother?</h2>
@@ -93,10 +140,9 @@ tell that you are using ccache is the speed.</p>
     in a way that is backward compatible with legacy compilers.
   </li>
   <li>
-    There are some known corner cases where ccache can fail to detect that
-    source code files have changed since a previous compilation. These
-    limitations are listed
-    under <a href="manual/latest.html#_caveats">caveats</a> in the manual.
+    The fastest mode (the "direct mode") has a corner case which can result in
+    false positive cache hits. This and other minor limitations are listed under
+    <a href="manual/@(latest_version).html#_caveats">caveats</a> in the manual.
   </li>
 </ul>
 

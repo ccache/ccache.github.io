@@ -79,10 +79,10 @@ body:
 ---
 
 date: 2019-04-03
-header: Web site moved from ccache.samba.org to ccache.dev
+header: Web site moved to ccache.dev
 body: |
   <p>
-    The ccache web site has a new home: <a
+    The ccache web site has been moved from ccache.samba.org to a new home: <a
     href="https://ccache.dev">https://ccache.dev</a>
   </p>
 
