@@ -19,7 +19,7 @@ contributors.sort(key=lambda x: x.lower())
 <h2>About</h2>
 
 <p>
-  ccache is (since 2010) developed and maintained by
+  Ccache is (since 2010) developed and maintained by
   <a href="https://github.com/jrosdahl/">Joel Rosdahl</a>. It was originally
   written by <a href="https://www.samba.org/~tridge/">Andrew
   &ldquo;Tridge&rdquo; Tridgell</a>. Tridge writes:
@@ -37,6 +37,11 @@ version.
 </p>
 </blockquote>
 
+<h2>Bundled code</h2>
+
+<p>Ccache also uses some bundled code from other sources. See
+<a href="license.html">the license page</a> for a complete description.</p>
+
 <h2>Contributors</h2>
 
 <p>The following people (in alphabetical order) have in one way or another
@@ -49,10 +54,5 @@ contributed to ccache:</p>
 </ul>
 
 <p>Thank you!</p>
-
-<h2>Bundled code</h2>
-
-<p>ccache also uses some bundled code from other sources. See
-<a href="license.html">the license page</a> for a complete description.</p>
 
 @empy.include("footer.empy")
