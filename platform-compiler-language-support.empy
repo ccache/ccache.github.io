@@ -281,7 +281,8 @@
 
 <h2>Build-time support (i.e., building ccache itself)</h2>
 
-Building ccache requires a C++11-compliant compiler such as GCC or Clang.
+<!-- <p>Building ccache requires a C++11-compliant compiler such as GCC or Clang.</p> -->
+<p>Building ccache requires a C99-compliant compiler such as GCC or Clang.</p>
 
 <h3>Platforms</h3>
 
