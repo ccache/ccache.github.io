@@ -121,7 +121,10 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://clang.llvm.org/">Clang</a></td>
-    <td></td>
+    <td>
+      Not <a href="https://clang.llvm.org/docs/MSVCCompatibility.html">clang-cl</a>,
+      though.
+    </td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
@@ -166,6 +169,14 @@
       May get partial B-level support in ccache 4.0. See pull request
       <a href="https://github.com/ccache/ccache/pull/506">#506</a>.
     </td>
+  </tr>
+  <tr>
+    <td class="support-level-c">C</td>
+    <td>
+      <a href="https://clang.llvm.org/docs/MSVCCompatibility.html">clang-cl</a>
+      (MSVC compatibility for Clang)
+    </td>
+    <td></td>
   </tr>
 </table>
 
