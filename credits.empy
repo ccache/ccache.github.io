@@ -12,7 +12,7 @@ authors = [
     if x.startswith("* ")
 ]
 extra_credits = [x.strip() for x in open("extra-credits.txt").readlines()]
-contributors = set(authors + extra_credits)
+contributors = list(set(authors + extra_credits))
 contributors.sort(key=lambda x: x.lower())
 }@
 
