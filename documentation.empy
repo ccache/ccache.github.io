@@ -24,8 +24,7 @@ older_manual_versions = [s(x) for x in all_versions[1:]]
 
 <ul>
   <li>
-    <a href="manual/@(latest_version).html">Version @latest_version</a>
-    (<a href="manual/latest.html">latest</a>)
+    <a href="manual/@(latest_version).html">Version @latest_version (latest)</a>
   </li>
   <li>
     <a onclick="$(this).parent().hide(); $('.manual-version').show()">
