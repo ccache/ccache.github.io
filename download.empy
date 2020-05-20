@@ -43,7 +43,7 @@
   See also the <a href="releasenotes.html#_ccache_@(latest_version.replace(".", "_"))">ccache @(latest_version) release notes</a>.
 </p>
 
-<h2>Notes</h2>
+<h3>Notes</h3>
 
 <p>
   You can also find older releases on
@@ -64,6 +64,25 @@
   If you want to develop ccache, fix bugs, etc, you should get the full source
   code from the <a href="repo.html">repository</a> instead.
 </p>
+
+<h2>Other package sources</h2>
+
+<table>
+  <tr>
+    <th>Repository</th>
+    <th>URL</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://chocolatey.org">Chocolatey</a> (“The Package Manager for
+      Windows”)
+    </td>
+    <td>
+      <a href="https://chocolatey.org/packages/ccache">ccache Chocolatey package</a><br>
+      <small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small>
+    </td>
+  </tr>
+</table>
 
 <p>
   You can also have a look at the
