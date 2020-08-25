@@ -1,7 +1,7 @@
 version := 3.7.11
 version_stamp := version_$(version).stamp
 
-CCACHE_REPO := ../ccache
+CCACHE_REPO ?= ../ccache
 EMPY ?= empy3
 
 empy_files += $(filter-out footer.empy header.empy, $(wildcard *.empy))
