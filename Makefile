@@ -2,6 +2,7 @@ version := 3.7.11
 version_stamp := version_$(version).stamp
 
 CCACHE_REPO := ../ccache
+EMPY ?= empy3
 
 empy_files += $(filter-out footer.empy header.empy, $(wildcard *.empy))
 
@@ -44,7 +45,7 @@ documentation.html: manual/$(version).html
 index.html news.html: news.yaml
 
 %.html: %.empy header.empy footer.empy $(version_stamp)
-	empy3 $< >$@.tmp
+	$(EMPY) $< >$@.tmp
 	sed -e 's/^ *//' -e 's/ *$$//' -e '/^$$/d' $@.tmp >$@
 	rm $@.tmp
 
