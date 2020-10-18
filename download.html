@@ -46,8 +46,60 @@
 </div>
 <div id="content">
 <h1>Download</h1>
-<p>The latest released version is <b>3.7.12</b>.</p>
-<h2>Releases</h2>
+<p>The latest released version is <b>4.0</b>.</p>
+<h2>Latest release</h2>
+<table>
+<tr>
+<th>Platform</th>
+<th>Archive</th>
+</tr>
+<tr>
+<td>All (source code release)</td>
+<td>
+<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0.tar.gz">ccache-4.0.tar.gz</a>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0.tar.gz.asc">signature</a>)</small>
+<br>
+<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0.tar.xz">ccache-4.0.tar.xz</a>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0.tar.xz.asc">signature</a>)</small>
+</td>
+</tr>
+<tr>
+<td>Windows 32-bit (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
+<td>
+<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0-windows-32.zip">ccache-4.0-windows-32.zip</a>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0-windows-32.zip.asc">signature</a>)</small>
+</td>
+</tr>
+<tr>
+<td>Windows 64-bit (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
+<td>
+<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0-windows-64.zip">ccache-4.0-windows-64.zip</a>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.0/ccache-4.0-windows-64.zip.asc">signature</a>)</small>
+</td>
+</tr>
+</table>
+<p>
+See also the <a href="releasenotes.html#_ccache_4_0">ccache 4.0 release notes</a>.
+</p>
+<h3>Notes</h3>
+<p>
+You can also find older releases on
+<a href="https://github.com/ccache/ccache/releases/">the releases page on
+GitHub</a>.
+</p>
+<p>
+The release archives are signed with
+<a href="https://pgp.key-server.io/pks/lookup?search=0x5A939A71A46792CF57866A51996DDA075594ADB8&amp;fingerprint=on&amp;op=vindex">Joel
+Rosdahl's OpenPGP key</a>. To verify the integrity of a source archive,
+install the key, download the archive and the corresponding OpenPGP signature
+file and run <code>gpg --verify <b><i>file.asc</i></b></code>.
+</p>
+<p>
+Note that the releases above only are meant to be used when installing ccache.
+If you want to develop ccache, fix bugs, etc, you should get the full source
+code from the <a href="repo.html">repository</a> instead.
+</p>
+<h2>Latest legacy 3.x release</h2>
 <table>
 <tr>
 <th>Platform</th>
@@ -79,25 +131,7 @@
 </tr>
 </table>
 <p>
-See also the <a href="releasenotes.html#_ccache_3_7_12">ccache 3.7.12 release notes</a>.
-</p>
-<h3>Notes</h3>
-<p>
-You can also find older releases on
-<a href="https://github.com/ccache/ccache/releases/">the releases page on
-GitHub</a>.
-</p>
-<p>
-The release archives are signed with
-<a href="https://pgp.key-server.io/pks/lookup?search=0x5A939A71A46792CF57866A51996DDA075594ADB8&amp;fingerprint=on&amp;op=vindex">Joel
-Rosdahl's OpenPGP key</a>. To verify the integrity of a source archive,
-install the key, download the archive and the corresponding OpenPGP signature
-file and run <code>gpg --verify <b><i>file.asc</i></b></code>.
-</p>
-<p>
-Note that the releases above only are meant to be used when installing ccache.
-If you want to develop ccache, fix bugs, etc, you should get the full source
-code from the <a href="repo.html">repository</a> instead.
+See also the <a href="releasenotes.html#_ccache_3_7_12)">ccache 3.7.12 release notes</a>.
 </p>
 <h2>Other package sources</h2>
 <table>

@@ -49,7 +49,7 @@
 <p>
 This page collects information on platforms (operating systems), compilers and
 source code languages that are supported by the latest released ccache
-version, currently <b>3.7.12</b>. The information below aims to be
+version, currently <b>4.0</b>. The information below aims to be
 correct, but new versions of e.g. an OS or a compiler may introduce new
 behavior that breaks some of ccache's assumptions.
 </p>
@@ -97,16 +97,12 @@ contributions from the community.
 <tr>
 <td class="support-level-a">A</td>
 <td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
-<td>Regularly tested on Ubuntu 16.04 and 19.10.</td>
+<td>Regularly tested on Ubuntu 16.04, 18.04 and 20.04.</td>
 </tr>
 <tr>
 <td class="support-level-a">A</td>
 <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-<td>
-Regularly tested on the
-current <a href="https://docs.travis-ci.com/user/reference/osx">macOS
-version supported by Travis CI</a>.
-</td>
+<td>Regularly tested on macOS 10.15</a>.</td>
 </tr>
 <tr>
 <td class="support-level-b">B</td>
@@ -182,16 +178,13 @@ compiler</a> (ICC/ICPC)
 <td></td>
 </tr>
 <tr>
-<td class="support-level-c">C</td>
+<td class="support-level-c">B</td>
 <td>
 <a href="https://www.edg.com">EDG</a>-based,
 e.g. <a href="https://www.ghs.com/products/compiler.html">GHS</a> (Green
 Hills)
 </td>
-<td>
-Will get B-level support in ccache 4.0. See issue
-<a href="https://github.com/ccache/ccache/issues/460#issuecomment-570945579">#460</a>.
-</td>
+<td></td>
 </tr>
 <tr>
 <td class="support-level-c">C</td>
@@ -200,7 +193,7 @@ Will get B-level support in ccache 4.0. See issue
 C++)
 </td>
 <td>
-May get partial B-level support in ccache 4.0. See pull request
+May get partial B-level support in the future. See pull request
 <a href="https://github.com/ccache/ccache/pull/506">#506</a>.
 </td>
 </tr>
@@ -321,8 +314,6 @@ Want to add or correct something?
 issue</a>.
 </p>
 <h2>Build-time support (i.e., building ccache itself)</h2>
-<!-- <p>Building ccache requires a C++11-compliant compiler such as GCC or Clang.</p> -->
-<p>Building ccache requires a C99-compliant compiler such as GCC or Clang.</p>
 <h3>Platforms</h3>
 <table>
 <tr>
@@ -333,16 +324,12 @@ issue</a>.
 <tr>
 <td class="support-level-a">A</td>
 <td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
-<td>Regularly tested on Ubuntu 16.04 and 19.10.</td>
+<td>Regularly tested on Ubuntu 16.04, 18.04 and 20.04.</td>
 </tr>
 <tr>
 <td class="support-level-a">A</td>
 <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-<td>
-Regularly tested on the
-current <a href="https://docs.travis-ci.com/user/reference/osx">macOS
-version supported by Travis CI</a>.
-</td>
+<td>Regularly tested on macOS 10.15.</td>
 </tr>
 <tr>
 <td class="support-level-b">B</td>
@@ -367,7 +354,7 @@ Windows native with <a href="http://mingw-w64.org">Mingw-w64</a>
 <td>Regularly built.</td>
 </tr>
 <tr>
-<td class="support-level-c">C</td>
+<td class="support-level-c">B</td>
 <td>
 Windows native with
 <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
@@ -391,22 +378,21 @@ issue</a>.
 <tr>
 <td class="support-level-a">A</td>
 <td><a href="https://gcc.gnu.org/">GCC</a></td>
-<!-- <td>GCC 4.8.4+ and Clang 3.6+</td> -->
+<td>GCC 4.8.5+</td>
 <td></td>
 </tr>
 <tr>
 <td class="support-level-a">A</td>
 <td><a href="https://clang.llvm.org/">Clang</a></td>
-<td></td>
+<td>Clang 3.8+</td>
 </tr>
 <tr>
 <td class="support-level-b">B</td>
-<!-- <td>Other C++-11 compilers on Unix-like systems</td> -->
-<td>Other C compilers on Unix-like systems</td>
+<td>Other C++-11 compilers on Unix-like systems</td>
 <td></td>
 </tr>
 <tr>
-<td class="support-level-c">C</td>
+<td class="support-level-c">B</td>
 <td>
 <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
 C++)

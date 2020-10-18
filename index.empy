@@ -59,6 +59,11 @@ news = list(yaml.safe_load_all(open("news.yaml")))
     preprocessor.
     (<a href="manual/@(latest_version).html#_how_ccache_works">details</a>)
   </li>
+  <li>Supports compression using [Zstandard](http://zstd.net).</li>
+  <li>
+    Checksums cache content using [XXH3](http://xxhash.com) to detect data
+    corruption.
+  </li>
   <li>
     Keeps statistics on hits/misses.
     (<a href="manual/@(latest_version).html#_cache_statistics">details</a>)
@@ -78,6 +83,10 @@ news = list(yaml.safe_load_all(open("news.yaml")))
     Support for rewriting absolute paths to relative in order to increase the
     cache hit ratio.
     (<a href="manual/@(latest_version).html#_compiling_in_different_directories">details</a>)
+  </li>
+  <li>
+    Optionally uses file cloning (AKA “reflinks”) where possible to avoid
+    copies.
   </li>
   <li>Optionally uses hard links where possible to avoid copies.</li>
 </ul>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="generator" content="AsciiDoc 9.0.0rc1" />
-<title>ccache news</title>
+<title>Ccache news</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -734,14 +734,466 @@ asciidoc.install(2);
 </head>
 <body class="article">
 <div id="header">
-<h1>ccache news</h1>
-<span id="revnumber">version 3.7.12</span>
+<h1>Ccache news</h1>
+<span id="revnumber">version 4.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_ccache_4_0">Ccache 4.0</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Release date: 2020-10-18</p></div>
+<div class="sect2">
+<h3 id="_summary_of_major_changes">Summary of major changes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Changed the default cache directory location to follow the XDG base directory
+  specification.
+</p>
+</li>
+<li>
+<p>
+Changed compression algorithm from Deflate (zlib) to Zstandard, enabled by
+  default.
+</p>
+</li>
+<li>
+<p>
+Added functionality for recompressing cache content with a higher compression
+  level.
+</p>
+</li>
+<li>
+<p>
+Changed hash algorithm from MD4 to BLAKE3.
+</p>
+</li>
+<li>
+<p>
+Added checksumming with XXH3 to detect data corruption.
+</p>
+</li>
+<li>
+<p>
+Improved cache directory structure.
+</p>
+</li>
+<li>
+<p>
+Added support for using file cloning (AKA “reflinks”).
+</p>
+</li>
+<li>
+<p>
+Added an experimental “inode cache” for file hashes.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility_notes">Compatibility notes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+The default location of the cache directory has changed to follow the XDG
+  base directory specification (<a href="#_detailed_functional_changes">more details   below</a>). This means that scripts can no longer assume that the cache
+  directory is <code>~/.ccache</code> by default. The <code>CCACHE_DIR</code> environment variable
+  still overrides the default location just like before.
+</p>
+</li>
+<li>
+<p>
+The cache directory structure has changed compared to previous versions
+  (<a href="#_detailed_functional_changes">more details below</a>). This means that ccache
+  4.0 will not share cache results with earlier versions. It is however safe to
+  run ccache 4.0 and earlier versions against the same cache directory: cache
+  bookkeeping, statistics and cleanup are backward compatible, with the minor
+  exception that some statistics counters incremented by ccache 4.0 won’t be
+  visible when running <code>ccache -s</code> with an older version.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_changed_tooling">Changed tooling</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+CMake is now used instead of Autoconf for configuration and building.
+</p>
+</li>
+<li>
+<p>
+A C++11 compiler, a C99 compiler and CMake 3.4.3 or newer are now required to
+  build ccache.
+</p>
+</li>
+<li>
+<p>
+Ccache can now be built using Microsoft Visual C++.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_detailed_functional_changes">Detailed functional changes</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+All data of a cached result is now stored in a single file called “result”
+  instead of up to seven files. This reduces inode usage and improves data
+  locality.
+</p>
+</li>
+<li>
+<p>
+Added compression of result and manifest files using the
+  <a href="http://zstd.net">Zstandard</a> algorithm. Compression is enabled by default with
+  compression level 1. This makes ccache able to store more data in the cache.
+  Previously compression using Deflate (zlib) was available but disabled by
+  default. Files can be recompressed with another compression level later with
+  the <code>-X/--recompress</code> option described further below.
+</p>
+</li>
+<li>
+<p>
+Changed from MD4 to <a href="https://blake3.io">BLAKE3</a> for hashing input. This
+  improves performance and reduces the risk of hash collisions.
+</p>
+</li>
+<li>
+<p>
+Added checksumming of result and manifest files using the
+  <a href="http://xxhash.com">XXH3</a> algorithm to detect data corruption.
+</p>
+</li>
+<li>
+<p>
+Ccache now follows the
+  <a href="https://specifications.freedesktop.org/basedir-spec/">XDG base directory
+  specification</a>. This means that the default cache directory on Unix systems
+  is <code>$XDG_CACHE_HOME/ccache</code> (with <code>~/.cache/ccache</code> as the fallback if
+  <code>XDG_CACHE_HOME</code> is not set) and the configuration file is
+  <code>$XDG_CONFIG_HOME/ccache/ccache.conf</code> (with <code>~/.config/ccache/ccache.conf</code> as
+  the fallback). On macOS, the fallbacks are <code>~/Library/Caches/ccache</code> and
+  <code>~/Library/Preferences/ccache/ccache.conf</code>. On Windows, the fallbacks are
+  <code>%APPDATA%/ccache</code> and <code>%APPDATA%/ccache/ccache.conf</code>. Exception: If the
+  legacy <code>~/.ccache</code> directory exists, that directory is used as the default
+  cache location and the configuration file is <code>~/.ccache/ccache.conf</code>.
+</p>
+</li>
+<li>
+<p>
+Cache statistics are now stored in files on cache level 2 to reduce lock
+  contention when there are many parallel compilations.
+</p>
+</li>
+<li>
+<p>
+An appropriate cache directory level structure is now chosen automatically.
+  The <code>cache_dir_levels</code> (<code>CCACHE_NLEVELS</code>) configuration option has therefore
+  been removed.
+</p>
+</li>
+<li>
+<p>
+Added an experimental “inode cache” for file hashes, allowing computed hash
+  values to be reused both within and between builds. The inode cache is off by
+  default but can be enabled by setting <code>inode_cache</code> (<code>CCACHE_INODECACHE</code>) to
+  <code>true</code>.
+</p>
+</li>
+<li>
+<p>
+Added support for using file cloning (AKA “reflinks”) on Btrfs, XFS and APFS
+  to copy data to and from the cache very efficiently.
+</p>
+</li>
+<li>
+<p>
+Two measures have been implemented to make the hard link mode safer:
+  hard-linked files are made read-only and inadvertent content changes that
+  affect file size are detected.
+</p>
+</li>
+<li>
+<p>
+Added a command line option <code>-x/--show-compression</code> which shows statistics
+  about cache compression.
+</p>
+</li>
+<li>
+<p>
+Added a command line option <code>-X/--recompress</code> which recompresses the cache
+  data with another compression level or makes it uncompressed. If you choose
+  to disable compression by default, or choose to use a compression level with
+  a low compression ratio, you can recompress the cache with a higher
+  compression level after the build or at another time when there are more CPU
+  cycles available, for instance every night. Only files that are currently
+  compressed with a different level than the wanted level will be recompressed.
+</p>
+</li>
+<li>
+<p>
+Added a command line option <code>--evict-older-than</code> which removes cache entries
+  older than a certain age.
+</p>
+</li>
+<li>
+<p>
+Added a command line option <code>-d/--directory</code> which specifies a cache
+  directory to operate on. It can be used instead of setting <code>CCACHE_DIR</code>
+  temporarily.
+</p>
+</li>
+<li>
+<p>
+A progress bar has been added to show the progress of time-consuming options
+  like <code>-c/--cleanup</code>, <code>-C/--clear</code>, <code>--evict-older-than</code>,
+  <code>-x/--show-compression</code> and <code>-X/--recompress</code>.
+</p>
+</li>
+<li>
+<p>
+When supported by the CPU, a SIMD-friendly (using AVX2) algorithm is now used
+  to scan input source code for <code>__DATE__</code>, <code>__TIME__</code> and <code>__TIMESTAMP__</code>
+  macros. This can decrease the number of CPU cycles for a direct cache hit
+  with up to 15% in some cases.
+</p>
+</li>
+<li>
+<p>
+Some unnecessary <code>stat(2)</code> system calls are now avoided when verifying header
+  files.
+</p>
+</li>
+<li>
+<p>
+Compiler diagnostic messages are now always cached in color. Ccache then
+  strips the color codes on the fly when requested explicitly by a command line
+  option or when stderr does not refer to a TTY. This allows IDEs and terminals
+  to share cached compilation results.
+</p>
+</li>
+<li>
+<p>
+The configuration option <code>compiler</code> (<code>CCACHE_COMPILER</code>) now always takes
+  effect if specified. Previously, the configuration option was only used when
+  the compiler specified on the command line was looked up via <code>PATH</code> (i.e.,
+  not when an absolute path was specified).
+</p>
+</li>
+<li>
+<p>
+Added optional logging to syslog if <code>log_file</code> (<code>CCACHE_LOGFILE</code>) is set to
+  <code>syslog</code>.
+</p>
+</li>
+<li>
+<p>
+The compiler option <code>-fmodules</code> is now handled in the “depend mode”. If
+  “depend mode” is disabled the option is still considered too hard and ccache
+  will fall back to running the compiler.
+</p>
+</li>
+<li>
+<p>
+Ccache can now cache compilations with coverage notes (<code>.gcno</code> files)
+  produced by GCC 9+ in combination with <code>-fprofile-dir=dir</code>.
+</p>
+</li>
+<li>
+<p>
+<code>realpath(3)</code> is no longer used for normalization when computing relative
+  paths. This makes it possible to get cache hits when the source or build
+  directory is a symbolic link to an absolute path that includes unstable
+  information like build IDs or timestamps.
+</p>
+</li>
+<li>
+<p>
+Added an <code>ignore_options</code> (<code>CCACHE_IGNOREOPTIONS</code>) configuration option which
+  makes it possible to exclude compiler options from the hash.
+</p>
+</li>
+<li>
+<p>
+Added an <code>absolute_paths_in_stderr</code> (<code>CCACHE_ABSSTDERR</code>) configuration option
+  which makes ccache rewrite absolute paths in compiler warnings and errors to
+  relative.
+</p>
+</li>
+<li>
+<p>
+Improved handling of umask. The configured <code>umask</code> (<code>CCACHE_UMASK</code>) is now
+  only applied to files and directories in the cache directory. Previously the
+  umask was applied to all files produced by ccache and the executed compiler.
+</p>
+</li>
+<li>
+<p>
+Ccache is now able to share cache entries for different object file names
+  when using <code>-MD</code> or <code>-MMD</code>.
+</p>
+</li>
+<li>
+<p>
+Clang’s <code>-Xclang</code> (used by CMake for precompiled headers),
+  <code>-fno-pch-timestamp</code>, <code>-emit-pch</code>, <code>-emit-pth</code> and <code>-include-pth</code> options are
+  now understood.
+</p>
+</li>
+<li>
+<p>
+Added support for the HIP (“C++ Heterogeneous-Compute Interface for
+  Portability”) language.
+</p>
+</li>
+<li>
+<p>
+The manifest format now allows for header files larger than 4 GiB.
+</p>
+</li>
+<li>
+<p>
+Made it possible to once again cache compilations with <code>__DATE__</code> in the
+  source code.
+</p>
+</li>
+<li>
+<p>
+Added handling of the <code>__TIMESTAMP__</code> macro.
+</p>
+</li>
+<li>
+<p>
+An absolute input source path is now rewritten to a relative path when using
+  <code>base_dir</code>.
+</p>
+</li>
+<li>
+<p>
+<code>waitpid</code> system calls interrupted by a signal are now handled correctly.
+</p>
+</li>
+<li>
+<p>
+Made handling of <code>.dwo</code> files and interaction between <code>-gsplit-dwarf</code> and
+  other <code>-g*</code> options more robust.
+</p>
+</li>
+<li>
+<p>
+The “couldn&#8217;t find compiler” statistics counter is no longer incremented when
+  ccache exits with a fatal error.
+</p>
+</li>
+<li>
+<p>
+Failure to run a <code>compiler_check</code> command is no longer a fatal error.
+</p>
+</li>
+<li>
+<p>
+Added command line options <code>--dump-result</code> and <code>--extract-result</code> for
+  inspecting and extracting result files.
+</p>
+</li>
+<li>
+<p>
+Added a command line option <code>--checksum-file</code> for debugging or evaluating the
+  checksum algorithm.
+</p>
+</li>
+<li>
+<p>
+Improved error message for <code>ccache -o=K=V</code> (trying to set a configuration
+  option named <code>=K</code>).
+</p>
+</li>
+<li>
+<p>
+Made timestamps in statistics files Y2038-proof.
+</p>
+</li>
+<li>
+<p>
+Removed code for populating a newly created configuration file with max cache
+  size and max files values for cache directories created by ccache versions
+  older than 3.2 (released 2014).
+</p>
+</li>
+<li>
+<p>
+Removed knowledge about a top-level <code>stats</code> file created by ccache versions
+  older than 3.1 (released 2010).
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_other_improvements">Other improvements</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Improved help text and documentation of command line options.
+</p>
+</li>
+<li>
+<p>
+Improved documentation of the <code>base_dir</code> configuration option.
+</p>
+</li>
+<li>
+<p>
+Improved documentation of preprocessor and direct modes.
+</p>
+</li>
+<li>
+<p>
+Added HTML anchors to configuration options in the manual so that it is
+  possible link to a specific option.
+</p>
+</li>
+<li>
+<p>
+Tweaked placement of “(readonly)” in output of <code>ccache -s</code>.
+</p>
+</li>
+<li>
+<p>
+Improved visibility of color output from the test suite.
+</p>
+</li>
+<li>
+<p>
+Fixed a problem when running the test suite with Clang without a libgcov
+  library available.
+</p>
+</li>
+<li>
+<p>
+Fixed test suite problems on macOS.
+</p>
+</li>
+<li>
+<p>
+Disabled hardlink tests on AFS since it lacks such support.
+</p>
+</li>
+<li>
+<p>
+Disabled read-only tests on file systems that lack such support.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_ccache_3_7_12">ccache 3.7.12</h2>
 <div class="sectionbody">
@@ -1148,14 +1600,14 @@ Fixed warning during configure in out-of-tree build in developer mode.
 <div class="ulist"><ul>
 <li>
 <p>
-Added support for GCC 9’s <code>-gz[=type]</code> option (previously ccache would think
-  that “-gz” alone would enable debug information, thus potentially including
-  the current directory in the hash).
+Added support for the <code>-gz[=type]</code> compiler option (previously ccache would
+  think that “-gz” alone would enable debug information, thus potentially
+  including the current directory in the hash).
 </p>
 </li>
 <li>
 <p>
-Added support for converting paths like “/c/users” into relative paths on
+Added support for converting paths like “/c/users/&#8230;” into relative paths on
   Windows.
 </p>
 </li>
@@ -3939,9 +4391,9 @@ Statistics counters are now correctly updated for -E option failures and
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 3.7.12<br />
+Version 4.0<br />
 Last updated
- 2020-10-01 14:27:09 CEST
+ 2020-10-18 20:35:23 CEST
 </div>
 </div>
 </body>

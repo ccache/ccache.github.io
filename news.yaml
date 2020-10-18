@@ -1,3 +1,13 @@
+date: 2020-10-18
+header: Version 4.0 has been released
+body:
+  <p>
+    See the <a href="releasenotes.html#_ccache_4_0">release notes</a> for
+    details.
+  </p>
+
+---
+
 date: 2020-10-01
 header: Version 3.7.12 has been released
 body:
