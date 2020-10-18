@@ -59,9 +59,9 @@ news = list(yaml.safe_load_all(open("news.yaml")))
     preprocessor.
     (<a href="manual/@(latest_version).html#_how_ccache_works">details</a>)
   </li>
-  <li>Supports compression using [Zstandard](http://zstd.net).</li>
+  <li>Supports compression using <a href="http://zstd.net">Zstandard</a>.</li>
   <li>
-    Checksums cache content using [XXH3](http://xxhash.com) to detect data
+    Checksums cache content using <a href="http://xxhash.com">XXH3</a> to detect data
     corruption.
   </li>
   <li>
