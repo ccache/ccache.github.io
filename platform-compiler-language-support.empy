@@ -364,7 +364,7 @@
   </tr>
   <tr>
     <td class="support-level-b">B</td>
-    <td>Other C++-11 compilers on Unix-like systems</td>
+    <td>Other C++11 compilers on Unix-like systems</td>
     <td></td>
   </tr>
   <tr>
