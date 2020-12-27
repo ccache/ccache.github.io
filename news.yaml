@@ -1,3 +1,13 @@
+date: 2020-12-27
+header: GitHub Discussions enabled
+body:
+  <p>
+    You can now discuss ccache or ask questions in <a
+    "href=https://github.com/ccache/ccache/discussions">GitHub Discussions</a>
+  </p>
+
+---
+
 date: 2020-11-22
 header: Version 4.1 has been released
 body:
