@@ -735,7 +735,7 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>Ccache copyright and license</h1>
-<span id="revnumber">version 4.1</span>
+<span id="revnumber">version 4.2</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -777,7 +777,7 @@ their portions of the work.</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>Copyright (C) 2002-2007 Andrew Tridgell
-Copyright (C) 2009-2020 Joel Rosdahl and other contributors</code></pre>
+Copyright (C) 2009-2021 Joel Rosdahl and other contributors</code></pre>
 </div></div>
 </div>
 </div>
@@ -790,7 +790,7 @@ may qualify as &#8220;separate and independent works in themselves&#8221; for pu
 the GPL: that is, if separated from the ccache sources, they may be usable
 under less restrictive terms.</p></div>
 <div class="sect2">
-<h3 id="_src_third_party_base32hex_hc">src/third_party/base32hex.[hc]</h3>
+<h3 id="_src_third_party_base32hex">src/third_party/base32hex.*</h3>
 <div class="paragraph"><p>This base32hex implementation comes from
 <a href="https://github.com/pmconrad/tinydnssec">https://github.com/pmconrad/tinydnssec</a>.</p></div>
 <div class="listingblock">
@@ -811,7 +811,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</cod
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="_src_third_party_blake3_hcs">src/third_party/blake3/*.[hcS]</h3>
+<h3 id="_src_third_party_blake3_blake3">src/third_party/blake3/blake3_*</h3>
 <div class="paragraph"><p>This is a subset of <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a> 0.3.7 with
 the following license:</p></div>
 <div class="listingblock">
@@ -1151,12 +1151,12 @@ express Statement of Purpose.
 <div class="sect2">
 <h3 id="_src_third_party_doctest_h">src/third_party/doctest.h</h3>
 <div class="paragraph"><p>This is the single header version of <a href="https://github.com/onqtam/doctest">doctest</a>
-2.4.0 with the following license:</p></div>
+2.4.4 with the following license:</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>The MIT License (MIT)
 
-Copyright (c) 2016-2019 Viktor Kirilov
+Copyright (c) 2016-2020 Viktor Kirilov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1179,7 +1179,7 @@ SOFTWARE.</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_src_third_party_fmt_h_and_src_third_party_format_cpp">src/third_party/fmt/*.h and src/third_party/format.cpp</h3>
-<div class="paragraph"><p>This is a subset of <a href="https://fmt.dev">fmt</a> 7.0.3 with the following license:</p></div>
+<div class="paragraph"><p>This is a subset of <a href="https://fmt.dev">fmt</a> 7.1.3 with the following license:</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>Formatting library for C++
@@ -1213,7 +1213,7 @@ without including the above copyright and permission notices.</code></pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="_src_third_party_getopt_long_hc">src/third_party/getopt_long.[hc]</h3>
+<h3 id="_src_third_party_getopt_long">src/third_party/getopt_long.*</h3>
 <div class="paragraph"><p>This implementation of <code>getopt_long()</code> was copied from
 <a href="https://www.postgresql.org">PostgreSQL</a> and has the following license text:</p></div>
 <div class="listingblock">
@@ -1250,7 +1250,7 @@ SUCH DAMAGE.</code></pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="_src_third_party_minitrace_hc">src/third_party/minitrace.[hc]</h3>
+<h3 id="_src_third_party_minitrace">src/third_party/minitrace.*</h3>
 <div class="paragraph"><p>A library for producing JSON traces suitable for Chrome&#8217;s built-in trace viewer
 (chrome://tracing). Downloaded from <a href="https://github.com/hrydgard/minitrace">https://github.com/hrydgard/minitrace</a>.</p></div>
 <div class="listingblock">
@@ -1280,12 +1280,14 @@ SOFTWARE.</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_src_third_party_nonstd_optional_hpp">src/third_party/nonstd/optional.hpp</h3>
-<div class="paragraph"><p>This alternative implementation of <code>std::optional</code> was downloaded from
-<a href="https://github.com/martinmoene/optional-lite">https://github.com/martinmoene/optional-lite</a> and has the following license
-text:</p></div>
+<div class="paragraph"><p>This is the single header version of
+<a href="https://github.com/martinmoene/optional-lite">optional-lite</a> 3.4.0 with the
+following license:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>Boost Software License - Version 1.0 - August 17th, 2003
+<pre><code>Copyright (c) 2014-2018 Martin Moene
+
+Boost Software License - Version 1.0 - August 17th, 2003
 
 Permission is hereby granted, free of charge, to any person or organization
 obtaining a copy of the software and accompanying documentation covered by
@@ -1317,7 +1319,9 @@ DEALINGS IN THE SOFTWARE.</code></pre>
 text:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>Boost Software License - Version 1.0 - August 17th, 2003
+<pre><code>Copyright 2017-2020 by Martin Moene
+
+Boost Software License - Version 1.0 - August 17th, 2003
 
 Permission is hereby granted, free of charge, to any person or organization
 obtaining a copy of the software and accompanying documentation covered by
@@ -1343,7 +1347,7 @@ DEALINGS IN THE SOFTWARE.</code></pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="_src_third_party_win32_getopt_hc">src/third_party/win32/getopt.[hc]</h3>
+<h3 id="_src_third_party_win32_getopt">src/third_party/win32/getopt.*</h3>
 <div class="paragraph"><p>This implementation of <code>getopt_long()</code> for Win32 was taken from
 <a href="https://www.codeproject.com/Articles/157001/Full-getopt-Port-for-Unicode-and-Multibyte-Microso">https://www.codeproject.com/Articles/157001/Full-getopt-Port-for-Unicode-and-Multibyte-Microso</a>
 and is licensed under the LGPL.</p></div>
@@ -1351,7 +1355,30 @@ and is licensed under the LGPL.</p></div>
 <a href="https://www.gnu.org/licenses/lgpl-3.0.html">https://www.gnu.org/licenses/lgpl-3.0.html</a>.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_src_third_party_xxh_ash__x86dispatch_hc">src/third_party/xxh(ash|_x86dispatch).[hc]</h3>
+<h3 id="_src_third_party_win32_mktemp">src/third_party/win32/mktemp.*</h3>
+<div class="paragraph"><p>This implementation of <code>mkstemp()</code> for Win32 was adapted from
+<a href="https://github.com/openbsd/src/blob/99b791d14c0f1858d87a0c33b55880fb9b00be66/lib/libc/stdio/mktemp.c">https://github.com/openbsd/src/blob/99b791d14c0f1858d87a0c33b55880fb9b00be66/lib/libc/stdio/mktemp.c</a>
+and has the folowing license text:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Copyright (c) 1996-1998, 2008 Theo de Raadt
+Copyright (c) 1997, 2008-2009 Todd C. Miller
+
+Permission to use, copy, modify, and distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_src_third_party_xxh">src/third_party/xxh*</h3>
 <div class="paragraph"><p>xxHash - Extremely Fast Hash algorithm. Copied from xxHash v0.8.0 downloaded
 from <a href="https://github.com/Cyan4973/xxHash/releases">https://github.com/Cyan4973/xxHash/releases</a>.</p></div>
 <div class="listingblock">
@@ -1391,9 +1418,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</code></pre
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 4.1<br />
+Version 4.2<br />
 Last updated
- 2020-11-22 20:27:56 CET
+ 2021-02-02 07:17:55 CET
 </div>
 </div>
 </body>

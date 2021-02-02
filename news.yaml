@@ -1,3 +1,13 @@
+date: 2021-02-02
+header: Version 4.2 has been released
+body:
+  <p>
+    See the <a href="releasenotes.html#_ccache_4_2">release notes</a> for
+    details.
+  </p>
+
+---
+
 date: 2020-12-27
 header: GitHub Discussions enabled
 body:
