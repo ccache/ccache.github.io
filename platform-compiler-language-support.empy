@@ -144,7 +144,7 @@
     <td></td>
   </tr>
   <tr>
-    <td class="support-level-c">B</td>
+    <td class="support-level-b">B</td>
     <td>
       <a href="https://www.edg.com">EDG</a>-based,
       e.g. <a href="https://www.ghs.com/products/compiler.html">GHS</a> (Green
@@ -327,7 +327,7 @@
     <td>Regularly built.</td>
   </tr>
   <tr>
-    <td class="support-level-c">B</td>
+    <td class="support-level-c">C</td>
     <td>
       Windows native with
       <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
@@ -368,7 +368,7 @@
     <td></td>
   </tr>
   <tr>
-    <td class="support-level-c">B</td>
+    <td class="support-level-c">C</td>
     <td>
       <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
       C++)
