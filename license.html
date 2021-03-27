@@ -735,7 +735,7 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>Ccache copyright and license</h1>
-<span id="revnumber">version 4.2</span>
+<span id="revnumber">version 4.2.1</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -1151,12 +1151,12 @@ express Statement of Purpose.
 <div class="sect2">
 <h3 id="_src_third_party_doctest_h">src/third_party/doctest.h</h3>
 <div class="paragraph"><p>This is the single header version of <a href="https://github.com/onqtam/doctest">doctest</a>
-2.4.4 with the following license:</p></div>
+2.4.6 with the following license:</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>The MIT License (MIT)
 
-Copyright (c) 2016-2020 Viktor Kirilov
+Copyright (c) 2016-2021 Viktor Kirilov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1378,6 +1378,62 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</code></pre>
 </div></div>
 </div>
 <div class="sect2">
+<h3 id="_src_third_party_win32_winerror_to_errno_h">src/third_party/win32/winerror_to_errno.h</h3>
+<div class="paragraph"><p>The implementation of <code>winerror_to_errno()</code> was adapted from
+<a href="https://github.com/python/cpython/blob/1a79785e3e8fea80bcf6a800b45a04e06c787480/PC/errmap.h">https://github.com/python/cpython/blob/1a79785e3e8fea80bcf6a800b45a04e06c787480/PC/errmap.h</a>
+and has the folowing license text:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2
+
+1. This LICENSE AGREEMENT is between the Python Software Foundation
+("PSF"), and the Individual or Organization ("Licensee") accessing and
+otherwise using this software ("Python") in source or binary form and
+its associated documentation.
+
+2. Subject to the terms and conditions of this License Agreement, PSF hereby
+grants Licensee a nonexclusive, royalty-free, world-wide license to reproduce,
+analyze, test, perform and/or display publicly, prepare derivative works,
+distribute, and otherwise use Python alone or in any derivative version,
+provided, however, that PSF's License Agreement and PSF's notice of copyright,
+i.e., "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021 Python Software Foundation;
+All Rights Reserved" are retained in Python alone or in any derivative version
+prepared by Licensee.
+
+3. In the event Licensee prepares a derivative work that is based on
+or incorporates Python or any part thereof, and wants to make
+the derivative work available to others as provided herein, then
+Licensee hereby agrees to include in any such work a brief summary of
+the changes made to Python.
+
+4. PSF is making Python available to Licensee on an "AS IS"
+basis.  PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND
+DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON WILL NOT
+INFRINGE ANY THIRD PARTY RIGHTS.
+
+5. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON
+FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS
+A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON,
+OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.
+
+6. This License Agreement will automatically terminate upon a material
+breach of its terms and conditions.
+
+7. Nothing in this License Agreement shall be deemed to create any
+relationship of agency, partnership, or joint venture between PSF and
+Licensee.  This License Agreement does not grant permission to use PSF
+trademarks or trade name in a trademark sense to endorse or promote
+products or services of Licensee, or any third party.
+
+8. By copying, installing or otherwise using Python, Licensee
+agrees to be bound by the terms and conditions of this License
+Agreement.</code></pre>
+</div></div>
+</div>
+<div class="sect2">
 <h3 id="_src_third_party_xxh">src/third_party/xxh*</h3>
 <div class="paragraph"><p>xxHash - Extremely Fast Hash algorithm. Copied from xxHash v0.8.0 downloaded
 from <a href="https://github.com/Cyan4973/xxHash/releases">https://github.com/Cyan4973/xxHash/releases</a>.</p></div>
@@ -1418,9 +1474,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</code></pre
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 4.2<br />
+Version 4.2.1<br />
 Last updated
- 2021-02-02 07:17:55 CET
+ 2021-03-27 19:47:58 CET
 </div>
 </div>
 </body>
