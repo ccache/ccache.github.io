@@ -66,7 +66,7 @@
     @nav_link("performance", "Performance")
     @nav_link("news", "News")
     @nav_link("credits", "Credits")
-    @nav_link("license", "License", "license.html")
+    @nav_link("license", "License", "/license.html")
   </ul>
 
   <div class="group">Get it:</div>
@@ -76,7 +76,7 @@
 
   <div class="group">Use it:</div>
   <ul>
-    @nav_link("documentation", "Documentation", "documentation.html")
+    @nav_link("documentation", "Documentation", "/documentation.html")
   </ul>
 
   <div class="group">Discuss it:</div>
@@ -88,7 +88,7 @@
 
   <div class="group">Improve it:</div>
   <ul>
-    @nav_link("bugs", "Bug report", "bugs.html")
+    @nav_link("bugs", "Bug report")
     @ext_link2("View existing", "https://github.com/ccache/ccache/issues")
     @nav_link("repo", "Source repository")
     @ext_link2("Browse", "https://github.com/ccache/ccache")
