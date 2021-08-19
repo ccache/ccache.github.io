@@ -8,7 +8,7 @@
 import re
 authors = [
     re.sub(r"\* ([^<>]+).*", r"\1", x).strip()
-    for x in open("authors.adoc").readlines()
+    for x in open(f"gendocs/{version}/AUTHORS.adoc").readlines()
     if x.startswith("* ")
 ]
 extra_credits = [x.strip() for x in open("extra-credits.txt").readlines()]

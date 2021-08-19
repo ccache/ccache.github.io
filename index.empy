@@ -24,11 +24,10 @@ news = list(yaml.safe_load_all(open("news.yaml")))
 <h1>About</h1>
 
 <p>
-  Ccache (or “ccache”) is a compiler cache. It
-  <a href="performance.html">speeds up recompilation</a> by caching previous
-  compilations and detecting when the same compilation is being done again.
-  Ccache is free software, released under the
-  <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
+  Ccache is a compiler cache. It <a href="performance.html">speeds up
+  recompilation</a> by caching previous compilations and detecting when the same
+  compilation is being done again. Ccache is free software, released under
+  the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
   version 3</a> or later. See also the <a href="license.html">license page</a>.
 </p>
 
@@ -53,6 +52,11 @@ news = list(yaml.safe_load_all(open("news.yaml")))
     Objective-C<sup class="footnote">[1]</sup> and
     Objective-C++<sup class="footnote">[1]</sup>.
     (<a href="platform-compiler-language-support.html">details</a>)
+  </li>
+  <li>
+    Supports secondary storage on HTTP, Redis or local filesystem, optionally
+    sharding data to a server cluster.
+    (<a href="manual/@(latest_version).html#_secondary_storage_backends">details</a>)
   </li>
   <li>
     Supports fast "direct" and "depend" modes that don't rely on using the

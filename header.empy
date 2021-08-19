@@ -11,7 +11,7 @@
 
 @[def nav_link(id, name, link=None)]
     @[if link is None]
-        @{link = id + ".html"}
+        @{link = "/" + id + ".html"}
     @[end if]
     @[if id == page_id]
         @{cl = ' class="current"'}
@@ -34,7 +34,7 @@
     @ext_link(name, link, 2)
 @[end def]
 
-@{latest_version = "4.3"}
+@{latest_version = "4.4"}
 
 @#####################################################################
 
@@ -45,7 +45,7 @@
 <head>
   <title>Ccache &mdash; @page_title</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="ccache.css" type="text/css">
+  <link rel="stylesheet" href="https://ccache.dev/ccache.css" type="text/css">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
@@ -61,7 +61,7 @@
 <div id="navigation">
   <div class="group" style="margin-top: 0">About it:</div>
   <ul>
-    @nav_link("overview", "Overview", ".")
+    @nav_link("overview", "Overview", "/")
     @nav_link("platform-compiler-language-support", "Supported platforms and compilers")
     @nav_link("performance", "Performance")
     @nav_link("news", "News")

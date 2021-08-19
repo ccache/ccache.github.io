@@ -4,7 +4,7 @@
 <head>
 <title>Ccache &mdash; Compiler cache</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="ccache.css" type="text/css">
+<link rel="stylesheet" href="https://ccache.dev/ccache.css" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
@@ -17,16 +17,16 @@
 <div id="navigation">
 <div class="group" style="margin-top: 0">About it:</div>
 <ul>
-<li class="current"><a href=".">Overview</a></li>
-<li><a href="platform-compiler-language-support.html">Supported platforms and compilers</a></li>
-<li><a href="performance.html">Performance</a></li>
-<li><a href="news.html">News</a></li>
-<li><a href="credits.html">Credits</a></li>
+<li class="current"><a href="/">Overview</a></li>
+<li><a href="/platform-compiler-language-support.html">Supported platforms and compilers</a></li>
+<li><a href="/performance.html">Performance</a></li>
+<li><a href="/news.html">News</a></li>
+<li><a href="/credits.html">Credits</a></li>
 <li><a href="license.html">License</a></li>
 </ul>
 <div class="group">Get it:</div>
 <ul>
-<li><a href="download.html">Download</a></li>
+<li><a href="/download.html">Download</a></li>
 </ul>
 <div class="group">Use it:</div>
 <ul>
@@ -42,7 +42,7 @@
 <ul>
 <li><a href="bugs.html">Bug report</a></li>
 <li class="level2"><a href="https://github.com/ccache/ccache/issues">&ndash; View existing</a></li>
-<li><a href="repo.html">Source repository</a></li>
+<li><a href="/repo.html">Source repository</a></li>
 <li class="level2"><a href="https://github.com/ccache/ccache">&ndash; Browse</a></li>
 </ul>
 </div>
@@ -50,6 +50,7 @@
 <div style="float: right; font-size: 90%; margin: 0 1em 0 2em;">
 <h1>News</h1>
 <ul class="news">
+<li><i>2021-08-19:</i> <a href="news.html#2021-08-19"><b>Version 4.4 has been released</b></a></li>
 <li><i>2021-05-09:</i> <a href="news.html#2021-05-09"><b>Version 4.3 has been released</b></a></li>
 <li><i>2021-03-27:</i> <a href="news.html#2021-03-27"><b>Version 4.2.1 has been released</b></a></li>
 <li><i>2021-02-02:</i> <a href="news.html#2021-02-02"><b>Version 4.2 has been released</b></a></li>
@@ -59,20 +60,18 @@
 <li><i>2020-10-01:</i> <a href="news.html#2020-10-01"><b>Version 3.7.12 has been released</b></a></li>
 <li><i>2020-07-21:</i> <a href="news.html#2020-07-21"><b>Version 3.7.11 has been released</b></a></li>
 <li><i>2020-06-22:</i> <a href="news.html#2020-06-22"><b>Version 3.7.10 has been released</b></a></li>
-<li><i>2020-03-29:</i> <a href="news.html#2020-03-29"><b>Version 3.7.9 has been released</b></a></li>
 <li><a href="news.html">All news</a></li>
 </ul>
 </div>
 <h1>About</h1>
 <p>
-Ccache (or “ccache”) is a compiler cache. It
-<a href="performance.html">speeds up recompilation</a> by caching previous
-compilations and detecting when the same compilation is being done again.
-Ccache is free software, released under the
-<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
+Ccache is a compiler cache. It <a href="performance.html">speeds up
+recompilation</a> by caching previous compilations and detecting when the same
+compilation is being done again. Ccache is free software, released under
+the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
 version 3</a> or later. See also the <a href="license.html">license page</a>.
 </p>
-<p>Latest release: <a href="download.html">version 4.3</a></p>
+<p>Latest release: <a href="download.html">version 4.4</a></p>
 <h2 style="clear: right;">Features</h2>
 <ul>
 <li>
@@ -93,9 +92,14 @@ Objective-C++<sup class="footnote">[1]</sup>.
 (<a href="platform-compiler-language-support.html">details</a>)
 </li>
 <li>
+Supports secondary storage on HTTP, Redis or local filesystem, optionally
+sharding data to a server cluster.
+(<a href="manual/4.4.html#_secondary_storage_backends">details</a>)
+</li>
+<li>
 Supports fast "direct" and "depend" modes that don't rely on using the
 preprocessor.
-(<a href="manual/4.3.html#_how_ccache_works">details</a>)
+(<a href="manual/4.4.html#_how_ccache_works">details</a>)
 </li>
 <li>Supports compression using <a href="http://zstd.net">Zstandard</a>.</li>
 <li>
@@ -104,15 +108,15 @@ corruption.
 </li>
 <li>
 Keeps statistics on hits/misses.
-(<a href="manual/4.3.html#_cache_statistics">details</a>)
+(<a href="manual/4.4.html#_cache_statistics">details</a>)
 </li>
 <li>
 Automatic cache size management.
-(<a href="manual/4.3.html#_cache_size_management">details</a>)
+(<a href="manual/4.4.html#_cache_size_management">details</a>)
 </li>
 <li>
 Easy installation.
-(<a href="manual/4.3.html#_run_modes">details</a>)
+(<a href="manual/4.4.html#_run_modes">details</a>)
 </li>
 <li>
 Low overhead. (<a href="performance.html">details</a>)
@@ -120,7 +124,7 @@ Low overhead. (<a href="performance.html">details</a>)
 <li>
 Support for rewriting absolute paths to relative in order to increase the
 cache hit ratio.
-(<a href="manual/4.3.html#_compiling_in_different_directories">details</a>)
+(<a href="manual/4.4.html#_compiling_in_different_directories">details</a>)
 </li>
 <li>
 Optionally uses file cloning (AKA “reflinks”) where possible to avoid
@@ -147,7 +151,7 @@ will silently fall back to running the real compiler.
 <li>
 The fastest mode (the "direct mode") has a corner case which can result in
 false positive cache hits. This and other minor limitations are listed
-under <a href="manual/4.3.html#_caveats">caveats</a> in the
+under <a href="manual/4.4.html#_caveats">caveats</a> in the
 manual.
 </li>
 </ul>
@@ -182,7 +186,7 @@ in a way that is backward compatible with legacy compilers.
 <li>
 The fastest mode (the "direct mode") has a corner case which can result in
 false positive cache hits. This and other minor limitations are listed under
-<a href="manual/4.3.html#_caveats">caveats</a> in the manual.
+<a href="manual/4.4.html#_caveats">caveats</a> in the manual.
 </li>
 </ul>
 <p>If you experience any bugs or undocumented limitations, please

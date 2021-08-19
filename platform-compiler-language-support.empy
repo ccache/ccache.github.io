@@ -362,17 +362,17 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://gcc.gnu.org/">GCC</a></td>
-    <td>GCC 4.8.4+</td>
+    <td>GCC 6+</td>
     <td></td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://clang.llvm.org/">Clang</a></td>
-    <td>Clang 3.6+</td>
+    <td>Clang 5+</td>
   </tr>
   <tr>
     <td class="support-level-b">B</td>
-    <td>Other C++11 compilers on Unix-like systems</td>
+    <td>Other C++14 compilers on Unix-like systems</td>
     <td></td>
   </tr>
   <tr>

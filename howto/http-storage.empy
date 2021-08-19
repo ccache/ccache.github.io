@@ -1,0 +1,13 @@
+@# -*- html -*-
+
+@{page_id = "howto-http-storage"}
+@{page_title = "How to set up HTTP storage"}
+@empy.include("header.empy")
+
+<p>
+  This guide is for now available on the ccache
+  <a href="https://github.com/ccache/ccache/wiki/HTTP-storage">HTTP-storage wiki
+  page</a>.
+</p>
+
+@empy.include("footer.empy")

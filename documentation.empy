@@ -53,11 +53,18 @@ older_manual_versions = [s(x) for x in all_versions[1:]]
   </li>
 </ul>
 
+<h2>How-to guides</h2>
+
+<ul>
+  <li><a href="howto/http-storage.html">How to set up HTTP storage</a></li>
+  <li><a href="howto/redis-storage.html">How to set up Redis storage</a></li>
+</ul>
+
 <h2>Contribution</h2>
 
 <ul>
   <li>
-    <a href="https://github.com/ccache/ccache/blob/master/CONTRIBUTING.md#contributing-code">Notes on ccache code style and commit messages</a>
+    <a href="https://github.com/ccache/ccache/blob/master/CONTRIBUTING.md">Contributing to ccache</a>
   </li>
 </ul>
 
