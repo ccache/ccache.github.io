@@ -65,7 +65,7 @@ table {
 <div id="header">
 <h1>Ccache copyright and license</h1>
 <div class="details">
-<span id="revnumber">version 4.4</span>
+<span id="revnumber">version 4.4.1</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -84,9 +84,9 @@ table {
 <li><a href="#_srcthird_partynonstdexpected_hpp">src/third_party/nonstd/expected.hpp</a></li>
 <li><a href="#_srcthird_partynonstdoptional_hpp">src/third_party/nonstd/optional.hpp</a></li>
 <li><a href="#_srcthird_partynonstdstring_view_hpp">src/third_party/nonstd/string_view.hpp</a></li>
+<li><a href="#_srcthird_partyurl">src/third_party/url.*</a></li>
 <li><a href="#_srcthird_partywin32getopt">src/third_party/win32/getopt.*</a></li>
 <li><a href="#_srcthird_partywin32mktemp">src/third_party/win32/mktemp.*</a></li>
-<li><a href="#_srcthird_partyurl">src/third_party/url.*</a></li>
 <li><a href="#_srcthird_partywin32winerror_to_errno_h">src/third_party/win32/winerror_to_errno.h</a></li>
 <li><a href="#_srcthird_partyxxh">src/third_party/xxh*</a></li>
 </ul>
@@ -632,9 +632,9 @@ SUCH DAMAGE.</pre>
 <div class="sect2">
 <h3 id="_srcthird_partyhttplib"><a class="anchor" href="#_srcthird_partyhttplib"></a>src/third_party/httplib.*</h3>
 <div class="paragraph">
-<p>cpp-httplib - A C++11 cross-platform HTTP/HTTPS library. Copied from
-<a href="https://github.com/yhirose/cpp-httplib">cpp-httplib</a> commit
-469c6bc2b611ec5d212275e559e58e4da256019d. The library has the following license:</p>
+<p>cpp-httplib - A C++11 cross-platform HTTP/HTTPS library. Copied from cpp-httplib
+v0.9.4 downloaded from <a href="https://github.com/yhirose/cpp-httplib">cpp-httplib</a>. The
+library has the following license:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -806,6 +806,38 @@ DEALINGS IN THE SOFTWARE.</pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_srcthird_partyurl"><a class="anchor" href="#_srcthird_partyurl"></a>src/third_party/url.*</h3>
+<div class="paragraph">
+<p>CxxUrl - A simple C++ URL class. Copied from CxxUrl v0.2 downloaded from
+<a href="https://github.com/chmike/CxxUrl" class="bare">https://github.com/chmike/CxxUrl</a>. It has the following license text:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>The MIT License (MIT)
+
+Copyright (c) 2015 Christophe Meessen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_srcthird_partywin32getopt"><a class="anchor" href="#_srcthird_partywin32getopt"></a>src/third_party/win32/getopt.*</h3>
 <div class="paragraph">
 <p>This implementation of <code>getopt_long()</code> for Win32 was taken from
@@ -840,38 +872,6 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_srcthird_partyurl"><a class="anchor" href="#_srcthird_partyurl"></a>src/third_party/url.*</h3>
-<div class="paragraph">
-<p>CxxUrl - A simple C++ URL class. Copied from CxxUrl v0.2 downloaded from
-<a href="https://github.com/chmike/CxxUrl" class="bare">https://github.com/chmike/CxxUrl</a>. It has the following license text:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>The MIT License (MIT)
-
-Copyright (c) 2015 Christophe Meessen
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</pre>
 </div>
 </div>
 </div>
@@ -977,8 +977,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.4<br>
-Last updated 2021-08-19 21:21:20 +0200
+Version 4.4.1<br>
+Last updated 2021-09-11 09:03:00 +0200
 </div>
 </div>
 </body>
