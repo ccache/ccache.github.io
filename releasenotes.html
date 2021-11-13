@@ -65,59 +65,66 @@ table {
 <div id="header">
 <h1>Ccache news</h1>
 <div class="details">
-<span id="revnumber">version 4.4.2</span>
+<span id="revnumber">version 4.5</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_ccache_4_5">Ccache 4.5</a>
+<ul class="sectlevel2">
+<li><a href="#_new_features">New features</a></li>
+<li><a href="#_compatibility_notes">Compatibility notes</a></li>
+<li><a href="#_bug_fixes">Bug fixes</a></li>
+</ul>
+</li>
 <li><a href="#_ccache_4_4_2">Ccache 4.4.2</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes">Bug fixes</a></li>
+<li><a href="#_bug_fixes_2">Bug fixes</a></li>
 <li><a href="#_test_improvements">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_4_1">Ccache 4.4.1</a>
 <ul class="sectlevel2">
-<li><a href="#_new_features">New features</a></li>
-<li><a href="#_bug_fixes_2">Bug fixes</a></li>
+<li><a href="#_new_features_2">New features</a></li>
+<li><a href="#_bug_fixes_3">Bug fixes</a></li>
 <li><a href="#_build_improvements">Build improvements</a></li>
 <li><a href="#_test_improvements_2">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_4">Ccache 4.4</a>
 <ul class="sectlevel2">
-<li><a href="#_new_features_2">New features</a></li>
-<li><a href="#_bug_fixes_3">Bug fixes</a></li>
+<li><a href="#_new_features_3">New features</a></li>
+<li><a href="#_bug_fixes_4">Bug fixes</a></li>
 <li><a href="#_changed_tooling">Changed tooling</a></li>
 <li><a href="#_buildtestdocumentation_improvements">Build/test/documentation improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_3">Ccache 4.3</a>
 <ul class="sectlevel2">
-<li><a href="#_new_features_3">New features</a></li>
-<li><a href="#_bug_fixes_4">Bug fixes</a></li>
+<li><a href="#_new_features_4">New features</a></li>
+<li><a href="#_bug_fixes_5">Bug fixes</a></li>
 <li><a href="#_build_improvements_2">Build improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_2_1">Ccache 4.2.1</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_5">Bug fixes</a></li>
+<li><a href="#_bug_fixes_6">Bug fixes</a></li>
 <li><a href="#_portability_and_build_improvements">Portability and build improvements</a></li>
 <li><a href="#_documentation">Documentation</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_2">Ccache 4.2</a>
 <ul class="sectlevel2">
-<li><a href="#_new_features_4">New features</a></li>
-<li><a href="#_bug_fixes_6">Bug fixes</a></li>
+<li><a href="#_new_features_5">New features</a></li>
+<li><a href="#_bug_fixes_7">Bug fixes</a></li>
 <li><a href="#_portability_and_build_improvements_2">Portability and build improvements</a></li>
 <li><a href="#_documentation_2">Documentation</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_1">Ccache 4.1</a>
 <ul class="sectlevel2">
-<li><a href="#_new_features_5">New features</a></li>
-<li><a href="#_bug_fixes_7">Bug fixes</a></li>
+<li><a href="#_new_features_6">New features</a></li>
+<li><a href="#_bug_fixes_8">Bug fixes</a></li>
 <li><a href="#_portability_and_build_fixes">Portability and build fixes</a></li>
 <li><a href="#_other_improvements_and_fixes">Other improvements and fixes</a></li>
 </ul>
@@ -125,7 +132,7 @@ table {
 <li><a href="#_ccache_4_0">Ccache 4.0</a>
 <ul class="sectlevel2">
 <li><a href="#_summary_of_major_changes">Summary of major changes</a></li>
-<li><a href="#_compatibility_notes">Compatibility notes</a></li>
+<li><a href="#_compatibility_notes_2">Compatibility notes</a></li>
 <li><a href="#_changed_tooling_2">Changed tooling</a></li>
 <li><a href="#_detailed_functional_changes">Detailed functional changes</a></li>
 <li><a href="#_other_improvements">Other improvements</a></li>
@@ -133,47 +140,47 @@ table {
 </li>
 <li><a href="#_ccache_3_7_12">Ccache 3.7.12</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_8">Bug fixes</a></li>
+<li><a href="#_bug_fixes_9">Bug fixes</a></li>
 <li><a href="#_other">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_11">Ccache 3.7.11</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_9">Bug fixes</a></li>
+<li><a href="#_bug_fixes_10">Bug fixes</a></li>
 <li><a href="#_other_2">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_10">Ccache 3.7.10</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_10">Bug fixes</a></li>
+<li><a href="#_bug_fixes_11">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_9">Ccache 3.7.9</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_11">Bug fixes</a></li>
+<li><a href="#_bug_fixes_12">Bug fixes</a></li>
 <li><a href="#_other_3">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_8">Ccache 3.7.8</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_12">Bug fixes</a></li>
+<li><a href="#_bug_fixes_13">Bug fixes</a></li>
 <li><a href="#_other_4">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_7">Ccache 3.7.7</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_13">Bug fixes</a></li>
+<li><a href="#_bug_fixes_14">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_6">Ccache 3.7.6</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_14">Bug fixes</a></li>
+<li><a href="#_bug_fixes_15">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_5">Ccache 3.7.5</a>
 <ul class="sectlevel2">
-<li><a href="#_new_features_6">New features</a></li>
-<li><a href="#_bug_fixes_15">Bug fixes</a></li>
+<li><a href="#_new_features_7">New features</a></li>
+<li><a href="#_bug_fixes_16">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_4">Ccache 3.7.4</a>
@@ -183,12 +190,12 @@ table {
 </li>
 <li><a href="#_ccache_3_7_3">Ccache 3.7.3</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_16">Bug fixes</a></li>
+<li><a href="#_bug_fixes_17">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_7_2">Ccache 3.7.2</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_17">Bug fixes</a></li>
+<li><a href="#_bug_fixes_18">Bug fixes</a></li>
 <li><a href="#_documentation_3">Documentation</a></li>
 </ul>
 </li>
@@ -219,199 +226,199 @@ table {
 </li>
 <li><a href="#_ccache_3_4_3">Ccache 3.4.3</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_18">Bug fixes</a></li>
+<li><a href="#_bug_fixes_19">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_4_2">Ccache 3.4.2</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_19">Bug fixes</a></li>
+<li><a href="#_bug_fixes_20">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_4_1">Ccache 3.4.1</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_20">Bug fixes</a></li>
+<li><a href="#_bug_fixes_21">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_4">Ccache 3.4</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_21">Bug fixes</a></li>
+<li><a href="#_bug_fixes_22">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_3_6">Ccache 3.3.6</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_2">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_22">Bug fixes</a></li>
+<li><a href="#_bug_fixes_23">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_3_5">Ccache 3.3.5</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_3">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_23">Bug fixes</a></li>
+<li><a href="#_bug_fixes_24">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_3_4">Ccache 3.3.4</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_4">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_24">Bug fixes</a></li>
+<li><a href="#_bug_fixes_25">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_3_3">Ccache 3.3.3</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_25">Bug fixes</a></li>
+<li><a href="#_bug_fixes_26">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_3_2">Ccache 3.3.2</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_26">Bug fixes</a></li>
+<li><a href="#_bug_fixes_27">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_3_1">Ccache 3.3.1</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_27">Bug fixes</a></li>
+<li><a href="#_bug_fixes_28">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_3">Ccache 3.3</a>
 <ul class="sectlevel2">
 <li><a href="#_notes">Notes</a></li>
 <li><a href="#_new_features_and_enhancements_5">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_28">Bug fixes</a></li>
+<li><a href="#_bug_fixes_29">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_9">Ccache 3.2.9</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_29">Bug fixes</a></li>
+<li><a href="#_bug_fixes_30">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_8">Ccache 3.2.8</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_30">Bug fixes</a></li>
+<li><a href="#_bug_fixes_31">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_7">Ccache 3.2.7</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_31">Bug fixes</a></li>
+<li><a href="#_bug_fixes_32">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_6">Ccache 3.2.6</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_32">Bug fixes</a></li>
+<li><a href="#_bug_fixes_33">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_5">Ccache 3.2.5</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_6">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_33">Bug fixes</a></li>
+<li><a href="#_bug_fixes_34">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_4">Ccache 3.2.4</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_34">Bug fixes</a></li>
+<li><a href="#_bug_fixes_35">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_3">Ccache 3.2.3</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_7">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_35">Bug fixes</a></li>
+<li><a href="#_bug_fixes_36">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_2">Ccache 3.2.2</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_8">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_36">Bug fixes</a></li>
+<li><a href="#_bug_fixes_37">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2_1">Ccache 3.2.1</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_37">Bug fixes</a></li>
+<li><a href="#_bug_fixes_38">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_2">Ccache 3.2</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_9">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_38">Bug fixes</a></li>
+<li><a href="#_bug_fixes_39">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_12">Ccache 3.1.12</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_39">Bug fixes</a></li>
+<li><a href="#_bug_fixes_40">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_11">Ccache 3.1.11</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_40">Bug fixes</a></li>
+<li><a href="#_bug_fixes_41">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_10">Ccache 3.1.10</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_10">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_41">Bug fixes</a></li>
+<li><a href="#_bug_fixes_42">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_9">Ccache 3.1.9</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_42">Bug fixes</a></li>
+<li><a href="#_bug_fixes_43">Bug fixes</a></li>
 <li><a href="#_other_5">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_8">Ccache 3.1.8</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_11">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_43">Bug fixes</a></li>
+<li><a href="#_bug_fixes_44">Bug fixes</a></li>
 <li><a href="#_other_6">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_7">Ccache 3.1.7</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_44">Bug fixes</a></li>
+<li><a href="#_bug_fixes_45">Bug fixes</a></li>
 <li><a href="#_other_7">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_6">Ccache 3.1.6</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_12">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_45">Bug fixes</a></li>
+<li><a href="#_bug_fixes_46">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_5">Ccache 3.1.5</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_13">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_46">Bug fixes</a></li>
+<li><a href="#_bug_fixes_47">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_4">Ccache 3.1.4</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_47">Bug fixes</a></li>
+<li><a href="#_bug_fixes_48">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_3">Ccache 3.1.3</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_48">Bug fixes</a></li>
+<li><a href="#_bug_fixes_49">Bug fixes</a></li>
 <li><a href="#_other_8">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_2">Ccache 3.1.2</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_49">Bug fixes</a></li>
+<li><a href="#_bug_fixes_50">Bug fixes</a></li>
 <li><a href="#_other_9">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1_1">Ccache 3.1.1</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_50">Bug fixes</a></li>
+<li><a href="#_bug_fixes_51">Bug fixes</a></li>
 <li><a href="#_other_10">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_1">Ccache 3.1</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_enhancements_14">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_51">Bug fixes</a></li>
+<li><a href="#_bug_fixes_52">Bug fixes</a></li>
 <li><a href="#_other_11">Other</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_0_1">Ccache 3.0.1</a>
 <ul class="sectlevel2">
-<li><a href="#_bug_fixes_52">Bug fixes</a></li>
+<li><a href="#_bug_fixes_53">Bug fixes</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_3_0">Ccache 3.0</a>
@@ -419,7 +426,7 @@ table {
 <li><a href="#_general">General</a></li>
 <li><a href="#_upgrade_notes">Upgrade notes</a></li>
 <li><a href="#_new_features_and_enhancements_15">New features and enhancements</a></li>
-<li><a href="#_bug_fixes_53">Bug fixes</a></li>
+<li><a href="#_bug_fixes_54">Bug fixes</a></li>
 </ul>
 </li>
 </ul>
@@ -427,13 +434,90 @@ table {
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_ccache_4_5"><a class="anchor" href="#_ccache_4_5"></a>Ccache 4.5</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Release date: 2021-11-13</p>
+</div>
+<div class="sect2">
+<h3 id="_new_features"><a class="anchor" href="#_new_features"></a>New features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Made various improvements to the cache entry format. Among other things, the
+header now contains a creation timestamp and a note of the ccache version used
+to create the entry. The cache entry checksum has also been upgraded to use
+128-bit XXH3 instead 64-bit XXH3.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Added support for cache namespaces. If a namespace configured, e.g. using
+<code>CCACHE_NAMESPACE=some_string</code>, the namespace string will be added to the
+hashed data for each compilation. This will make the associated cache entries
+logically separate from cache entries in other namespaces, but they will still
+share the same storage space. Cache entries can also be selectively removed
+from the primary cache with the new command line option <code>--evict-namespace</code>,
+potentially in combination with <code>--evict-older-than</code>.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Made HTTP keep-alive configurable, defaulting to off for now.<br>
+<span class="small"><em>[contributed by Gregor Jasny]</em></span></p>
+</li>
+<li>
+<p>Added support for rewriting absolute path to Clang option <code>--gcc-toolchain</code>.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility_notes"><a class="anchor" href="#_compatibility_notes"></a>Compatibility notes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A consequence of the changed cache entry format is that ccache 4.5 will not
+share cache entries with earlier versions. Different ccache versions can
+however still use the same cache storage without any issues.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes"><a class="anchor" href="#_bug_fixes"></a>Bug fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed a problem with special characters in the user info part of URLs for HTTP
+storage.<br>
+<span class="small"><em>[contributed by Russell McClellan]</em></span></p>
+</li>
+<li>
+<p>Fixed win32 log messages about file locks.<br>
+<span class="small"><em>[contributed by Luboš Luňák]</em></span></p>
+</li>
+<li>
+<p>Fixed debug directory handling on Windows.<br>
+<span class="small"><em>[contributed by Luboš Luňák]</em></span></p>
+</li>
+<li>
+<p>The hard link and file clone features are now disabled when secondary storage
+is used since they only work for the local primary cache.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_ccache_4_4_2"><a class="anchor" href="#_ccache_4_4_2"></a>Ccache 4.4.2</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Release date: 2021-09-28</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes"><a class="anchor" href="#_bug_fixes"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_2"><a class="anchor" href="#_bug_fixes_2"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -469,7 +553,7 @@ hits in some situations if it decides to disable the direct mode temporarily
 <p>Release date: 2021-09-11</p>
 </div>
 <div class="sect2">
-<h3 id="_new_features"><a class="anchor" href="#_new_features"></a>New features</h3>
+<h3 id="_new_features_2"><a class="anchor" href="#_new_features_2"></a>New features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -486,7 +570,7 @@ implicit in the &#8220;hits + misses&#8221; sums.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_2"><a class="anchor" href="#_bug_fixes_2"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_3"><a class="anchor" href="#_bug_fixes_3"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -553,7 +637,7 @@ broken.<br>
 <p>Release date: 2021-08-19</p>
 </div>
 <div class="sect2">
-<h3 id="_new_features_2"><a class="anchor" href="#_new_features_2"></a>New features</h3>
+<h3 id="_new_features_3"><a class="anchor" href="#_new_features_3"></a>New features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -659,7 +743,7 @@ from standard input.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_3"><a class="anchor" href="#_bug_fixes_3"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_4"><a class="anchor" href="#_bug_fixes_4"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -776,7 +860,7 @@ multi-config generators like Xcode.<br>
 <p>Release date: 2021-05-09</p>
 </div>
 <div class="sect2">
-<h3 id="_new_features_3"><a class="anchor" href="#_new_features_3"></a>New features</h3>
+<h3 id="_new_features_4"><a class="anchor" href="#_new_features_4"></a>New features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -797,7 +881,7 @@ equal sign between the arguments.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_4"><a class="anchor" href="#_bug_fixes_4"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_5"><a class="anchor" href="#_bug_fixes_5"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -848,7 +932,7 @@ expands to the empty string.</p>
 <p>Release date: 2021-03-27</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_5"><a class="anchor" href="#_bug_fixes_5"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_6"><a class="anchor" href="#_bug_fixes_6"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -945,7 +1029,7 @@ asciidoc.</p>
 <p>Release date: 2021-02-02</p>
 </div>
 <div class="sect2">
-<h3 id="_new_features_4"><a class="anchor" href="#_new_features_4"></a>New features</h3>
+<h3 id="_new_features_5"><a class="anchor" href="#_new_features_5"></a>New features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -970,7 +1054,7 @@ doesn&#8217;t contain <code><em>DATE</em></code> or <code><em>TIME</em></code> m
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_6"><a class="anchor" href="#_bug_fixes_6"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_7"><a class="anchor" href="#_bug_fixes_7"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1107,7 +1191,7 @@ make it possible to generate documentation in non-UTF8 locales.</p>
 <p>Release date: 2020-11-22</p>
 </div>
 <div class="sect2">
-<h3 id="_new_features_5"><a class="anchor" href="#_new_features_5"></a>New features</h3>
+<h3 id="_new_features_6"><a class="anchor" href="#_new_features_6"></a>New features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1132,7 +1216,7 @@ configuration file to operate on. It can be used instead of setting
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_7"><a class="anchor" href="#_bug_fixes_7"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_8"><a class="anchor" href="#_bug_fixes_8"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1271,7 +1355,7 @@ level.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compatibility_notes"><a class="anchor" href="#_compatibility_notes"></a>Compatibility notes</h3>
+<h3 id="_compatibility_notes_2"><a class="anchor" href="#_compatibility_notes_2"></a>Compatibility notes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1570,7 +1654,7 @@ library available.</p>
 <p>Release date: 2020-10-01</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_8"><a class="anchor" href="#_bug_fixes_8"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_9"><a class="anchor" href="#_bug_fixes_9"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1609,7 +1693,7 @@ are now handled gracefully by falling back to running the compiler.</p>
 <p>Release date: 2020-07-21</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_9"><a class="anchor" href="#_bug_fixes_9"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_10"><a class="anchor" href="#_bug_fixes_10"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1645,7 +1729,7 @@ for GCC 6.</p>
 <p>Release date: 2020-06-22</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_10"><a class="anchor" href="#_bug_fixes_10"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_11"><a class="anchor" href="#_bug_fixes_11"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1693,7 +1777,7 @@ SIGINT instead of some time later in a cleanup phase.</p>
 <p>Release date: 2020-03-29</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_11"><a class="anchor" href="#_bug_fixes_11"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_12"><a class="anchor" href="#_bug_fixes_12"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1729,7 +1813,7 @@ format&#8221; when using <code>-fdebug-prefix-map=X=</code> with X equal to <cod
 <p>Release date: 2020-03-16</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_12"><a class="anchor" href="#_bug_fixes_12"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_13"><a class="anchor" href="#_bug_fixes_13"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1792,7 +1876,7 @@ manual.</p>
 <p>Release date: 2020-01-05</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_13"><a class="anchor" href="#_bug_fixes_13"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_14"><a class="anchor" href="#_bug_fixes_14"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1834,7 +1918,7 @@ misses, making it consistent with the cache hit case.</p>
 <p>Release date: 2019-11-17</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_14"><a class="anchor" href="#_bug_fixes_14"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_15"><a class="anchor" href="#_bug_fixes_15"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1866,7 +1950,7 @@ bailout of <code>-MJ arg</code>).</p>
 <p>Release date: 2019-10-22</p>
 </div>
 <div class="sect2">
-<h3 id="_new_features_6"><a class="anchor" href="#_new_features_6"></a>New features</h3>
+<h3 id="_new_features_7"><a class="anchor" href="#_new_features_7"></a>New features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1877,7 +1961,7 @@ EDG-based compilers.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_15"><a class="anchor" href="#_bug_fixes_15"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_16"><a class="anchor" href="#_bug_fixes_16"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1939,7 +2023,7 @@ on Windows.</p>
 <p>Release date: 2019-08-17</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_16"><a class="anchor" href="#_bug_fixes_16"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_17"><a class="anchor" href="#_bug_fixes_17"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1964,7 +2048,7 @@ then &#8220;-Wno-error&#8221; later on the command line.</p>
 <p>Release date: 2019-07-19</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_17"><a class="anchor" href="#_bug_fixes_17"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_18"><a class="anchor" href="#_bug_fixes_18"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2317,7 +2401,7 @@ defaults that won&#8217;t trip up Clang.</p>
 <p>Release date: 2018-09-02</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_18"><a class="anchor" href="#_bug_fixes_18"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_19"><a class="anchor" href="#_bug_fixes_19"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2348,7 +2432,7 @@ directory.</p>
 <p>Release date: 2018-03-25</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_19"><a class="anchor" href="#_bug_fixes_19"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_20"><a class="anchor" href="#_bug_fixes_20"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2386,7 +2470,7 @@ content). That workaround is now only applied when the compiler is Clang.</p>
 <p>Release date: 2018-02-11</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_20"><a class="anchor" href="#_bug_fixes_20"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_21"><a class="anchor" href="#_bug_fixes_21"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2454,7 +2538,7 @@ configuration file.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_21"><a class="anchor" href="#_bug_fixes_21"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_22"><a class="anchor" href="#_bug_fixes_22"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2490,7 +2574,7 @@ directories.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_22"><a class="anchor" href="#_bug_fixes_22"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_23"><a class="anchor" href="#_bug_fixes_23"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2518,7 +2602,7 @@ directories.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_23"><a class="anchor" href="#_bug_fixes_23"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_24"><a class="anchor" href="#_bug_fixes_24"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2585,7 +2669,7 @@ them.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_24"><a class="anchor" href="#_bug_fixes_24"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_25"><a class="anchor" href="#_bug_fixes_25"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2613,7 +2697,7 @@ preprocessed output&#8221; feature in 3.3.</p>
 <p>Release date: 2016-10-26</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_25"><a class="anchor" href="#_bug_fixes_25"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_26"><a class="anchor" href="#_bug_fixes_26"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2632,7 +2716,7 @@ and avoids caching such compilations.</p>
 <p>Release date: 2016-09-28</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_26"><a class="anchor" href="#_bug_fixes_26"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_27"><a class="anchor" href="#_bug_fixes_27"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2657,7 +2741,7 @@ resulting in missing dependency files from direct mode cache hits.</p>
 <p>Release date: 2016-09-07</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_27"><a class="anchor" href="#_bug_fixes_27"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_28"><a class="anchor" href="#_bug_fixes_28"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2793,7 +2877,7 @@ slightly.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_28"><a class="anchor" href="#_bug_fixes_28"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_29"><a class="anchor" href="#_bug_fixes_29"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2817,7 +2901,7 @@ slightly.</p>
 <p>Release date: 2016-09-28</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_29"><a class="anchor" href="#_bug_fixes_29"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_30"><a class="anchor" href="#_bug_fixes_30"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2837,7 +2921,7 @@ resulting in missing dependency files from direct mode cache hits.</p>
 <p>Release date: 2016-09-07</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_30"><a class="anchor" href="#_bug_fixes_30"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_31"><a class="anchor" href="#_bug_fixes_31"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2861,7 +2945,7 @@ option.</p>
 <p>Release date: 2016-07-20</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_31"><a class="anchor" href="#_bug_fixes_31"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_32"><a class="anchor" href="#_bug_fixes_32"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2884,7 +2968,7 @@ preprocessor.</p>
 <p>Release date: 2016-07-12</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_32"><a class="anchor" href="#_bug_fixes_32"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_33"><a class="anchor" href="#_bug_fixes_33"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2928,7 +3012,7 @@ semantics.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_33"><a class="anchor" href="#_bug_fixes_33"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_34"><a class="anchor" href="#_bug_fixes_34"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2974,7 +3058,7 @@ sources.</p>
 <p>Release date: 2015-10-08</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_34"><a class="anchor" href="#_bug_fixes_34"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_35"><a class="anchor" href="#_bug_fixes_35"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3021,7 +3105,7 @@ before exiting; die appropriately.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_35"><a class="anchor" href="#_bug_fixes_35"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_36"><a class="anchor" href="#_bug_fixes_36"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3067,7 +3151,7 @@ be precalculated by the build system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_36"><a class="anchor" href="#_bug_fixes_36"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_37"><a class="anchor" href="#_bug_fixes_37"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3119,7 +3203,7 @@ with GDB).</p>
 <p>Release date: 2014-12-10</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_37"><a class="anchor" href="#_bug_fixes_37"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_38"><a class="anchor" href="#_bug_fixes_38"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3283,7 +3367,7 @@ compilation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_38"><a class="anchor" href="#_bug_fixes_38"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_39"><a class="anchor" href="#_bug_fixes_39"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3310,7 +3394,7 @@ compilation.</p>
 <p>Release date: 2016-07-12</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_39"><a class="anchor" href="#_bug_fixes_39"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_40"><a class="anchor" href="#_bug_fixes_40"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3330,7 +3414,7 @@ is absolute and is a symlink.</p>
 <p>Release date: 2015-03-07</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_40"><a class="anchor" href="#_bug_fixes_40"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_41"><a class="anchor" href="#_bug_fixes_41"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3396,7 +3480,7 @@ cleaned up if they are older than one hour.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_41"><a class="anchor" href="#_bug_fixes_41"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_42"><a class="anchor" href="#_bug_fixes_42"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3430,7 +3514,7 @@ entries.</p>
 <p>Release date: 2013-01-06</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_42"><a class="anchor" href="#_bug_fixes_42"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_43"><a class="anchor" href="#_bug_fixes_43"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3491,7 +3575,7 @@ pre-compiled header.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_43"><a class="anchor" href="#_bug_fixes_43"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_44"><a class="anchor" href="#_bug_fixes_44"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3533,7 +3617,7 @@ base directory.</p>
 <p>Release date: 2012-01-08</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_44"><a class="anchor" href="#_bug_fixes_44"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_45"><a class="anchor" href="#_bug_fixes_45"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3602,7 +3686,7 @@ versions.)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_45"><a class="anchor" href="#_bug_fixes_45"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_46"><a class="anchor" href="#_bug_fixes_46"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3647,7 +3731,7 @@ options.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_46"><a class="anchor" href="#_bug_fixes_46"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_47"><a class="anchor" href="#_bug_fixes_47"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3676,7 +3760,7 @@ concatenated arguments.</p>
 <p>Release date: 2011-01-09</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_47"><a class="anchor" href="#_bug_fixes_47"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_48"><a class="anchor" href="#_bug_fixes_48"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3705,7 +3789,7 @@ a cache dir tag.</p>
 <p>Release date: 2010-11-28</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_48"><a class="anchor" href="#_bug_fixes_48"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_49"><a class="anchor" href="#_bug_fixes_49"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3734,7 +3818,7 @@ option and argument) are now handled correctly.</p>
 <p>Release date: 2010-11-21</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_49"><a class="anchor" href="#_bug_fixes_49"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_50"><a class="anchor" href="#_bug_fixes_50"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3776,7 +3860,7 @@ unsynchronized clocks.</p>
 <p>Release date: 2010-11-07</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_50"><a class="anchor" href="#_bug_fixes_50"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_51"><a class="anchor" href="#_bug_fixes_51"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3872,7 +3956,7 @@ statistics when using the Darwin linker.)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_51"><a class="anchor" href="#_bug_fixes_51"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_52"><a class="anchor" href="#_bug_fixes_52"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3938,7 +4022,7 @@ source code.</p>
 <p>Release date: 2010-07-15</p>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_52"><a class="anchor" href="#_bug_fixes_52"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_53"><a class="anchor" href="#_bug_fixes_53"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4087,7 +4171,7 @@ specified by <code>CCACHE_PREFIX</code>, etc.), ccache copes with it properly.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bug_fixes_53"><a class="anchor" href="#_bug_fixes_53"></a>Bug fixes</h3>
+<h3 id="_bug_fixes_54"><a class="anchor" href="#_bug_fixes_54"></a>Bug fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4183,8 +4267,8 @@ internal errors.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.4.2<br>
-Last updated 2021-09-28 21:42:16 +0200
+Version 4.5<br>
+Last updated 2021-11-13 10:48:33 +0100
 </div>
 </div>
 </body>
