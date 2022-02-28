@@ -37,7 +37,7 @@ news = list(yaml.safe_load_all(open("news.yaml")))
 
 <ul>
   <li>
-    Supports GCC, Clang and other similar
+    Supports GCC, Clang, MSVC (Microsoft Visual C++) and other similar
     compilers<sup class="footnote">[1]</sup>.
     (<a href="platform-compiler-language-support.html">details</a>)
   </li>
@@ -54,8 +54,9 @@ news = list(yaml.safe_load_all(open("news.yaml")))
     (<a href="platform-compiler-language-support.html">details</a>)
   </li>
   <li>
-    Supports secondary storage on HTTP, Redis or local filesystem, optionally
-    sharding data to a server cluster.
+    Supports secondary storage over HTTP (e.g. using Nginx or Google Cloud
+    Storage), Redis or local filesystem, optionally sharding data onto a server
+    cluster.
     (<a href="manual/@(latest_version).html#_secondary_storage_backends">details</a>)
   </li>
   <li>
