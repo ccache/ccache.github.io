@@ -24,17 +24,24 @@
     </td>
   </tr>
   <tr>
-    <td>Windows 32-bit (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
+    <td>Linux x86_64 (binary release)</td>
     <td>
-      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-32.zip">ccache-@(latest_version)-windows-32.zip</a>
-      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-32.zip.asc">signature</a>)</small>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64.tar.xz">ccache-@(latest_version)-linux-x86_64.tar.xz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64.tar.xz.asc">signature</a>)</small>
     </td>
   </tr>
   <tr>
-    <td>Windows 64-bit (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
+    <td>Windows i686 (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
     <td>
-      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-64.zip">ccache-@(latest_version)-windows-64.zip</a>
-      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-64.zip.asc">signature</a>)</small>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-i686.zip">ccache-@(latest_version)-windows-i686.zip</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-i686.zip.asc">signature</a>)</small>
+    </td>
+  </tr>
+  <tr>
+    <td>Windows x86_64 (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
+    <td>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-x86_64.zip">ccache-@(latest_version)-windows-x86_64.zip</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-x86_64.zip.asc">signature</a>)</small>
     </td>
   </tr>
 </table>
@@ -83,14 +90,14 @@
     </td>
   </tr>
   <tr>
-    <td>Windows 32-bit (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
+    <td>Windows i686 (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
     <td>
       <a href="https://github.com/ccache/ccache/releases/download/v3.7.12/ccache-3.7.12-windows-32.zip">ccache-3.7.12-windows-32.zip</a>
       <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.7.12/ccache-3.7.12-windows-32.zip.asc">signature</a>)</small>
     </td>
   </tr>
   <tr>
-    <td>Windows 64-bit (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
+    <td>Windows x86_64 (binary release)<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
     <td>
       <a href="https://github.com/ccache/ccache/releases/download/v3.7.12/ccache-3.7.12-windows-64.zip">ccache-3.7.12-windows-64.zip</a>
       <small>(<a href="https://github.com/ccache/ccache/releases/download/v3.7.12/ccache-3.7.12-windows-64.zip.asc">signature</a>)</small>
