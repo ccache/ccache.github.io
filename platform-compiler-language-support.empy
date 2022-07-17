@@ -175,6 +175,14 @@
     </td>
     <td></td>
   </tr>
+  <tr>
+    <td class="support-level-c">C</td>
+    <td>
+      <a href="https://en.wikipedia.org/wiki/TASKING">TASKING VX-toolset for
+      TriCore</a> (ctc, cctc)
+    </td>
+    <td></td>
+  </tr>
 </table>
 
 <p class="contribute">
