@@ -52,16 +52,19 @@
 hard to predict the improvement for a given use case. This page contains some
 different performance measurements that try to give an idea about the potential
 speedup.</p>
-<p>It should also be noted that if the expected hit rate is low, there may be a
+<p>
+It should also be noted that if the expected hit rate is low, there may be a
 net performance loss when using ccache because of the overhead of cache misses
-(typically 5%-20%). Also, if the build machine is short on memory compared to
-the amount of memory used by the build tools (compiler, linker, etc), usage of
-ccache could decrease performance due the fact that ccache's cached files may
-flush other files from the OS's disk cache.
-See <a href="http://www.mail-archive.com/ccache@lists.samba.org/msg00576.html">this
-mailing list post</a> by Christopher Tate for a good write-up on this issue. So
-to sum it up: it is probably wise to perform some measurements with and without
-ccache for your typical use case before enabling it!</p>
+(typically 5%-20%, but just 1%-3% with depend mode enabled). Also, if the
+build machine is short on memory compared to the amount of memory used by the
+build tools (compiler, linker, etc), usage of ccache could decrease
+performance due the fact that ccache's cached files may flush other files from
+the OS's disk cache. See
+<a href="http://www.mail-archive.com/ccache@lists.samba.org/msg00576.html">this
+mailing list post</a> by Christopher Tate for a good write-up on this issue.
+So to sum it up: it is probably wise to perform some measurements with and
+without ccache for your typical use case before enabling it!
+</p>
 <p>
 The following measurements were made on a fairly standard Linux-based desktop
 system with an Intel Core i5-4690K and a standard SSD disk.
@@ -194,8 +197,8 @@ mode:</p>
 </table>
 <p>The difference between direct and preprocessor mode hits is about a factor 6
 &mdash; slightly higher than for the ccache.c test because the preprocessor
-overhead is higher. The depend mode really shines here since running the
-preprocessor on cache misses in the depend mode is costly.</p>
+overhead is higher. The depend mode really shines here since it avoids making
+costly preprocessor calls.</p>
 </div>
 </body>
 </html>
