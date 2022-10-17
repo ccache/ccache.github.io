@@ -60,19 +60,19 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
-    <td>Regularly tested on Ubuntu 18.04 and 20.04.</td>
+    <td>Regularly tested on Ubuntu 20.04 and 22.04.</td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-    <td>Regularly tested on macOS 10.15</a>.</td>
+    <td>Regularly tested on macOS 11 and 12</a>.</td>
   </tr>
   <tr>
     <td class="support-level-b">B</td>
     <td>Other Unix-like platforms</td>
     <td>
       See also the <a href="https://repology.org/project/ccache/versions">ccache
-        page on Repology</a>.
+      page on Repology</a>.
     </td>
   </tr>
   <tr>
@@ -309,12 +309,12 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
-    <td>Regularly tested on Ubuntu 18.04 and 20.04.</td>
+    <td>Regularly tested on Ubuntu 20.04 and 22.04.</td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-    <td>Regularly tested on macOS 10.15.</td>
+    <td>Regularly tested on macOS 11 and 12.</td>
   </tr>
   <tr>
     <td class="support-level-b">B</td>
@@ -366,16 +366,16 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://gcc.gnu.org/">GCC</a></td>
-    <td>GCC 6+</td>
+    <td>GCC 9+</td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://clang.llvm.org/">Clang</a></td>
-    <td>Clang 5+</td>
+    <td>Clang 9+</td>
   </tr>
   <tr>
     <td class="support-level-b">B</td>
-    <td>Other C++14 compilers on Unix-like systems</td>
+    <td>Other C++17 compilers on Unix-like systems</td>
     <td></td>
   </tr>
   <tr>

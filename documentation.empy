@@ -55,7 +55,7 @@ older_manual_versions = [s(x) for x in all_versions[1:]]
 
 <h2>How-to guides</h2>
 
-<h3>Secondary storage</h3>
+<h3>Remote storage</h3>
 
 <ul>
   <li>

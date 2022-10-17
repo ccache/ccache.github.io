@@ -94,12 +94,17 @@ Objective-C++<sup class="footnote">[1]</sup>.
 <li>
 Supports remote caching over HTTP (e.g. using Nginx or Google Cloud
 Storage), Redis or NFS, optionally sharding data onto a server cluster.
-(<a href="manual/4.7.html#_secondary_storage_backends">details</a>)
+(<a href="manual/4.7.html#_remote_storage_backends">details</a>)
 </li>
 <li>
 Supports fast "direct" and "depend" modes that don't rely on using the
 preprocessor.
 (<a href="manual/4.7.html#_how_ccache_works">details</a>)
+</li>
+<li>
+Uses an inode cache to avoid having to hash the same header files repeatedly
+during a build (on supported OSes and file systems).
+(<a href="manual/4.7.html#config_inode_cache">details</a>)
 </li>
 <li>Supports compression using <a href="http://zstd.net">Zstandard</a>.</li>
 <li>
