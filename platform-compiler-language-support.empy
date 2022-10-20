@@ -19,7 +19,7 @@
   repository</a>.
 </p>
 
-<h3>Support levels</h3>
+<h3 id="levels">Support levels</h3>
 
 <table>
   <tr>
@@ -47,9 +47,9 @@
   </tr>
 </table>
 
-<h2 style="clear: right;">Run-time support (i.e., using ccache)</h2>
+<h2 id="run_time" style="clear: right;">Run-time support (i.e., using ccache)</h2>
 
-<h3>Platforms</h3>
+<h3 id="run_time_platforms">Platforms</h3>
 
 <table>
   <tr>
@@ -101,7 +101,7 @@
   issue</a>.
 </p>
 
-<h3>Compilers</h3>
+<h3 id="run_time_compilers">Compilers</h3>
 
 <table>
   <tr>
@@ -296,9 +296,9 @@
   issue</a>.
 </p>
 
-<h2>Build-time support (i.e., building ccache itself)</h2>
+<h2 id="build_time">Build-time support (i.e., building ccache itself)</h2>
 
-<h3>Platforms</h3>
+<h3 id="build_time_platforms">Platforms</h3>
 
 <table>
   <tr>
@@ -355,7 +355,7 @@
   issue</a>.
 </p>
 
-<h3>Compilers</h3>
+<h3 id="build_time_compilers">Compilers</h3>
 
 <table>
   <tr>
