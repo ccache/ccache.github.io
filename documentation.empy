@@ -38,6 +38,15 @@ older_manual_versions = [s(x) for x in all_versions[1:]]
 @[end for]
 </ul>
 
+<h2>Release notes</h2>
+
+<ul>
+  <li>
+    <a href="https://ccache.dev/releasenotes.html#_ccache_@(latest_version.replace(".",
+    "_"))">Release notes for version @latest_version</a>
+  </li>
+</ul>
+
 <h2>Installation</h2>
 
 <ul>
