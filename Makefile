@@ -1,4 +1,4 @@
-version := 4.7
+version := 4.7.1
 version_stamp := version_$(version).stamp
 
 CCACHE_REPO ?= ../ccache
