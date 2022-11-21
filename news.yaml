@@ -8,6 +8,16 @@ body:
 
 ---
 
+date: 2022-11-05
+header: Version 4.7.3 has been released
+body:
+  <p>
+    See the <a href="releasenotes.html#_ccache_4_7_3">release notes</a> for
+    details.
+  </p>
+
+---
+
 date: 2022-10-29
 header: Version 4.7.2 has been released
 body:
