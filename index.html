@@ -50,6 +50,7 @@
 <div style="float: right; font-size: 90%; margin: 0 1em 0 2em;">
 <h1>News</h1>
 <ul class="news">
+<li><i>2023-03-12:</i> <a href="news.html#2023-03-12"><b>Version 4.8 has been released</b></a></li>
 <li><i>2022-11-21:</i> <a href="news.html#2022-11-21"><b>Version 4.7.4 has been released</b></a></li>
 <li><i>2022-11-05:</i> <a href="news.html#2022-11-05"><b>Version 4.7.3 has been released</b></a></li>
 <li><i>2022-10-29:</i> <a href="news.html#2022-10-29"><b>Version 4.7.2 has been released</b></a></li>
@@ -59,7 +60,6 @@
 <li><i>2022-08-22:</i> <a href="news.html#2022-08-22"><b>Version 4.6.2 has been released</b></a></li>
 <li><i>2022-05-15:</i> <a href="news.html#2022-05-15"><b>Version 4.6.1 has been released</b></a></li>
 <li><i>2022-02-27:</i> <a href="news.html#2022-02-27"><b>Version 4.6 has been released</b></a></li>
-<li><i>2021-11-17:</i> <a href="news.html#2021-11-17"><b>Version 4.5.1 has been released</b></a></li>
 <li><a href="news.html">All news</a></li>
 </ul>
 </div>
@@ -71,7 +71,7 @@ compilation is being done again. Ccache is free software, released under
 the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
 version 3</a> or later. See also the <a href="license.html">license page</a>.
 </p>
-<p>Latest release: <a href="download.html">version 4.7.4</a></p>
+<p>Latest release: <a href="download.html">version 4.8</a></p>
 <h2 style="clear: right;">Features</h2>
 <ul>
 <li>
@@ -94,17 +94,17 @@ Objective-C++<sup class="footnote">[1]</sup>.
 <li>
 Supports remote caching over HTTP (e.g. using Nginx or Google Cloud
 Storage), Redis or NFS, optionally sharding data onto a server cluster.
-(<a href="manual/4.7.4.html#_remote_storage_backends">details</a>)
+(<a href="manual/4.8.html#_remote_storage_backends">details</a>)
 </li>
 <li>
 Supports fast "direct" and "depend" modes that don't rely on using the
 preprocessor.
-(<a href="manual/4.7.4.html#_how_ccache_works">details</a>)
+(<a href="manual/4.8.html#_how_ccache_works">details</a>)
 </li>
 <li>
 Uses an inode cache to avoid having to hash the same header files repeatedly
 during a build (on supported OSes and file systems).
-(<a href="manual/4.7.4.html#config_inode_cache">details</a>)
+(<a href="manual/4.8.html#config_inode_cache">details</a>)
 </li>
 <li>Supports compression using <a href="http://zstd.net">Zstandard</a>.</li>
 <li>
@@ -113,15 +113,15 @@ corruption.
 </li>
 <li>
 Keeps statistics on hits/misses.
-(<a href="manual/4.7.4.html#_cache_statistics">details</a>)
+(<a href="manual/4.8.html#_cache_statistics">details</a>)
 </li>
 <li>
 Automatic cache size management.
-(<a href="manual/4.7.4.html#_cache_size_management">details</a>)
+(<a href="manual/4.8.html#_cache_size_management">details</a>)
 </li>
 <li>
 Easy installation.
-(<a href="manual/4.7.4.html#_run_modes">details</a>)
+(<a href="manual/4.8.html#_run_modes">details</a>)
 </li>
 <li>
 Low overhead. (<a href="performance.html">details</a>)
@@ -129,7 +129,7 @@ Low overhead. (<a href="performance.html">details</a>)
 <li>
 Support for rewriting absolute paths to relative in order to increase the
 cache hit ratio.
-(<a href="manual/4.7.4.html#_compiling_in_different_directories">details</a>)
+(<a href="manual/4.8.html#_compiling_in_different_directories">details</a>)
 </li>
 <li>
 Optionally uses file cloning (AKA “reflinks”) where possible to avoid
@@ -156,7 +156,7 @@ will silently fall back to running the real compiler.
 <li>
 The fastest mode (the "direct mode") has a corner case which can result in
 false positive cache hits. This and other minor limitations are listed
-under <a href="manual/4.7.4.html#_caveats">caveats</a> in the
+under <a href="manual/4.8.html#_caveats">caveats</a> in the
 manual.
 </li>
 </ul>
@@ -191,7 +191,7 @@ in a way that is backward compatible with legacy compilers.
 <li>
 The fastest mode (the "direct mode") has a corner case which can result in
 false positive cache hits. This and other minor limitations are listed under
-<a href="manual/4.7.4.html#_caveats">caveats</a> in the manual.
+<a href="manual/4.8.html#_caveats">caveats</a> in the manual.
 </li>
 </ul>
 <p>If you experience any bugs or undocumented limitations, please
