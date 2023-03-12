@@ -26,8 +26,8 @@
   <tr>
     <td>Darwin (macOS) universal binary release</td>
     <td>
-      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64.tar.xz">ccache-@(latest_version)-linux-x86_64.tar.xz</a>
-      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64.tar.xz.asc">signature</a>)</small>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-darwin.tar.gz">ccache-@(latest_version)-darwin.tar.gz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-darwin.tar.gz.asc">signature</a>)</small>
     </td>
   </tr>
   <tr>
