@@ -1,0 +1,3363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<title>ccache(1)</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Open+Sans);
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+:root{
+--maincolor:#ffffff;
+--primarycolor:#294172;
+--secondarycolor:#5f646c;
+--tertiarycolor:#cccccc;
+--highlightcolor:#f5f5f5;
+--sidebarbackground:#f5f5f5;
+--linkcolor:#02a;
+--linkcoloralternate:#db3279;
+--white:#ffffff;
+--black:#000000;
+}
+
+/* Text styles */
+
+body{font-family: "Open Sans", sans-serif;background-color: var(--maincolor);color:var(--black);}
+
+h1{color:var(--primarycolor) !important;font-family:"Montserrat",sans-serif;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;font-family:"Montserrat",sans-serif;}
+.title{color:var(--black) !important;font-family:"Open Sans",sans-serif;font-style: normal; font-weight: normal;}
+a{text-decoration: none;}
+a:hover{color: #3958da; text-decoration: underline;}
+p{font-family: "Open Sans",sans-serif ! important}
+#toc.toc2 a:link{color:var(--linkcolor);}
+blockquote{color:var(--linkcoloralternate) !important}
+.quoteblock blockquote:before{color:var(--linkcoloralternate)}
+code{color:var(--black);background-color: var(--highlightcolor) !important}
+mark{background-color: var(--highlightcolor)} /* Text highlighting color */
+
+/* Table styles */
+th{background-color: var(--maincolor);color:var(--black) !important;}
+td{background-color: var(--maincolor);color: var(--black) !important}
+
+
+#toc.toc2{background-color:var(--sidebarbackground);}
+#toctitle{color:var(--black);}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>ccache(1)</h1>
+<div class="details">
+<span id="revnumber">version 4.10</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_name">Name</a></li>
+<li><a href="#_synopsis">Synopsis</a></li>
+<li><a href="#_description">Description</a></li>
+<li><a href="#_run_modes">Run modes</a></li>
+<li><a href="#_command_line_options">Command line options</a>
+<ul class="sectlevel2">
+<li><a href="#_common_options">Common options</a></li>
+<li><a href="#_options_for_remote_file_based_storage">Options for remote file-based storage</a></li>
+<li><a href="#_options_for_scripting_or_debugging">Options for scripting or debugging</a></li>
+<li><a href="#_extra_options">Extra options</a></li>
+</ul>
+</li>
+<li><a href="#_configuration">Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_location_of_the_configuration_file">Location of the configuration file</a></li>
+<li><a href="#_configuration_value_syntax">Configuration value syntax</a></li>
+<li><a href="#_configuration_file_syntax">Configuration file syntax</a></li>
+<li><a href="#_boolean_values">Boolean values</a></li>
+<li><a href="#_configuration_options">Configuration options</a></li>
+<li><a href="#_disabling_ccache">Disabling ccache</a></li>
+</ul>
+</li>
+<li><a href="#_remote_storage_backends">Remote storage backends</a>
+<ul class="sectlevel2">
+<li><a href="#_attributes_for_all_backends">Attributes for all backends</a></li>
+<li><a href="#_storage_interaction">Storage interaction</a></li>
+<li><a href="#_file_storage_backend">File storage backend</a></li>
+<li><a href="#_http_storage_backend">HTTP storage backend</a></li>
+<li><a href="#_redis_storage_backend">Redis storage backend</a></li>
+</ul>
+</li>
+<li><a href="#_cache_size_management">Cache size management</a>
+<ul class="sectlevel2">
+<li><a href="#_automatic_cleanup">Automatic cleanup</a></li>
+<li><a href="#_manual_cleanup">Manual cleanup</a></li>
+</ul>
+</li>
+<li><a href="#_cache_compression">Cache compression</a></li>
+<li><a href="#_cache_statistics">Cache statistics</a></li>
+<li><a href="#_how_ccache_works">How ccache works</a>
+<ul class="sectlevel2">
+<li><a href="#_common_hashed_information">Common hashed information</a></li>
+<li><a href="#_the_preprocessor_mode">The preprocessor mode</a></li>
+<li><a href="#_the_direct_mode">The direct mode</a></li>
+<li><a href="#_the_depend_mode">The depend mode</a></li>
+</ul>
+</li>
+<li><a href="#_handling_of_newly_created_source_files">Handling of newly created source files</a></li>
+<li><a href="#_cache_debugging">Cache debugging</a></li>
+<li><a href="#_compiling_in_different_directories">Compiling in different directories</a></li>
+<li><a href="#_precompiled_headers">Precompiled headers</a></li>
+<li><a href="#_c_modules">C++ modules</a></li>
+<li><a href="#_sharing_a_local_cache">Sharing a local cache</a></li>
+<li><a href="#_sharing_a_cache_on_nfs">Sharing a cache on NFS</a></li>
+<li><a href="#_using_ccache_with_other_compiler_wrappers">Using ccache with other compiler wrappers</a></li>
+<li><a href="#_caveats">Caveats</a></li>
+<li><a href="#_troubleshooting">Troubleshooting</a>
+<ul class="sectlevel2">
+<li><a href="#_general">General</a></li>
+<li><a href="#_performance">Performance</a></li>
+<li><a href="#_corrupt_object_files">Corrupt object files</a></li>
+</ul>
+</li>
+<li><a href="#_more_information">More information</a></li>
+<li><a href="#_author">Author</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_name"><a class="anchor" href="#_name"></a>Name</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ccache - a fast C/C++ compiler cache</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<pre class="content"><strong>ccache</strong> [<em>ccache options</em>]
+<strong>ccache</strong> [<em>KEY</em>=<em>VALUE</em> &#8230;&#8203;] <em>compiler</em> [<em>compiler options</em>]
+<em>compiler</em> [<em>compiler options</em>]</pre>
+</div>
+<div class="paragraph">
+<p>The first form takes options described in <a href="#_command_line_options">Command line options</a> below. The
+second form invokes the compiler, optionally using <a href="#_configuration">configuration
+options</a> as <em>KEY</em>=<em>VALUE</em> arguments. In the third form, ccache is masquerading
+as the compiler as described in <a href="#_run_modes">Run modes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ccache is a compiler cache. It speeds up recompilation by caching the result of
+previous compilations and detecting when the same compilation is being done
+again.</p>
+</div>
+<div class="paragraph">
+<p>Ccache has been carefully written to always produce exactly the same compiler
+output that you would get without the cache. The only way you should be able to
+tell that you are using ccache is the speed. Currently known exceptions to this
+goal are listed under <em><a href="#_caveats">Caveats</a></em>. If you discover an undocumented case where
+ccache changes the output of your compiler, please let us know.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_modes"><a class="anchor" href="#_run_modes"></a>Run modes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two different ways to use ccache to cache a compilation:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prefix your compilation command with <code>ccache</code>. This method is most convenient
+if you just want to try out ccache or wish to use it for some specific
+projects. Example:</p>
+<div class="listingblock">
+<div class="content">
+<pre>ccache gcc -c example.c</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Let ccache masquerade as the compiler. This method is most useful when you
+wish to use ccache for all your compilations. To do this, create a symbolic
+link to ccache named as the compiler. For example, here is set up ccache to
+masquerade as <code>gcc</code> and <code>g++</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cp ccache /usr/local/bin/
+ln -s ccache /usr/local/bin/gcc
+ln -s ccache /usr/local/bin/g++</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On platforms that don&#8217;t support symbolic links you can simply copy ccache to the
+compiler name instead for a similar effect:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cp ccache /usr/local/bin/gcc
+cp ccache /usr/local/bin/g++</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And so forth. This will work as long as the directory with symbolic links or
+ccache copies comes before the directory with the compiler (typically
+<code>/usr/bin</code>) in <code>PATH</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The technique of letting ccache masquerade as the compiler works well,
+but currently doesn&#8217;t interact well with other tools that do the same thing. See
+<em><a href="#_using_ccache_with_other_compiler_wrappers">Using ccache with other compiler wrappers</a></em>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_line_options"><a class="anchor" href="#_command_line_options"></a>Command line options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These command line options only apply when you invoke ccache as &#8220;ccache&#8221;. When
+ccache masquerades as a compiler (as described in the previous section), the
+normal compiler options apply and you should refer to the compiler&#8217;s
+documentation.</p>
+</div>
+<div class="sect2">
+<h3 id="_common_options"><a class="anchor" href="#_common_options"></a>Common options</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>-c</strong>, <strong>--cleanup</strong></dt>
+<dd>
+<p>Clean up the cache by removing not recently used cached files until the
+specified file number and cache size limits are not exceeded. This also
+recalculates the cache file count and size totals. Normally, there is no
+need to initiate cleanup manually as ccache keeps the cache below the
+specified limits at runtime and keeps statistics up to date on each
+compilation. Forcing a cleanup is mostly useful if you have modified the
+cache contents manually or believe that the cache size statistics may be
+inaccurate.</p>
+</dd>
+<dt class="hdlist1"><strong>-C</strong>, <strong>--clear</strong></dt>
+<dd>
+<p>Clear the entire cache, removing all cached files, but keeping the
+configuration file.</p>
+</dd>
+<dt class="hdlist1"><strong>--config-path</strong> <em>PATH</em></dt>
+<dd>
+<p>Let the command line options operate on configuration file <em>PATH</em> instead of
+the default. Using this option has the same effect as setting (overriding)
+the environment variable <code>CCACHE_CONFIGPATH</code> temporarily.</p>
+</dd>
+<dt class="hdlist1"><strong>-d</strong>, <strong>--dir</strong> <em>PATH</em></dt>
+<dd>
+<p>Let the command line options operate on cache directory <em>PATH</em> instead of
+the default. For example, to show statistics for a cache directory at
+<code>/shared/ccache</code> you can run <code>ccache -d /shared/ccache -s</code>. Using this option
+has the same effect as setting the environment variable <code>CCACHE_DIR</code>
+temporarily.</p>
+</dd>
+<dt class="hdlist1"><strong>--evict-namespace</strong> <em>NAMESPACE</em></dt>
+<dd>
+<p>Remove files created in the given <a href="#config_namespace"><strong>namespace</strong></a> from the
+cache.</p>
+</dd>
+<dt class="hdlist1"><strong>--evict-older-than</strong> <em>AGE</em></dt>
+<dd>
+<p>Remove files used less recently than <em>AGE</em> from the cache. <em>AGE</em> should be
+an unsigned integer with a <code>d</code> (days) or <code>s</code> (seconds) suffix. If combined
+with <code>--evict-namespace</code>, only remove files within that namespace.</p>
+</dd>
+<dt class="hdlist1"><strong>-h</strong>, <strong>--help</strong></dt>
+<dd>
+<p>Print a summary of command line options.</p>
+</dd>
+<dt class="hdlist1"><strong>-F</strong> <em>NUM</em>, <strong>--max-files</strong> <em>NUM</em></dt>
+<dd>
+<p>Set the maximum number of files allowed in the cache to <em>NUM</em>. Use 0 for no
+limit. The value is stored in a configuration file in the cache directory
+and applies to all future compilations.</p>
+</dd>
+<dt class="hdlist1"><strong>-M</strong> <em>SIZE</em>, <strong>--max-size</strong> <em>SIZE</em></dt>
+<dd>
+<p>Set the maximum size of the files stored in the cache. <em>SIZE</em> should be a
+number followed by an optional suffix: kB, MB, GB, TB (decimal), KiB, MiB,
+GiB or TiB (binary). The default suffix is GiB. Use 0 for no limit. The
+value is stored in a configuration file in the cache directory and applies
+to all future compilations.</p>
+</dd>
+<dt class="hdlist1"><strong>-X</strong> <em>LEVEL</em>, <strong>--recompress</strong> <em>LEVEL</em></dt>
+<dd>
+<p>Recompress the cache to level <em>LEVEL</em> using the Zstandard algorithm. The
+level can be an integer, with the same semantics as the
+<a href="#config_compression_level"><strong>compression_level</strong></a> configuration option, or
+the special value <strong>uncompressed</strong> for no compression. See <em><a href="#Cache
+compression">[Cache
+compression]</a></em> for more information. This can potentially take a long time
+since all files in the cache need to be visited. Only files that are
+currently compressed with a different level than <em>LEVEL</em> will be
+recompressed.</p>
+</dd>
+<dt class="hdlist1"><strong>--recompress-threads</strong> <em>THREADS</em></dt>
+<dd>
+<p>Use up to <em>THREADS</em> threads when recompressing the cache. The default is to
+use one thread per CPU.</p>
+</dd>
+<dt class="hdlist1"><strong>-o</strong> <em>KEY=VALUE</em>, <strong>--set-config</strong> <em>KEY</em>=<em>VALUE</em></dt>
+<dd>
+<p>Set configuration option <em>KEY</em> to <em>VALUE</em>. See <em><a href="#_configuration">Configuration</a></em> for more
+information.</p>
+</dd>
+<dt class="hdlist1"><strong>-x</strong>, <strong>--show-compression</strong></dt>
+<dd>
+<p>Print cache compression statistics. See <em><a href="#_cache_compression">Cache compression</a></em> for more
+information. This can potentially take a long time since all files in the
+cache need to be visited.</p>
+</dd>
+<dt class="hdlist1"><strong>-p</strong>, <strong>--show-config</strong></dt>
+<dd>
+<p>Print current configuration options and from where they originate
+(environment variable, configuration file or compile-time default) in
+human-readable format.</p>
+</dd>
+<dt class="hdlist1"><strong>--show-log-stats</strong></dt>
+<dd>
+<p>Print statistics counters from the stats log in human-readable format. See
+<a href="#config_stats_log"><strong>stats_log</strong></a>. Use <code>-v</code>/<code>--verbose</code> once or twice for
+more details.</p>
+</dd>
+<dt class="hdlist1"><strong>-s</strong>, <strong>--show-stats</strong></dt>
+<dd>
+<p>Print a summary of configuration and statistics counters in human-readable
+format. Use <code>-v</code>/<code>--verbose</code> once or twice for more details.</p>
+</dd>
+<dt class="hdlist1"><strong>-v</strong>, <strong>--verbose</strong></dt>
+<dd>
+<p>Increase verbosity. The option can be given multiple times.</p>
+</dd>
+<dt class="hdlist1"><strong>-V</strong>, <strong>--version</strong></dt>
+<dd>
+<p>Print version and copyright information.</p>
+</dd>
+<dt class="hdlist1"><strong>-z</strong>, <strong>--zero-stats</strong></dt>
+<dd>
+<p>Zero the cache statistics (but not the configuration options).</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_options_for_remote_file_based_storage"><a class="anchor" href="#_options_for_remote_file_based_storage"></a>Options for remote file-based storage</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>--trim-dir</strong> <em>PATH</em></dt>
+<dd>
+<p>Remove not recently used files from directory <em>PATH</em> until it is at most the
+size specified by <code>--trim-max-size</code>.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Don&#8217;t use this option to trim the local cache. To trim the local cache
+directory to a certain size, use <code>CCACHE_MAXSIZE=<em>SIZE</em> ccache -c</code>.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1"><strong>--trim-max-size</strong> <em>SIZE</em></dt>
+<dd>
+<p>Specify the maximum size for <code>--trim-dir</code>. <em>SIZE</em> should be a number
+followed by an optional suffix: kB, MB, GB, TB (decimal), KiB, MiB, GiB or
+TiB (binary). The default suffix is GiB. Use 0 for no limit.</p>
+</dd>
+<dt class="hdlist1"><strong>--trim-method</strong> <em>METHOD</em></dt>
+<dd>
+<p>Specify the method to trim a directory with <code>--trim-dir</code>. Possible values
+are:</p>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>atime</strong></dt>
+<dd>
+<p>LRU (least recently used) using the file access timestamp. This is the
+default.</p>
+</dd>
+<dt class="hdlist1"><strong>mtime</strong></dt>
+<dd>
+<p>LRU (least recently used) using the file modification timestamp.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><strong>--trim-recompress</strong> <em>LEVEL</em></dt>
+<dd>
+<p>Recompress to level <em>LEVEL</em> using the Zstandard algorithm when using
+<code>--trim-dir</code>. The level can be an integer, with the same semantics as the
+<a href="#config_compression_level"><strong>compression_level</strong></a> configuration option, or
+the special value <strong>uncompressed</strong> for no compression. See <em><a href="#Cache
+compression">[Cache
+compression]</a></em> for more information. This can potentially take a long time
+since all files in the cache need to be visited. Only files that are
+currently compressed with a different level than <em>LEVEL</em> will be
+recompressed.</p>
+</dd>
+<dt class="hdlist1"><strong>--trim-recompress-threads</strong> <em>THREADS</em></dt>
+<dd>
+<p>Recompress using up to <em>THREADS</em> threads with <code>--trim-recompress</code>. The
+default is to use one thread per CPU.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_options_for_scripting_or_debugging"><a class="anchor" href="#_options_for_scripting_or_debugging"></a>Options for scripting or debugging</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>--checksum-file</strong> <em>PATH</em></dt>
+<dd>
+<p>Print the checksum (128 bit XXH3) of the file at <em>PATH</em> (<code>-</code> for standard
+input).</p>
+</dd>
+<dt class="hdlist1"><strong>--extract-result</strong> <em>PATH</em></dt>
+<dd>
+<p>Extract data stored in the result file at <em>PATH</em> (<code>-</code> for standard input).
+The data will be written to <code>ccache-result.*</code> files in to the current
+working directory. This option is only useful when debugging ccache and its
+behavior.</p>
+</dd>
+<dt class="hdlist1"><strong>--format</strong> <em>FORMAT</em></dt>
+<dd>
+<p>Specify format for <code>--print-log-stats</code> and <code>--print-stats</code>. Possible values
+are:</p>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>tab</strong></dt>
+<dd>
+<p>Tab separated. This is the default.</p>
+</dd>
+<dt class="hdlist1"><strong>json</strong></dt>
+<dd>
+<p>JSON formatted.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><strong>-k</strong> <em>KEY</em>, <strong>--get-config</strong> <em>KEY</em></dt>
+<dd>
+<p>Print the value of configuration option <em>KEY</em>. See <em><a href="#_configuration">Configuration</a></em> for
+more information.</p>
+</dd>
+<dt class="hdlist1"><strong>--hash-file</strong> <em>PATH</em></dt>
+<dd>
+<p>Print the hash (160 bit BLAKE3) of the file at <em>PATH</em> (<code>-</code> for standard
+input). This is only useful when debugging ccache and its behavior.</p>
+</dd>
+<dt class="hdlist1"><strong>--inspect</strong> <em>PATH</em></dt>
+<dd>
+<p>Print the content of a result or manifest file at <em>PATH</em> (<code>-</code> for standard
+input) to standard output in human-readable format. File content embedded in
+a result file will however not be printed; use <code>--extract-result</code> to extract
+the file content. This option is only useful when debugging ccache and its
+behavior.</p>
+</dd>
+<dt class="hdlist1"><strong>--print-log-stats</strong></dt>
+<dd>
+<p>Print statistics counters from the stats log in machine-parsable
+(tab-separated or JSON) format. See <a href="#config_stats_log"><strong>stats_log</strong></a> and
+<code>--format</code>.</p>
+</dd>
+<dt class="hdlist1"><strong>--print-stats</strong></dt>
+<dd>
+<p>Print statistics counter IDs and corresponding values in machine-parsable
+(tab-separated or JSON) format. See <code>--format</code>.</p>
+</dd>
+<dt class="hdlist1"><strong>--print-version</strong></dt>
+<dd>
+<p>Print version and don&#8217;t do anything else.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extra_options"><a class="anchor" href="#_extra_options"></a>Extra options</h3>
+<div class="paragraph">
+<p>When run as a compiler, ccache usually just takes the same command line options
+as the compiler you are using. The only exception to this is the option
+<code>--ccache-skip</code>. That option can be used to tell ccache to avoid interpreting
+the next option in any way and to pass it along to the compiler as-is.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>--ccache-skip</code> currently only tells ccache not to interpret the next
+option as a special compiler option&#8201;&#8212;&#8201;the option will still be included in the
+direct mode hash.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The reason this can be important is that ccache does need to parse the command
+line and determine what is an input filename and what is a compiler option, as
+it needs the input filename to determine the name of the resulting object file
+(among other things). The heuristic ccache uses when parsing the command line
+is that any argument that exists as a file is treated as an input file name. By
+using <code>--ccache-skip</code> you can force an option to not be treated as an input
+file name and instead be passed along to the compiler as a command line option.</p>
+</div>
+<div class="paragraph">
+<p>Another case where <code>--ccache-skip</code> can be useful is if ccache interprets an
+option specially but shouldn&#8217;t, since the option has another meaning for your
+compiler than what ccache thinks.</p>
+</div>
+<div class="paragraph">
+<p>See also <a href="#config_ignore_options"><strong>ignore_options</strong></a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ccache&#8217;s default behavior can be overridden by options in configuration files,
+which in turn can be overridden by environment variables with names starting
+with <code>CCACHE_</code>. Ccache normally reads configuration from two files: first a
+system-level configuration file and secondly a cache-specific configuration
+file. The priorities of configuration options are as follows (where 1 is
+highest):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Command line settings in <em>KEY</em>=<em>VALUE</em> form. Example:</p>
+<div class="listingblock">
+<div class="content">
+<pre>ccache debug=true compiler_check="%compiler% --version" gcc -c example.c</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Environment variables.</p>
+</li>
+<li>
+<p>The cache-specific configuration file (see below).</p>
+</li>
+<li>
+<p>The system (read-only) configuration file <code>&lt;sysconfdir&gt;/ccache.conf</code>
+(typically <code>/etc/ccache.conf</code> or <code>/usr/local/etc/ccache.conf</code>).</p>
+</li>
+<li>
+<p>Compile-time defaults.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As a special case, if the environment variable <code>CCACHE_CONFIGPATH</code> is set it
+specifies the configuration file, and the system configuration file won&#8217;t be
+read.</p>
+</div>
+<div class="sect2">
+<h3 id="_location_of_the_configuration_file"><a class="anchor" href="#_location_of_the_configuration_file"></a>Location of the configuration file</h3>
+<div class="paragraph">
+<p>The location of the cache-specific configuration file is determined like this on
+non-Windows systems:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If <code>CCACHE_CONFIGPATH</code> is set, use that path.</p>
+</li>
+<li>
+<p>Otherwise, if the environment variable <code>CCACHE_DIR</code> is set then use
+<code>$CCACHE_DIR/ccache.conf</code>.</p>
+</li>
+<li>
+<p>Otherwise, if <a href="#config_cache_dir"><strong>cache_dir</strong></a> is set in the system
+configuration file then use <code>&lt;cache_dir&gt;/ccache.conf</code>.</p>
+</li>
+<li>
+<p>Otherwise, if there is a legacy <code>$HOME/.ccache</code> directory then use
+<code>$HOME/.ccache/ccache.conf</code>.</p>
+</li>
+<li>
+<p>Otherwise, if <code>XDG_CONFIG_HOME</code> is set then use
+<code>$XDG_CONFIG_HOME/ccache/ccache.conf</code>.</p>
+</li>
+<li>
+<p>Otherwise, use
+<code>$HOME/Library/Preferences/ccache/ccache.conf</code> (macOS) or
+<code>$HOME/.config/ccache/ccache.conf</code> (other systems).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On Windows, this is the method used to find the configuration file:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If <code>CCACHE_CONFIGPATH</code> is set, use that path.</p>
+</li>
+<li>
+<p>Otherwise, if the environment variable <code>CCACHE_DIR</code> is set then use
+<code>%CCACHE_DIR%/ccache.conf</code>.</p>
+</li>
+<li>
+<p>Otherwise, if <a href="#config_cache_dir"><strong>cache_dir</strong></a> is set in the system
+configuration file then use <code>&lt;cache_dir&gt;\ccache.conf</code>. The
+system-wide configuration on Windows is
+<code>%ALLUSERSPROFILE%\ccache\ccache.conf</code> by default. The <code>ALLUSERSPROFILE</code>
+environment variable is usually <code>C:\ProgramData</code>.</p>
+</li>
+<li>
+<p>Otherwise, if there is a legacy <code>%USERPROFILE%\.ccache</code> directory then use
+<code>%USERPROFILE%\.ccache\ccache.conf</code>.</p>
+</li>
+<li>
+<p>Otherwise, use <code>%LOCALAPPDATA%\ccache\ccache.conf</code> if it exists.</p>
+</li>
+<li>
+<p>Otherwise, use <code>%APPDATA%\ccache\ccache.conf</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See also the <a href="#config_cache_dir"><strong>cache_dir</strong></a> configuration option for how the
+cache directory location is determined.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_value_syntax"><a class="anchor" href="#_configuration_value_syntax"></a>Configuration value syntax</h3>
+<div class="paragraph">
+<p>All configuration values support expansion of environment variables. The syntax
+is similar to POSIX shell syntax: <code>$VAR</code> or <code>${VAR}</code>. Both variants will expand
+to the value of the environment variable <code>VAR</code>.</p>
+</div>
+<div class="paragraph">
+<p>Two consecutive dollar signs (<code>$$</code>) will expand to a single dollar sign (<code>$</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_file_syntax"><a class="anchor" href="#_configuration_file_syntax"></a>Configuration file syntax</h3>
+<div class="paragraph">
+<p>Configuration files are in a simple &#8220;key = value&#8221; format, one option per
+line. Lines starting with a hash sign are comments. Blank lines are ignored, as
+is whitespace surrounding keys and values. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Set maximum cache size to 10 GB:
+max_size = 10G</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_boolean_values"><a class="anchor" href="#_boolean_values"></a>Boolean values</h3>
+<div class="paragraph">
+<p>Some configuration options are boolean values (i.e. truth values). In a
+configuration file, such values must be set to the string <strong>true</strong> or <strong>false</strong>.
+For the corresponding environment variables, the semantics are a bit different:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A set environment variable means &#8220;true&#8221; (even if set to the empty string).</p>
+</li>
+<li>
+<p>The following case-insensitive negative values are considered an error
+(instead of surprising the user): <strong>0</strong>, <strong>false</strong>, <strong>disable</strong> and <strong>no</strong>.</p>
+</li>
+<li>
+<p>An unset environment variable means &#8220;false&#8221;.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each boolean environment variable also has a negated form starting with
+<code>CCACHE_NO</code>. For example, <code>CCACHE_COMPRESS</code> can be set to force compression and
+<code>CCACHE_NOCOMPRESS</code> can be set to force no compression.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_options"><a class="anchor" href="#_configuration_options"></a>Configuration options</h3>
+<div class="paragraph">
+<p>Below is a list of available configuration options. The corresponding
+environment variable name is indicated in parentheses after each configuration
+option key.</p>
+</div>
+<div id="config_absolute_paths_in_stderr" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>absolute_paths_in_stderr</strong> (<strong>CCACHE_ABSSTDERR</strong>)</dt>
+<dd>
+<p>This option specifies whether ccache should rewrite relative paths in the
+compiler&#8217;s standard error output to absolute paths. This can be useful if
+you use <a href="#config_base_dir"><strong>base_dir</strong></a> with a build system (e.g. CMake with
+the "Unix Makefiles" generator) that executes the compiler in a different
+working directory, which makes relative paths in compiler errors or
+warnings incorrect. The default is false.</p>
+</dd>
+</dl>
+</div>
+<div id="config_base_dir" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>base_dir</strong> (<strong>CCACHE_BASEDIR</strong>)</dt>
+<dd>
+<p>This option should be an absolute path to a directory. If set, ccache will
+rewrite absolute paths into paths relative to the current working directory,
+but only absolute paths that begin with <strong>base_dir</strong>. Cache results can then
+be shared for compilations in different directories even if the project uses
+absolute paths in the compiler command line. See also the discussion under
+<em><a href="#_compiling_in_different_directories">Compiling in different directories</a></em>. If set to the empty string (which
+is the default), no rewriting is done.</p>
+<div class="paragraph">
+<p>A typical path to use as <strong>base_dir</strong> is your home directory or another directory
+that is a parent of your project directories. Don&#8217;t use <code>/</code> as the base
+directory since that will make ccache also rewrite paths to system header
+files, which typically is counterproductive.</p>
+</div>
+<div class="paragraph">
+<p>For example, say that Alice&#8217;s current working directory is
+<code>/home/alice/project1/build</code> and that she compiles like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ccache gcc -I/usr/include/example -I/home/alice/project2/include -c /home/alice/project1/src/example.c</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is what ccache will actually execute for different <strong>base_dir</strong> values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Current working directory: /home/alice/project1/build
+
+# With base_dir = /:
+gcc -I../../../../usr/include/example -I../../project2/include -c ../src/example.c
+
+# With base_dir = /home or /home/alice:
+gcc -I/usr/include/example -I../../project2/include -c ../src/example.c
+
+# With base_dir = /home/alice/project1 or /home/alice/project1/src:
+gcc -I/usr/include/example -I/home/alice/project2/include -c ../src/example.c</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If Bob has put <code>project1</code> and <code>project2</code> in <code>/home/bob/stuff</code> and both users
+have set <strong>base_dir</strong> to <code>/home</code> or <code>/home/$USER</code>, then Bob will get a cache hit
+(if they share ccache directory) since the actual command line will be
+identical to Alice&#8217;s command line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Current working directory: /home/bob/stuff/project1/build
+
+# With base_dir = /home or /home/bob:
+gcc -I/usr/include/example -I../../project2/include -c ../src/example.c</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Without <strong>base_dir</strong> there will be a cache miss since the absolute paths will
+differ. With <strong>base_dir</strong> set to <code>/</code> there will be a cache miss since the
+relative path to <code>/usr/include/example</code> will be different. With <strong>base_dir</strong> set
+to <code>/home/bob/stuff/project1</code> there will a cache miss since the path to
+project2 will be a different absolute path.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Rewriting absolute paths to relative is kind of a brittle hack. It
+works OK in many cases, but there might be cases where things break. One known
+issue is that absolute paths are not reproduced in dependency files, which can
+mess up dependency detection in tools like Make and Ninja. If possible, use
+relative paths in the first place instead instead of using <strong>base_dir</strong>.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_cache_dir" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>cache_dir</strong> (<strong>CCACHE_DIR</strong>)</dt>
+<dd>
+<p>This option specifies where ccache will keep its cached compiler outputs.</p>
+<div class="paragraph">
+<p>On non-Windows systems, the default is <code>$HOME/.ccache</code> if such a directory
+exists, otherwise <code>$XDG_CACHE_HOME/ccache</code> if <code>XDG_CACHE_HOME</code> is set, otherwise
+<code>$HOME/Library/Caches/ccache</code> (macOS) or <code>$HOME/.config/ccache</code> (other systems).</p>
+</div>
+<div class="paragraph">
+<p>On Windows, the default is <code>%USERPROFILE%\.ccache</code> if such a directory exists,
+otherwise <code>%LOCALAPPDATA%\ccache</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Previous ccache versions defaulted to storing the cache in
+<code>%APPDATA%\ccache</code> on Windows. This can result in large network file transfers
+of the cache in domain environments and similar problems. Please check this
+directory for cache directories and either delete them or the whole directory,
+or move them to the <code>%LOCALAPPDATA%\ccache</code> directory.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See also <em><a href="#_location_of_the_configuration_file">Location of the configuration file</a></em>.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_compiler" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>compiler</strong> (<strong>CCACHE_COMPILER</strong> or (deprecated) <strong>CCACHE_CC</strong>)</dt>
+<dd>
+<p>This option can be used to force the name of the compiler to use. If set to
+the empty string (which is the default), ccache works it out from the
+command line.</p>
+</dd>
+</dl>
+</div>
+<div id="config_compiler_check" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>compiler_check</strong> (<strong>CCACHE_COMPILERCHECK</strong>)</dt>
+<dd>
+<p>By default, ccache includes the modification time (&#8220;mtime&#8221;) and size of
+the compiler in the hash to ensure that results retrieved from the cache
+are accurate. If compiler plugins are used, these plugins will also be
+added to the hash. This option can be used to select another strategy.
+Possible values are:</p>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>content</strong></dt>
+<dd>
+<p>Hash the content of the compiler binary. This makes ccache very slightly
+slower compared to <strong>mtime</strong>, but makes it cope better with compiler upgrades
+during a build bootstrapping process.</p>
+</dd>
+<dt class="hdlist1"><strong>mtime</strong></dt>
+<dd>
+<p>Hash the compiler&#8217;s mtime and size, which is fast. This is the default.</p>
+</dd>
+<dt class="hdlist1"><strong>none</strong></dt>
+<dd>
+<p>Don&#8217;t hash anything. This may be good for situations where you can safely
+use the cached results even though the compiler&#8217;s mtime or size has changed
+(e.g. if the compiler is built as part of your build system and the
+compiler&#8217;s source has not changed, or if the compiler only has changes that
+don&#8217;t affect code generation). You should only use <strong>none</strong> if you know what
+you are doing.</p>
+</dd>
+<dt class="hdlist1"><strong>string:value</strong></dt>
+<dd>
+<p>Hash <strong>value</strong>. This can for instance be a compiler revision number or
+another string that the build system generates to identify the compiler.</p>
+</dd>
+<dt class="hdlist1"><em>a command string</em></dt>
+<dd>
+<p>Hash the standard output and standard error output of the specified
+command. The string will be split on whitespace to find out the command and
+arguments to run. No other interpretation of the command string will be
+done, except that the special word <strong>%compiler%</strong> will be replaced with the
+path to the compiler. Several commands can be specified with semicolon as
+separator. Examples:</p>
+<div class="listingblock">
+<div class="content">
+<pre>%compiler% -v</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>%compiler% -dumpmachine; %compiler% -dumpversion</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should make sure that the specified command is as fast as possible since it
+will be run once for each ccache invocation.</p>
+</div>
+<div class="paragraph">
+<p>Identifying the compiler using a command is useful if you want to avoid cache
+misses when the compiler has been rebuilt but not changed.</p>
+</div>
+<div class="paragraph">
+<p>Another case is when the compiler (as seen by ccache) actually isn&#8217;t the real
+compiler but another compiler wrapper&#8201;&#8212;&#8201;in that case, the default <strong>mtime</strong>
+method will hash the mtime and size of the other compiler wrapper, which means
+that ccache won&#8217;t be able to detect a compiler upgrade. Using a suitable command
+to identify the compiler is thus safer, but it&#8217;s also slower, so you should
+consider continue using the <strong>mtime</strong> method in combination with the
+<strong>prefix_command</strong> option if possible. See
+<em><a href="#_using_ccache_with_other_compiler_wrappers">Using ccache with other compiler wrappers</a></em>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_compiler_type" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>compiler_type</strong> (<strong>CCACHE_COMPILERTYPE</strong>)</dt>
+<dd>
+<p>Ccache normally guesses the compiler type based on the compiler name. The
+<strong>compiler_type</strong> option lets you force a compiler type. This can be useful
+if the compiler has a non-standard name but is actually one of the known
+compiler types. Possible values are:</p>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>auto</strong></dt>
+<dd>
+<p>Guess one of the types below based on the compiler name (following
+symlinks). This is the default.</p>
+</dd>
+<dt class="hdlist1"><strong>clang</strong></dt>
+<dd>
+<p>Clang-based compiler.</p>
+</dd>
+<dt class="hdlist1"><strong>clang-cl</strong></dt>
+<dd>
+<p>clang-cl.</p>
+</dd>
+<dt class="hdlist1"><strong>gcc</strong></dt>
+<dd>
+<p>GCC-based compiler.</p>
+</dd>
+<dt class="hdlist1"><strong>icl</strong></dt>
+<dd>
+<p>Intel compiler on Windows.</p>
+</dd>
+<dt class="hdlist1"><strong>msvc</strong></dt>
+<dd>
+<p>Microsoft Visual C++ (MSVC).</p>
+</dd>
+<dt class="hdlist1"><strong>nvcc</strong></dt>
+<dd>
+<p>NVCC (CUDA) compiler.</p>
+</dd>
+<dt class="hdlist1"><strong>other</strong></dt>
+<dd>
+<p>Any compiler other than the known types.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_compression" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>compression</strong> (<strong>CCACHE_COMPRESS</strong> or <strong>CCACHE_NOCOMPRESS</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will compress data it puts in the cache. However, this
+option has no effect on how files are retrieved from the cache; compressed
+and uncompressed results will still be usable regardless of this option.
+The default is true.</p>
+<div class="paragraph">
+<p>Compression is done using the Zstandard algorithm. The algorithm is fast enough
+that there should be little reason to turn off compression to gain performance.
+One exception is if the cache is located on a compressed file system, in which
+case the compression performed by ccache of course is redundant.</p>
+</div>
+<div class="paragraph">
+<p>Compression will be disabled if file cloning (the
+<a href="#config_file_clone"><strong>file_clone</strong></a> option) or hard linking (the
+<a href="#config_hard_link"><strong>hard_link</strong></a> option) is enabled.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_compression_level" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>compression_level</strong> (<strong>CCACHE_COMPRESSLEVEL</strong>)</dt>
+<dd>
+<p>This option determines the level at which ccache will compress object files
+using the real-time compression algorithm Zstandard. It only has effect if
+<a href="#config_compression"><strong>compression</strong></a> is enabled (which it is by default).
+Zstandard is extremely fast for decompression and very fast for compression
+for lower compression levels. The default is 0.</p>
+<div class="paragraph">
+<p>Semantics of <strong>compression_level</strong>:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>&gt; 0</strong></dt>
+<dd>
+<p>A positive value corresponds to normal Zstandard compression levels. Lower
+levels (e.g. <strong>1</strong>) mean faster compression but worse compression ratio.
+Higher levels (e.g. <strong>19</strong>) mean slower compression but better compression
+ratio. The maximum possible value depends on the libzstd version, but at
+least up to 19 is available for all versions. Decompression speed is
+essentially the same for all levels. As a rule of thumb, use level 5 or
+lower since higher levels may slow down compilations noticeably. Higher
+levels are however useful when recompressing the cache with command line
+option <code>-X</code>/<code>--recompress</code>.</p>
+</dd>
+<dt class="hdlist1"><strong>&lt; 0</strong></dt>
+<dd>
+<p>A negative value corresponds to Zstandard&#8217;s &#8220;ultra-fast&#8221; compression
+levels, which are even faster than level 1 but with less good compression
+ratios. For instance, level <strong>-3</strong> corresponds to <code>--fast=3</code> for the <code>zstd</code>
+command line tool. In practice, there is little use for levels lower than
+<strong>-5</strong> or so.</p>
+</dd>
+<dt class="hdlist1"><strong>0</strong> (default)</dt>
+<dd>
+<p>The value <strong>0</strong> means that ccache will choose a suitable level, currently
+<strong>1</strong>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="http://zstd.net">Zstandard documentation</a> for more information.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_cpp_extension" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>cpp_extension</strong> (<strong>CCACHE_EXTENSION</strong>)</dt>
+<dd>
+<p>This option can be used to force a certain extension for the intermediate
+preprocessed file. The default is to automatically determine the extension
+to use for intermediate preprocessor files based on the type of file being
+compiled, but that sometimes doesn&#8217;t work. For example, when using the
+&#8220;aCC&#8221; compiler on HP-UX, set the cpp extension to <strong>i</strong>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_debug" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>debug</strong> (<strong>CCACHE_DEBUG</strong> or <strong>CCACHE_NODEBUG</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, enable the debug mode. The debug mode creates per-object debug
+files that are helpful when debugging unexpected cache misses. Note however
+that ccache performance will be reduced slightly. See <em><a href="#_cache_debugging">Cache debugging</a></em>
+for more information. The default is false.</p>
+</dd>
+</dl>
+</div>
+<div id="config_debug_dir" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>debug_dir</strong> (<strong>CCACHE_DEBUGDIR</strong>)</dt>
+<dd>
+<p>Specifies where to write per-object debug files if the <a href="#config_debug">debug
+mode</a> is enabled. If set to the empty string, the files will be written
+next to the object file. If set to a directory, the debug files will be
+written with full absolute paths in that directory, creating it if needed.
+The default is the empty string.</p>
+<div class="paragraph">
+<p>For example, if <strong>debug_dir</strong> is set to <code>/example</code>, the current working directory
+is <code>/home/user</code> and the object file is <code>build/output.o</code> then the debug log will
+be written to <code>/example/home/user/build/output.o.ccache-log</code>. See also
+<em><a href="#_cache_debugging">Cache debugging</a></em>.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_debug_level" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>debug_level</strong> (<strong>CCACHE_DEBUGLEVEL</strong>)</dt>
+<dd>
+<p>Specifies the amount of information that is written when the
+<a href="#config_debug">debug mode</a> is enabled. See <em><a href="#_cache_debugging">Cache debugging</a></em> for more
+information. The default is 2.</p>
+</dd>
+</dl>
+</div>
+<div id="config_depend_mode" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>depend_mode</strong> (<strong>CCACHE_DEPEND</strong> or <strong>CCACHE_NODEPEND</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, the depend mode will be used. The default is false. See
+<em><a href="#_the_depend_mode">The depend mode</a></em>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_direct_mode" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>direct_mode</strong> (<strong>CCACHE_DIRECT</strong> or <strong>CCACHE_NODIRECT</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, the direct mode will be used. The default is true. See
+<em><a href="#_the_direct_mode">The direct mode</a></em>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_disable" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>disable</strong> (<strong>CCACHE_DISABLE</strong> or <strong>CCACHE_NODISABLE</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>When true, ccache will just call the real compiler, bypassing the cache
+completely. The default is false.</p>
+<div class="paragraph">
+<p>It is also possible to disable ccache for a specific source code file by adding
+the string <code>ccache:disable</code> in a comment in the first 4096 bytes of the file.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_extra_files_to_hash" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>extra_files_to_hash</strong> (<strong>CCACHE_EXTRAFILES</strong>)</dt>
+<dd>
+<p>This option is a list of paths to files that ccache will include in the the
+hash sum that identifies the build. The list separator is semicolon on
+Windows systems and colon on other systems.</p>
+</dd>
+</dl>
+</div>
+<div id="config_file_clone" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>file_clone</strong> (<strong>CCACHE_FILECLONE</strong> or <strong>CCACHE_NOFILECLONE</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will attempt to use file cloning (also known as &#8220;copy on
+write&#8221;, &#8220;CoW&#8221; or &#8220;reflinks&#8221;) to store and fetch cached compiler
+results. <strong>file_clone</strong> has priority over <a href="#config_hard_link"><strong>hard_link</strong></a>.
+The default is false.</p>
+<div class="paragraph">
+<p>Files stored by cloning cannot be compressed, so the cache size will likely be
+significantly larger if this option is enabled. However, performance may be
+improved depending on the use case.</p>
+</div>
+<div class="paragraph">
+<p>Unlike the <a href="#config_hard_link"><strong>hard_link</strong></a> option, <strong>file_clone</strong> is completely
+safe to use, but not all file systems support the feature. For such file
+systems, ccache will fall back to use plain copying (or hard links if
+<a href="#config_hard_link"><strong>hard_link</strong></a> is enabled).</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_hard_link" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>hard_link</strong> (<strong>CCACHE_HARDLINK</strong> or <strong>CCACHE_NOHARDLINK</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will attempt to use hard links to store and fetch cached
+object files. The default is false.</p>
+<div class="paragraph">
+<p>Files stored via hard links cannot be compressed, so the cache size will likely
+be significantly larger if this option is enabled. However, performance may be
+improved depending on the use case.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Do not enable this option unless you are aware of these caveats:
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the resulting file is modified, the file in the cache will also be
+modified since they share content, which corrupts the cache entry. As of
+version 4.0, ccache makes stored and fetched object files read-only as a
+safety measure. Furthermore, a simple integrity check is made for cached
+object files by verifying that their sizes are correct. This means that
+mistakes like <code>strip file.o</code> or <code>echo &gt;file.o</code> will be detected even if the
+object file is made writable, but a modification that doesn&#8217;t change the file
+size will not.</p>
+</li>
+<li>
+<p>Programs that don&#8217;t expect that files from two different identical
+compilations are hard links to each other can fail.</p>
+</li>
+<li>
+<p>Programs that rely on modification times (like <code>make</code>) can be confused if
+several users (or one user with several build trees) use the same cache
+directory. The reason for this is that the object files share i-nodes and
+therefore modification times. If <code>file.o</code> is in build tree <strong>A</strong> (hard-linked
+from the cache) and <code>file.o</code> then is produced by ccache in build tree <strong>B</strong> by
+hard-linking from the cache, the modification timestamp will be updated for
+<code>file.o</code> in build tree <strong>A</strong> as well. This can retrigger relinking in build tree
+<strong>A</strong> even though nothing really has changed.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_hash_dir" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>hash_dir</strong> (<strong>CCACHE_HASHDIR</strong> or <strong>CCACHE_NOHASHDIR</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true (which is the default), ccache will include the current working
+directory (CWD) in the hash that is used to distinguish two compilations
+when generating debug info (compiler option <code>-g</code> with variations).
+Exception: The CWD will not be included in the hash if
+<a href="#config_base_dir"><strong>base_dir</strong></a> is set (and matches the CWD) and the
+compiler option <code>-fdebug-prefix-map</code> is used. See also the discussion under
+<em><a href="#_compiling_in_different_directories">Compiling in different directories</a></em>.</p>
+<div class="paragraph">
+<p>The reason for including the CWD in the hash by default is to prevent a problem
+with the storage of the current working directory in the debug info of an
+object file, which can lead ccache to return a cached object file that has the
+working directory in the debug info set incorrectly.</p>
+</div>
+<div class="paragraph">
+<p>You can disable this option to get cache hits when compiling the same source
+code in different directories if you don&#8217;t mind that CWD in the debug info
+might be incorrect.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_ignore_headers_in_manifest" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>ignore_headers_in_manifest</strong> (<strong>CCACHE_IGNOREHEADERS</strong>)</dt>
+<dd>
+<p>This option is a list of paths to files (or directories with headers) that
+ccache will <strong>not</strong> include in the manifest list that makes up the direct
+mode. Note that this can cause stale cache hits if those headers do indeed
+change. The list separator is semicolon on Windows systems and colon on
+other systems.</p>
+</dd>
+</dl>
+</div>
+<div id="config_ignore_options" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>ignore_options</strong> (<strong>CCACHE_IGNOREOPTIONS</strong>)</dt>
+<dd>
+<p>This option is a space-delimited list of compiler options that ccache will
+ignore. Entries in the list can optionally end with an asterisk (<code>*</code>) to
+matching any option suffix. For example, <code>-fmessage-length=*</code> will match
+both <code>-fmessage-length=20</code> and <code>-fmessage-length=70</code>. A matching compiler
+option will neither be interpreted specially nor be part of the input hash.
+Ignoring a compiler option from the hash can be useful when you know it
+doesn&#8217;t affect the result (and ccache doesn&#8217;t know that), or when it does
+and you don&#8217;t care. See also <em><a href="#_extra_options">Extra options</a></em>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_inode_cache" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>inode_cache</strong> (<strong>CCACHE_INODECACHE</strong> or <strong>CCACHE_NOINODECACHE</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will cache source file hashes based on device, inode and
+timestamps. This reduces the time spent on hashing include files since the
+result can be reused between compilations. The default is true. The feature
+requires <a href="#config_temporary_dir"><strong>temporary_dir</strong></a> to be located on a local
+filesystem of a supported type.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Support for the inode cache feature on Windows is experimental. On Windows
+the default is false.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_keep_comments_cpp" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>keep_comments_cpp</strong> (<strong>CCACHE_COMMENTS</strong> or <strong>CCACHE_NOCOMMENTS</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will not discard the comments before hashing preprocessor
+output. The default is false. This can be used to check documentation with
+<code>-Wdocumentation</code>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_log_file" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>log_file</strong> (<strong>CCACHE_LOGFILE</strong>)</dt>
+<dd>
+<p>If set to a file path, ccache will write information on what it is doing to
+the specified file. This is useful for tracking down problems.</p>
+<div class="paragraph">
+<p>If set to <strong>syslog</strong>, ccache will log using <code>syslog()</code> instead of to a file. If
+you use rsyslogd, you can add something like this to <code>/etc/rsyslog.conf</code> or a
+file in <code>/etc/rsyslog.d</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># log ccache to file
+:programname, isequal, "ccache"         /var/log/ccache
+# remove from syslog
+&amp; ~</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_max_files" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>max_files</strong> (<strong>CCACHE_MAXFILES</strong>)</dt>
+<dd>
+<p>This option specifies the maximum number of files to keep in the cache. Use
+0 for no limit (which is the default). See also <em><a href="#_cache_size_management">Cache size management</a></em>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_max_size" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>max_size</strong> (<strong>CCACHE_MAXSIZE</strong>)</dt>
+<dd>
+<p>This option specifies the maximum size of the cache. Use 0 for no limit. The
+default value is 5G. Available suffixes: k, M, G, T (decimal) and Ki, Mi,
+Gi, Ti (binary). The default suffix is G. See also
+<em><a href="#_cache_size_management">Cache size management</a></em>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_msvc_dep_prefix" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>msvc_dep_prefix</strong> (<strong>CCACHE_MSVC_DEP_PREFIX</strong>)</dt>
+<dd>
+<p>This option specifies the prefix of included files output for MSVC compiler.
+The default prefix is &#8220;Note: including file:&#8221;. If you use a localized
+compiler, this should be set accordingly.</p>
+</dd>
+</dl>
+</div>
+<div id="config_namespace" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>namespace</strong> (<strong>CCACHE_NAMESPACE</strong>)</dt>
+<dd>
+<p>If set, the namespace string will be added to the hashed data for each
+compilation. This will make the associated cache entries logically separate
+from cache entries with other namespaces, but they will still share the same
+storage space. Cache entries can also be selectively removed from the local
+cache with the command line option <code>--evict-namespace</code>, potentially in
+combination with <code>--evict-older-than</code>.</p>
+<div class="paragraph">
+<p>For instance, if you use the same local cache for several disparate projects,
+you can use a unique namespace string for each one. This allows you to remove
+cache entries that belong to a certain project if you stop working with that
+project.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_path" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>path</strong> (<strong>CCACHE_PATH</strong>)</dt>
+<dd>
+<p>If set, ccache will search directories in this list when looking for the
+real compiler. The list separator is semicolon on Windows systems and colon
+on other systems. If not set, ccache will look for the first executable
+matching the compiler name in the normal <code>PATH</code> that isn&#8217;t a symbolic link
+to ccache itself.</p>
+</dd>
+</dl>
+</div>
+<div id="config_pch_external_checksum" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>pch_external_checksum</strong> (<strong>CCACHE_PCH_EXTSUM</strong> or <strong>CCACHE_NOPCH_EXTSUM</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>When this option is set, and ccache finds a precompiled header file,
+ccache will look for a file with the extension &#8220;.sum&#8221; added
+(e.g. &#8220;pre.h.gch.sum&#8221;), and if found, it will hash this file instead
+of the precompiled header itself to work around the performance
+penalty of hashing very large files.</p>
+</dd>
+</dl>
+</div>
+<div id="config_prefix_command" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>prefix_command</strong> (<strong>CCACHE_PREFIX</strong>)</dt>
+<dd>
+<p>This option adds a list of prefixes (separated by space) to the command line
+that ccache uses when invoking the compiler. See also
+<em><a href="#_using_ccache_with_other_compiler_wrappers">Using ccache with other compiler wrappers</a></em>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_prefix_command_cpp" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>prefix_command_cpp</strong> (<strong>CCACHE_PREFIX_CPP</strong>)</dt>
+<dd>
+<p>This option adds a list of prefixes (separated by space) to the command
+line that ccache uses when invoking the preprocessor.</p>
+</dd>
+</dl>
+</div>
+<div id="config_read_only" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>read_only</strong> (<strong>CCACHE_READONLY</strong> or <strong>CCACHE_NOREADONLY</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will attempt to use existing cached results, but it will not
+add new results to any cache backend. Statistics counters will still be
+updated, though, unless the <a href="#config_stats"><strong>stats</strong></a> option is set to
+<strong>false</strong>.</p>
+<div class="paragraph">
+<p>If you are using this because your ccache directory is read-only, you need to
+set <a href="#config_temporary_dir"><strong>temporary_dir</strong></a> since ccache will fail to create
+temporary files otherwise. You may also want to set <a href="#config_stats"><strong>stats</strong></a> to
+<strong>false</strong> make ccache not even try to update stats files.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_read_only_direct" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>read_only_direct</strong> (<strong>CCACHE_READONLY_DIRECT</strong> or <strong>CCACHE_NOREADONLY_DIRECT</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>Just like <a href="#config_read_only"><strong>read_only</strong></a> except that ccache will only try
+to retrieve results from the cache using the direct mode, not the
+preprocessor mode. See documentation for <a href="#config_read_only"><strong>read_only</strong></a>
+regarding using a read-only ccache directory.</p>
+</dd>
+</dl>
+</div>
+<div id="config_recache" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>recache</strong> (<strong>CCACHE_RECACHE</strong> or <strong>CCACHE_NORECACHE</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will not use any previously stored result. New results will
+still be cached, possibly overwriting any pre-existing results.</p>
+</dd>
+</dl>
+</div>
+<div id="config_remote_only" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>remote_only</strong> (<strong>CCACHE_REMOTE_ONLY</strong> or <strong>CCACHE_NOREMOTE_ONLY</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will only use <a href="#config_remote_storage">remote storage</a>. The
+default is false. Note that cache statistics counters will still be kept in
+the local cache directory unless <a href="#config_stats"><strong>stats</strong></a> is false. See also
+<em><a href="#_storage_interaction">Storage interaction</a></em>.</p>
+</dd>
+</dl>
+</div>
+<div id="config_remote_storage" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>remote_storage</strong> (<strong>CCACHE_REMOTE_STORAGE</strong>)</dt>
+<dd>
+<p>This option specifies one or several storage backends (separated by space)
+to query after checking the local cache (unless
+<a href="#config_remote_only"><strong>remote_only</strong></a> is true). See
+<em><a href="#_remote_storage_backends">Remote storage backends</a></em> for documentation of syntax and available
+backends.</p>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>file:/shared/nfs/directory</code></p>
+</li>
+<li>
+<p><code>file:///shared/nfs/one|read-only file:///shared/nfs/two</code></p>
+</li>
+<li>
+<p><code>file:///Z:/example/windows/folder</code></p>
+</li>
+<li>
+<p><code>http://example.com/cache</code></p>
+</li>
+<li>
+<p><code>redis://example.com</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In previous ccache versions this option was called <strong>secondary_storage</strong>
+(<strong>CCACHE_SECONDARY_STORAGE</strong>), which can still be used as an alias.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_reshare" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>reshare</strong> (<strong>CCACHE_RESHARE</strong> or <strong>CCACHE_NORESHARE</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will write results to remote storage even for local storage
+cache hits. The default is false.</p>
+</dd>
+</dl>
+</div>
+<div id="config_run_second_cpp" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>run_second_cpp</strong> (<strong>CCACHE_CPP2</strong> or <strong>CCACHE_NOCPP2</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will first run the preprocessor to preprocess the source
+code (see <em><a href="#_the_preprocessor_mode">The preprocessor mode</a></em>) and then on a cache miss run the
+compiler on the source code to get hold of the object file. This is the
+default.</p>
+<div class="paragraph">
+<p>If false, ccache will first run preprocessor to preprocess the source code and
+then on a cache miss run the compiler on the <em>preprocessed source code</em> instead
+of the original source code. This makes cache misses slightly faster since the
+source code only has to be preprocessed once. The downside is that some
+compilers won&#8217;t produce the same result (for instance diagnostics warnings)
+when compiling preprocessed source code.</p>
+</div>
+<div class="paragraph">
+<p>A solution to the above mentioned downside is to set <strong>run_second_cpp</strong> to false
+and pass <code>-fdirectives-only</code> (for GCC) or <code>-frewrite-includes</code> (for Clang) to
+the compiler. This will cause the compiler to leave the macros and other
+preprocessor information, and only process the <strong>#include</strong> directives. When run
+in this way, the preprocessor arguments will be passed to the compiler since it
+still has to do <em>some</em> preprocessing (like macros).</p>
+</div>
+<div class="paragraph">
+<p>This option is ignored with MSVC, as there is no way to make it compile without
+preprocessing first.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_sloppiness" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>sloppiness</strong> (<strong>CCACHE_SLOPPINESS</strong>)</dt>
+<dd>
+<p>By default, ccache tries to give as few false cache hits as possible.
+However, in certain situations it&#8217;s possible that you know things that
+ccache can&#8217;t take for granted. This option makes it possible to tell
+ccache to relax some checks in order to increase the hit rate. The value
+should be a comma-separated string with one or several of the following
+values:</p>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>clang_index_store</strong></dt>
+<dd>
+<p>Ignore the Clang compiler option <code>-index-store-path</code> and its argument when
+computing the manifest hash. This is useful if you use Xcode, which uses an
+index store path derived from the local project path. Note that the index
+store won&#8217;t be updated correctly on cache hits if you enable this
+sloppiness.</p>
+</dd>
+<dt class="hdlist1"><strong>file_stat_matches</strong></dt>
+<dd>
+<p>Ccache normally examines a file&#8217;s contents to determine whether it matches
+the cached version. With this sloppiness set, ccache will consider a file
+as matching its cached version if the mtimes and ctimes match.</p>
+</dd>
+<dt class="hdlist1"><strong>file_stat_matches_ctime</strong></dt>
+<dd>
+<p>Ignore ctimes when <strong>file_stat_matches</strong> is enabled. This can be useful when
+backdating files' mtimes in a controlled way.</p>
+</dd>
+<dt class="hdlist1"><strong>gcno_cwd</strong></dt>
+<dd>
+<p>By default, ccache will include the current working directory in the hash
+when producing a <code>.gcno</code> file (when compiling with <code>-ftest-coverage</code>). This
+is because GCC 9+ includes the current working directory in the <code>.gcno</code>
+file. The <strong>gcno_cwd</strong> sloppiness makes ccache not hash the current working
+directory so that you can get cache hits when compiling in different
+directories, with the tradeoff of potentially getting an incorrect directory
+in the <code>.gcno</code> file. <strong>gcno_cwd</strong> also disables hashing of the current working
+directory if <code>-fprofile-abs-path</code> is used.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>gcno_cwd</code> sloppiness will not have any effect when compiling with
+<code>--coverage</code> since that implies <code>-fprofile-arcs</code> which always forces CWD to be
+included in the input hash.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1"><strong>incbin</strong></dt>
+<dd>
+<p>By default, ccache will ignore all files containing an <code>.incbin</code> directive.
+While this is the correct behaviour as ccache does not detect incbin changes,
+this restriction can make some projects difficult to cache. This sloppiness
+will pretend the <code>.incbin</code> directive doesn&#8217;t exist and simply allow caching.</p>
+</dd>
+<dt class="hdlist1"><strong>include_file_ctime</strong></dt>
+<dd>
+<p>By default, ccache will disable caching if a source code file has a status
+change time (ctime) after the start of the ccache invocation. This
+sloppiness disables that check. See also <em><a href="#Handling of newly created source
+files">[Handling of newly created source
+files]</a></em>.</p>
+</dd>
+<dt class="hdlist1"><strong>include_file_mtime</strong></dt>
+<dd>
+<p>By default, ccache will disable caching if a source code file has a
+modification time (mtime) after the start of the ccache invocation. This
+sloppiness disables that check. See also <em><a href="#Handling of newly created source
+files">[Handling of newly created source
+files]</a></em>.</p>
+</dd>
+<dt class="hdlist1"><strong>ivfsoverlay</strong></dt>
+<dd>
+<p>Ignore the Clang compiler option <code>-ivfsoverlay</code> and its argument. This is
+useful if you use Xcode, which uses a virtual file system (VFS) for things
+like combining Objective-C and Swift code.</p>
+</dd>
+<dt class="hdlist1"><strong>locale</strong></dt>
+<dd>
+<p>Ccache includes the environment variables <code>LANG</code>, <code>LC_ALL</code>, <code>LC_CTYPE</code> and
+<code>LC_MESSAGES</code> in the hash by default since they may affect localization of
+compiler warning messages. Set this sloppiness to tell ccache not to do
+that.</p>
+</dd>
+<dt class="hdlist1"><strong>modules</strong></dt>
+<dd>
+<p>By default, ccache will not cache compilations if <code>-fmodules</code> is used since
+it cannot hash the state of compiler&#8217;s internal representation of relevant
+modules. This sloppiness allows caching in such a case. See
+<em><a href="#_c_modules">C++ modules</a></em> for more information.</p>
+</dd>
+<dt class="hdlist1"><strong>pch_defines</strong></dt>
+<dd>
+<p>Be sloppy about <code>#define</code> directives when precompiling a header file. See
+<em><a href="#_precompiled_headers">Precompiled headers</a></em> for more information.</p>
+</dd>
+<dt class="hdlist1"><strong>random_seed</strong></dt>
+<dd>
+<p>Ignore the <code>-frandom-seed</code> option and its arguments when computing the input
+hash. This is useful if your build system generates different seeds between
+builds and you are OK with reusing cached results.</p>
+</dd>
+<dt class="hdlist1"><strong>system_headers</strong></dt>
+<dd>
+<p>Only check non-system headers in direct mode.
+This can be useful if e.g. your system headers tend to change but you know that
+the changes don&#8217;t matter. Notes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This sloppiness is only supported for GCC-like compilers, not MSVC.</p>
+</li>
+<li>
+<p>System headers are still taken into account for preprocessed lookup.</p>
+</li>
+<li>
+<p>You can get stale cache hits if the system headers do change in incompatible
+ways.</p>
+</li>
+<li>
+<p>See also the
+<a href="#config_ignore_headers_in_manifest"><strong>ignore_headers_in_manifest</strong></a> setting.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>time_macros</strong></dt>
+<dd>
+<p>Ignore <code>__DATE__</code>, <code>__TIME__</code> and <code>__TIMESTAMP__</code> being present in the
+source code.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>See the discussion under <em><a href="#_troubleshooting">Troubleshooting</a></em> for more information.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_stats" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>stats</strong> (<strong>CCACHE_STATS</strong> or <strong>CCACHE_NOSTATS</strong>, see <em><a href="#_boolean_values">Boolean values</a></em> above)</dt>
+<dd>
+<p>If true, ccache will update the statistics counters on each compilation. The
+default is true. If false, <em><a href="#automatic cleanup">[automatic cleanup]</a></em> will be disabled as well.</p>
+</dd>
+</dl>
+</div>
+<div id="config_stats_log" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>stats_log</strong> (<strong>CCACHE_STATSLOG</strong>)</dt>
+<dd>
+<p>If set to a file path, ccache will write statistics counter updates to the
+specified file. This is useful for getting statistics for individual builds.
+To show a summary of the current stats log, use <code>ccache --show-log-stats</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Lines in the stats log starting with a hash sign (<code>#</code>) are comments.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_temporary_dir" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>temporary_dir</strong> (<strong>CCACHE_TEMPDIR</strong>)</dt>
+<dd>
+<p>This option specifies where ccache will put temporary files. The default is
+<code>$XDG_RUNTIME_DIR/ccache-tmp</code> (typically <code>/run/user/&lt;UID&gt;/ccache-tmp</code>) if
+<code>XDG_RUNTIME_DIR</code> is set and the directory exists, otherwise
+<code>&lt;cache_dir&gt;/tmp</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In previous versions of ccache, <strong>CCACHE_TEMPDIR</strong> had to be on the same
+filesystem as the <code>CCACHE_DIR</code> path, but this requirement has been relaxed.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div id="config_umask" class="dlist">
+<dl>
+<dt class="hdlist1"><strong>umask</strong> (<strong>CCACHE_UMASK</strong>)</dt>
+<dd>
+<p>This option (an octal integer) specifies the umask for files and directories
+in the cache directory. This is mostly useful when you wish to share your
+cache with other users.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_disabling_ccache"><a class="anchor" href="#_disabling_ccache"></a>Disabling ccache</h3>
+<div class="paragraph">
+<p>To disable ccache completely for all invocations, set <a href="#config_disable"><strong>disable
+= true</strong></a> (<code>CCACHE_DISABLE=1</code>). You can also disable ccache for a certain source
+code file by adding the string <code>ccache:disable</code> in a comment in the first 4096
+bytes of the file. In the latter case the <code>Ccache disabled</code> statistics counter
+will be increased.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_remote_storage_backends"><a class="anchor" href="#_remote_storage_backends"></a>Remote storage backends</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="#config_remote_storage"><strong>remote_storage</strong></a> option lets you configure ccache
+to use one or several remote storage backends. By default, the local cache
+directory located in <a href="#config_cache_dir"><strong>cache_dir</strong></a> will be queried first and
+remote storage second, but <a href="#config_remote_only"><strong>remote_only</strong></a> can be set to
+true to disable local storage. Note that cache statistics counters will still be
+kept in the local cache directory&#8201;&#8212;&#8201;remote storage backends only store
+compilation results and manifests.</p>
+</div>
+<div class="paragraph">
+<p>A remote storage backend is specified with a URL, optionally followed by a pipe
+(<code>|</code>) and a pipe-separated list of attributes. An attribute is <em>key</em>=<em>value</em> or
+just <em>key</em> as a short form of <em>key</em>=<strong>true</strong>. Attribute values must be
+<a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encoded</a> if they contain
+percent, pipe or space characters.</p>
+</div>
+<div class="sect2">
+<h3 id="_attributes_for_all_backends"><a class="anchor" href="#_attributes_for_all_backends"></a>Attributes for all backends</h3>
+<div class="paragraph">
+<p>These optional attributes are available for all remote storage backends:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>read-only</strong>: If <strong>true</strong>, only read from this backend, don&#8217;t write. The default
+is <strong>false</strong>.</p>
+</li>
+<li>
+<p><strong>shards</strong>: A comma-separated list of names for sharding (partitioning) the
+cache entries using
+<a href="https://en.wikipedia.org/wiki/Rendezvous_hashing">Rendezvous hashing</a>,
+typically to spread the cache over a server cluster. When set, the storage URL
+must contain an asterisk (<code>*</code>), which will be replaced by one of the shard
+names to form a real URL. A shard name can optionally have an appended weight
+within parentheses to indicate how much of the key space should be associated
+with that shard. A shard with weight <strong>w</strong> will contain <strong>w</strong>/<strong>S</strong> of the cache,
+where <strong>S</strong> is the sum of all shard weights. A weight could for instance be set
+to represent the available memory for a memory cache on a specific server. The
+default weight is <strong>1</strong>.</p>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>redis://cache-*.example.com|shards=a(3),b(1),c(1.5)</code> will put 55% (3/5.5)
+of the cache on <code>redis://cache-a.example.com</code>, 18% (1/5.5) on
+<code>redis://cache-b.example.com</code> and 27% (1.5/5.5) on
+<code>redis://cache-c.example.com</code>.</p>
+</li>
+<li>
+<p><code>http://example.com/*|shards=alpha,beta</code> will put 50% of the cache on
+<code>http://example.com/alpha</code> and 50% on <code>http://example.com/beta</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_storage_interaction"><a class="anchor" href="#_storage_interaction"></a>Storage interaction</h3>
+<div class="paragraph">
+<p>The table below describes the interaction between local and remote storage on
+cache hits and misses if <a href="#config_remote_only"><strong>remote_only</strong></a> is false (which is
+the default):</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Local storage</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Remote storage</strong></th>
+<th class="tableblock halign-left valign-top"><strong>What happens</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">miss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">miss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compile, write to local, write to remote<sup>[1]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">miss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read from remote, write to local</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read from local, don&#8217;t write to remote<sup>[2]</sup></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><sup>[1]</sup> Unless remote storage has attribute <code>read-only=true</code>.<br>
+<sup>[2]</sup> Unless local storage is set to share its cache hits with the
+<a href="#config_reshare"><strong>reshare</strong></a> option.</p>
+</div>
+<div class="paragraph">
+<p>If <a href="#config_remote_only"><strong>remote_only</strong></a> is true:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Local storage</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Remote storage</strong></th>
+<th class="tableblock halign-left valign-top"><strong>What happens</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">miss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compile, write to remote, don&#8217;t write to local</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read from remote, don&#8217;t write to local</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_file_storage_backend"><a class="anchor" href="#_file_storage_backend"></a>File storage backend</h3>
+<div class="paragraph">
+<p>URL format: <code>file:DIRECTORY</code> or <code>file://[HOST]DIRECTORY</code></p>
+</div>
+<div class="paragraph">
+<p>This backend stores data as separate files in a directory structure below
+<strong>DIRECTORY</strong>, similar (but not identical) to the local cache storage. A typical
+use case for this backend would be sharing a cache on an NFS directory.
+<strong>DIRECTORY</strong> must start with a slash. <strong>HOST</strong> can be the empty string or
+localhost. On Windows, <strong>HOST</strong> can also be the name of a server hosting a shared
+folder.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+ccache will not perform any cleanup of the storage&#8201;&#8212;&#8201;that has to be
+done by other means, for instance by running <code>ccache --trim-dir</code> periodically.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>file:/shared/nfs/directory</code></p>
+</li>
+<li>
+<p><code>file:///shared/nfs/directory|umask=002|update-mtime=true</code></p>
+</li>
+<li>
+<p><code>file:///Z:/example/windows/folder</code></p>
+</li>
+<li>
+<p><code>file://example.com/shared/ccache%20folder</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>layout</strong>: How to store file under the cache directory. Available values:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>flat</strong>: Store all files directly under the cache directory.</p>
+</li>
+<li>
+<p><strong>subdirs</strong>: Store files in 256 subdirectories of the cache directory.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The default is <strong>subdirs</strong>.</p>
+</div>
+</li>
+<li>
+<p><strong>umask</strong>: This attribute (an octal integer) overrides the umask to use for
+files and directories in the cache directory.</p>
+</li>
+<li>
+<p><strong>update-mtime</strong>: If <strong>true</strong>, update the modification time (mtime) of cache
+entries that are read. The default is <strong>false</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_storage_backend"><a class="anchor" href="#_http_storage_backend"></a>HTTP storage backend</h3>
+<div class="paragraph">
+<p>URL format: <code>http://HOST[:PORT][/PATH]</code></p>
+</div>
+<div class="paragraph">
+<p>This backend stores data in an HTTP-compatible server. The required HTTP methods
+are <code>GET</code>, <code>PUT</code> and <code>DELETE</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+ccache will not perform any cleanup of the storage&#8201;&#8212;&#8201;that has to be
+done by other means, for instance by running <code>ccache --trim-dir</code> periodically.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+HTTPS is not supported.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See <a href="https://ccache.dev/howto/http-storage.html">How to set up HTTP storage</a>
+for hints on how to set up an HTTP server for use with ccache.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>http://localhost</code></p>
+</li>
+<li>
+<p><code>http://someusername:p4ssw0rd@example.com/cache/</code></p>
+</li>
+<li>
+<p><code>http://localhost:8080|layout=bazel|connect-timeout=50</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>bearer-token</strong>: Bearer token used to authorize the HTTP requests.</p>
+</li>
+<li>
+<p><strong>connect-timeout</strong>: Timeout (in ms) for network connection. The default is 100.</p>
+</li>
+<li>
+<p><strong>keep-alive</strong>: If <strong>true</strong>, keep the HTTP connection to the storage server open
+to avoid reconnects. The default is <strong>true</strong>.</p>
+</li>
+<li>
+<p><strong>layout</strong>: How to map key names to the path part of the URL. Available values:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>bazel</strong>: Store values in a format compatible with the Bazel HTTP caching
+protocol. More specifically, the entries will be stored as 64 hex digits
+under the <code>/ac/</code> part of the cache.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may have to disable verification of action cache values in the server
+for this to work since ccache entries are not valid action result metadata
+values.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>flat</strong>: Append the key directly to the path part of the URL (with a leading
+slash if needed).</p>
+</li>
+<li>
+<p><strong>subdirs</strong>: Append the first two characters of the key to the URL (with a
+leading slash if needed), followed by a slash and the rest of the key. This
+divides the entries into 256 buckets.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The default is <strong>subdirs</strong>.</p>
+</div>
+</li>
+<li>
+<p><strong>operation-timeout</strong>: Timeout (in ms) for HTTP requests. The default is 10000.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_redis_storage_backend"><a class="anchor" href="#_redis_storage_backend"></a>Redis storage backend</h3>
+<div class="paragraph">
+<p>URL formats:</p>
+</div>
+<div class="paragraph">
+<p><code>redis://[[USERNAME:]PASSWORD@]HOST[:PORT][/DBNUMBER]</code><br>
+<code>redis+unix:SOCKET_PATH[?db=DBNUMBER]</code><br>
+<code>redis+unix://[[USERNAME:]PASSWORD@localhost]SOCKET_PATH[?db=DBNUMBER]</code></p>
+</div>
+<div class="paragraph">
+<p>This backend stores data in a <a href="https://redis.io">Redis</a> (or Redis-compatible)
+server. There are implementations for both memory-based and disk-based storage.
+<strong>PORT</strong> defaults to <strong>6379</strong> and <strong>DBNUMBER</strong> defaults to <strong>0</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+ccache will not perform any cleanup of the Redis storage, but you can
+<a href="https://redis.io/topics/lru-cache">configure LRU eviction</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See <a href="https://ccache.dev/howto/redis-storage.html">How to set up Redis
+storage</a> for hints on setting up a Redis server for use with ccache.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can set up a cluster of Redis servers using the <code>shards</code> attribute
+described in <em><a href="#_remote_storage_backends">Remote storage backends</a></em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>redis://localhost</code></p>
+</li>
+<li>
+<p><code>redis://p4ssw0rd@cache.example.com:6379/0|connect-timeout=50</code></p>
+</li>
+<li>
+<p><code>redis+unix:/run/redis.sock</code></p>
+</li>
+<li>
+<p><code>redis+unix:///run/redis.sock</code></p>
+</li>
+<li>
+<p><code>redis+unix://p4ssw0rd@localhost/run/redis.sock?db=0</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>connect-timeout</strong>: Timeout (in ms) for network connection. The default is 100.</p>
+</li>
+<li>
+<p><strong>operation-timeout</strong>: Timeout (in ms) for Redis commands. The default is 10000.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cache_size_management"><a class="anchor" href="#_cache_size_management"></a>Cache size management</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, ccache has a 5 GB limit on the total size of files in the cache and
+no limit on the number of files. You can set different limits using the command
+line options <code>-M</code>/<code>--max-size</code> and <code>-F</code>/<code>--max-files</code>. Use the
+<code>-s</code>/<code>--show-stats</code> option to see the cache size and the currently configured
+limits (in addition to other various statistics).</p>
+</div>
+<div class="paragraph">
+<p>Cleanup can be triggered in two different ways: automatic and manual.</p>
+</div>
+<div class="sect2">
+<h3 id="_automatic_cleanup"><a class="anchor" href="#_automatic_cleanup"></a>Automatic cleanup</h3>
+<div class="paragraph">
+<p>After a new compilation result has been written to the local cache, ccache will
+trigger an automatic cleanup if <a href="#config_max_size"><strong>max_size</strong></a> or
+<a href="#config_max_files"><strong>max_files</strong></a> is exceeded. The cleanup removes cache entries
+in LRU (least recently used) order based on the modification time (mtime) of
+files in the cache. For this reason, ccache updates mtime of the cache files
+read on a cache hit to mark them as recently used.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manual_cleanup"><a class="anchor" href="#_manual_cleanup"></a>Manual cleanup</h3>
+<div class="paragraph">
+<p>You can run <code>ccache -c/--cleanup</code> to force cleanup of the whole cache. This will
+recalculate the cache size information and also make sure that the cache size
+does not exceed <a href="#config_max_size"><strong>max_size</strong></a> and
+<a href="#config_max_files"><strong>max_files</strong></a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cache_compression"><a class="anchor" href="#_cache_compression"></a>Cache compression</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ccache will by default compress all data it puts into the cache using the
+compression algorithm <a href="http://zstd.net">Zstandard</a> (zstd) using compression level
+1. The algorithm is fast enough that there should be little reason to turn off
+compression to gain performance. One exception is if the cache is located on a
+compressed file system, in which case the compression performed by ccache of
+course is redundant. See the documentation for the configuration options
+<a href="#config_compression"><strong>compression</strong></a> and
+<a href="#config_compression_level"><strong>compression_level</strong></a> for more information.</p>
+</div>
+<div class="paragraph">
+<p>You can use the command line option <code>-x</code>/<code>--show-compression</code> to print
+information related to compression. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Total data:           14.8 GB (16.0 GB disk blocks)
+Compressed data:      11.3 GB (30.6% of original size)
+  Original size:      36.9 GB
+  Compression ratio: 3.267 x  (69.4% space savings)
+Incompressible data:   3.5 GB</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The &#8220;disk blocks&#8221; size is the cache size when taking disk block size into
+account. This value should match the &#8220;Cache size&#8221; value from &#8220;ccache
+--show-stats&#8221;. The other size numbers refer to actual content sizes.</p>
+</li>
+<li>
+<p>&#8220;Compressed data&#8221; refers to result and manifest files stored in the cache.</p>
+</li>
+<li>
+<p>&#8220;Incompressible data&#8221; refers to files that are always stored uncompressed
+(triggered by enabling <a href="#config_file_clone"><strong>file_clone</strong></a> or
+<a href="#config_hard_link"><strong>hard_link</strong></a>) or unknown files (for instance files
+created by older ccache versions).</p>
+</li>
+<li>
+<p>The compression ratio is affected by
+<a href="#config_compression_level"><strong>compression_level</strong></a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The cache data can also be recompressed to another compression level (or made
+uncompressed) with the command line option <code>-X</code>/<code>--recompress</code>. If you choose to
+disable compression by default or to use a low compression level, you can
+(re)compress newly cached data with a higher compression level after the build
+or at another time when there are more CPU cycles available, for instance every
+night. Full recompression potentially takes a lot of time, but only files that
+are currently compressed with a different level than the target level will be
+recompressed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cache_statistics"><a class="anchor" href="#_cache_statistics"></a>Cache statistics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>ccache --show-stats</code> shows a summary of statistics, including cache size,
+cleanups (number of performed cleanups, either implicitly due to a cache size
+limit being reached or due to explicit <code>ccache -c</code> calls), overall hit rate, hit
+rate for <a href="#_the_direct_mode">direct</a>/<a href="#_the_preprocessor_mode">preprocessed</a> modes
+and hit rate for local and <a href="#config_remote_storage">remote storage</a>.</p>
+</div>
+<div class="paragraph">
+<p>The summary also includes counters called &#8220;Errors&#8221; and &#8220;Uncacheable&#8221;, which
+are sums of more detailed counters. To see those detailed counters, use the
+<code>-v</code>/<code>--verbose</code> flag. The verbose mode can show the following counters:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Counter</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autoconf compile/link</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uncacheable compilation or linking by an Autoconf test.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bad compiler arguments</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Malformed compiler argument, e.g. missing a value for a compiler option that
+requires an argument or failure to read a file specified by a compiler option
+argument.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Called for linking</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The compiler was called for linking, not compiling. Ccache only supports
+compilation of a single file, i.e. calling the compiler with the <code>-c</code> option to
+produce a single object file from a single source file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Called for preprocessing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The compiler was called for preprocessing, not compiling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ccache disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ccache was disabled by a <code>ccache:disable</code> string in the source code file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Could not use modules</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preconditions for using <a href="#_c_modules">C++ modules</a> were not fulfilled.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Could not use precompiled header</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preconditions for using <a href="#_precompiled_headers">precompiled headers</a> were not
+fulfilled.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Could not read or parse input file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An input file could not be read or parsed (see the debug log for details).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Could not write to output file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The output path specified with <code>-o</code> could not be written to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compilation failed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The compilation failed. No result stored in the cache.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compiler check failed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A compiler check program specified by
+<a href="#config_compiler_check"><strong>compiler_check</strong></a> (<strong>CCACHE_COMPILERCHECK</strong>) failed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compiler output file missing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of the files expected to be produced by the compiler was missing after
+compilation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compiler produced empty output</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The compiler&#8217;s output file (typically an object file) was empty after
+compilation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Could not find the compiler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The compiler to execute could not be found.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error hashing extra file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failure reading a file specified by
+<a href="#config_extra_files_to_hash"><strong>extra_files_to_hash</strong></a> (<strong>CCACHE_EXTRAFILES</strong>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Forced recache</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#config_recache"><strong>CCACHE_RECACHE</strong></a> was used to overwrite an existing result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input file modified during compilation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An input file was modified during compilation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internal error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unexpected failure, e.g. due to problems reading/writing the cache.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Missing cache file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A file was unexpectedly missing from the cache. This only happens in rare
+situations, e.g. if one ccache instance is about to get a file from the cache
+while another instance removed the file as part of cache cleanup.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple source files</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The compiler was called to compile multiple source files in one go. This is not
+supported by ccache.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No input file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No input file was specified to the compiler.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output to stdout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The compiler was instructed to write its output to standard output using <code>-o -</code>.
+This is not supported by ccache.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preprocessing failed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preprocessing the source code using the compiler&#8217;s <code>-E</code> option failed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unsupported code directive</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code like the assembler <code>.incbin</code> directive was found. This is not supported
+by ccache.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unsupported compiler option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A compiler option not supported by ccache was found.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unsupported environment variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An environment variable not supported by ccache was set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unsupported source language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A source language e.g. specified with <code>-x</code> was unsupported by ccache.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_ccache_works"><a class="anchor" href="#_how_ccache_works"></a>How ccache works</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The basic idea is to detect when you are compiling exactly the same code a
+second time and reuse the previously produced output. The detection is done by
+hashing different kinds of information that should be unique for the
+compilation and then using the hash sum to identify the cached output. Ccache
+uses BLAKE3, a very fast cryptographic hash algorithm, for the hashing. On a
+cache hit, ccache is able to supply all of the correct compiler outputs
+(including all warnings, dependency file, etc) from the cache. Data stored in
+the cache is checksummed with XXH3, an extremely fast non-cryptographic
+algorithm, to detect corruption.</p>
+</div>
+<div class="paragraph">
+<p>Ccache has two ways of gathering information used to look up results in the
+cache:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <strong>preprocessor mode</strong>, where ccache runs the preprocessor on the source
+code and hashes the result</p>
+</li>
+<li>
+<p>the <strong>direct mode</strong>, where ccache hashes the source code and include files
+directly</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The direct mode is generally faster since running the preprocessor has some
+overhead.</p>
+</div>
+<div class="paragraph">
+<p>If no previous result is detected (i.e., there is a cache miss) using the direct
+mode, ccache will fall back to the preprocessor mode unless the <strong>depend mode</strong> is
+enabled. In the depend mode, ccache never runs the preprocessor, not even on
+cache misses. Read more in <em><a href="#_the_depend_mode">The depend mode</a></em> below.</p>
+</div>
+<div class="sect2">
+<h3 id="_common_hashed_information"><a class="anchor" href="#_common_hashed_information"></a>Common hashed information</h3>
+<div class="paragraph">
+<p>The following information is always included in the hash:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the extension used by the compiler for a file with preprocessor output
+(normally <code>.i</code> for C code and <code>.ii</code> for C++ code)</p>
+</li>
+<li>
+<p>the compiler&#8217;s size and modification time (or other compiler-specific
+information specified by <a href="#config_compiler_check"><strong>compiler_check</strong></a>)</p>
+</li>
+<li>
+<p>the name of the compiler</p>
+</li>
+<li>
+<p>the current directory (if <a href="#config_hash_dir"><strong>hash_dir</strong></a> is enabled)</p>
+</li>
+<li>
+<p>contents of files specified by
+<a href="#config_extra_files_to_hash"><strong>extra_files_to_hash</strong></a> (if any)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_preprocessor_mode"><a class="anchor" href="#_the_preprocessor_mode"></a>The preprocessor mode</h3>
+<div class="paragraph">
+<p>In the preprocessor mode, the hash is formed of the common information and:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the preprocessor output from running the compiler with <code>-E</code></p>
+</li>
+<li>
+<p>the command line options except those that affect include files (<code>-I</code>,
+<code>-include</code>, <code>-D</code>, etc; the theory is that these command line options will
+change the preprocessor output if they have any effect at all)</p>
+</li>
+<li>
+<p>any standard error output generated by the preprocessor</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Based on the hash, the cached compilation result can be looked up directly in
+the cache.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_direct_mode"><a class="anchor" href="#_the_direct_mode"></a>The direct mode</h3>
+<div class="paragraph">
+<p>In the direct mode, the hash is formed of the common information and:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the input source file</p>
+</li>
+<li>
+<p>the compiler options</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Based on the hash, a data structure called &#8220;manifest&#8221; is looked up in the
+cache. The manifest contains:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>references to cached compilation results (object file, dependency file, etc)
+that were produced by previous compilations that matched the hash</p>
+</li>
+<li>
+<p>paths to the include files that were read at the time the compilation results
+were stored in the cache</p>
+</li>
+<li>
+<p>hash sums of the include files at the time the compilation results were
+stored in the cache</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The current contents of the include files are then hashed and compared to the
+information in the manifest. If there is a match, ccache knows the result of
+the compilation. If there is no match, ccache falls back to running the
+preprocessor. The output from the preprocessor is parsed to find the include
+files that were read. The paths and hash sums of those include files are then
+stored in the manifest along with information about the produced compilation
+result.</p>
+</div>
+<div class="paragraph">
+<p>There is a catch with the direct mode: header files that were used by the
+compiler are recorded, but header files that were <strong>not</strong> used, but would have
+been used if they existed, are not. So, when ccache checks if a result can be
+taken from the cache, it currently can&#8217;t check if the existence of a new header
+file should invalidate the result. In practice, the direct mode is safe to use
+in the absolute majority of cases.</p>
+</div>
+<div class="paragraph">
+<p>The direct mode will be disabled if any of the following holds:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#config_direct_mode"><strong>direct_mode</strong></a> is false</p>
+</li>
+<li>
+<p>a modification time of one of the include files is too new (needed to avoid a
+race condition)</p>
+</li>
+<li>
+<p>a compiler option not supported by the direct mode is used, for example:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>a <code>-Wp,*</code> compiler option other than <code>-Wp,-MD,&lt;path&gt;</code>, <code>-Wp,-MMD,&lt;path&gt;</code>,
+<code>-Wp,-D&lt;macro[=defn]&gt;</code> or <code>-Wp,-U&lt;macro&gt;</code></p>
+</li>
+<li>
+<p>most uses of <code>-Xpreprocessor</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>the string <code>__TIME__</code> is present in the source code</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_depend_mode"><a class="anchor" href="#_the_depend_mode"></a>The depend mode</h3>
+<div class="paragraph">
+<p>If the depend mode is enabled, ccache will not use the preprocessor at all. The
+hash used to identify results in the cache will be based on the direct mode
+hash described above plus information about include files read from the
+dependency list generated by MSVC with <code>/showIncludes</code>, or the dependency file
+generated by other compilers with <code>-MD</code> or <code>-MMD</code>.</p>
+</div>
+<div class="paragraph">
+<p>Advantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The ccache overhead of a cache miss will be much smaller.</p>
+</li>
+<li>
+<p>Not running the preprocessor at all can be good if compilation is performed
+remotely, for instance when using distcc or similar; ccache then won&#8217;t make
+potentially costly preprocessor calls on the local machine.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Disadvantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The cache hit rate will likely be lower since any change to compiler options
+or source code will make the hash different. Compare this with the default
+setup where ccache will fall back to the preprocessor mode, which is tolerant
+to some types of changes of compiler options and source code changes.</p>
+</li>
+<li>
+<p>If <code>-MD</code> is used, the manifest entries will include system header files as
+well, thus slowing down cache hits slightly, just as using <code>-MD</code> slows down
+make. This is also the case for MSVC with <code>/showIncludes</code>.</p>
+</li>
+<li>
+<p>If <code>-MMD</code> is used, the manifest entries will not include system header files,
+which means ccache will ignore changes in them.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The depend mode will be disabled if any of the following holds:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#config_depend_mode"><strong>depend_mode</strong></a> is false.</p>
+</li>
+<li>
+<p><a href="#config_run_second_cpp"><strong>run_second_cpp</strong></a> is false.</p>
+</li>
+<li>
+<p>The compiler is not generating dependencies using <code>-MD</code> or <code>-MMD</code> (for MSVC,
+<code>/showIncludes</code> is added automatically if not specified by the user).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_of_newly_created_source_files"><a class="anchor" href="#_handling_of_newly_created_source_files"></a>Handling of newly created source files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If modification time (mtime) or status change time (ctime) of the source file or
+one of the include files is equal to (or newer than) the time that ccache was
+invoked, ccache disables caching completely. This is done as a safety measure to
+avoid a race condition (see below). In practice, this is only a problem when
+using file systems with very low timestamp granularity. You can set
+<a href="#config_sloppiness"><strong>sloppiness</strong></a> to <strong>include_file_ctime,include_file_mtime</strong> to
+opt out of the safety measure.</p>
+</div>
+<div class="paragraph">
+<p>For reference, the race condition mentioned above consists of these events:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A source code file is read by ccache and added to the input hash.</p>
+</li>
+<li>
+<p>The source code file is modified.</p>
+</li>
+<li>
+<p>The compiler is executed and reads the modified source code.</p>
+</li>
+<li>
+<p>Ccache stores the compiler output in the cache associated with the incorrect
+key (based on the unmodified source code).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cache_debugging"><a class="anchor" href="#_cache_debugging"></a>Cache debugging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To find out what information ccache actually is hashing, you can enable the
+debug mode via the configuration option <a href="#config_debug"><strong>debug</strong></a> or by setting
+<code>CCACHE_DEBUG</code> in the environment. This can be useful if you are investigating
+why you don&#8217;t get cache hits. Note that performance will be reduced slightly.</p>
+</div>
+<div class="paragraph">
+<p>When the debug mode is enabled, ccache will create up to five additional files
+next to the object file:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 10%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Filename</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Debug level</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;objectfile&gt;.&lt;timestamp&gt;.ccache-input-c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Binary input hashed by both the direct mode and the preprocessor mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;objectfile&gt;.&lt;timestamp&gt;.ccache-input-d</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Binary input only hashed by the direct mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;objectfile&gt;.&lt;timestamp&gt;.ccache-input-p</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Binary input only hashed by the preprocessor mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;objectfile&gt;.&lt;timestamp&gt;.ccache-input-text</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Human-readable combined diffable text version of the three files above.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;objectfile&gt;.&lt;timestamp&gt;.ccache-log</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log for this object file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The timestamp format is
+<code>&lt;year&gt;&lt;month&gt;&lt;day&gt;_&lt;hour&gt;&lt;minute&gt;&lt;second&gt;_&lt;microsecond&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you only need the log file, set <a href="#config_debug"><strong>debug_level</strong></a> (environment
+variable <code>CCACHE_DEBUGLEVEL</code>) to 1.</p>
+</div>
+<div class="paragraph">
+<p>If <a href="#config_debug_dir"><strong>debug_dir</strong></a> (environment variable <code>CCACHE_DEBUGDIR</code>) is
+set, the files above will be written to that directory with full absolute paths
+instead of next to the object file.</p>
+</div>
+<div class="paragraph">
+<p>In the direct mode, ccache uses the 160 bit BLAKE3 hash of the
+&#8220;ccache-input-c&#8221; + &#8220;ccache-input-d&#8221; data (where <strong>+</strong> means concatenation),
+while the &#8220;ccache-input-c&#8221; + &#8220;ccache-input-p&#8221; data is used in the
+preprocessor mode.</p>
+</div>
+<div class="paragraph">
+<p>The &#8220;ccache-input-text&#8221; file is a combined text version of the three binary
+input files. It has three sections (&#8220;COMMON&#8221;, &#8220;DIRECT MODE&#8221; and
+&#8220;PREPROCESSOR MODE&#8221;), which is turn contain annotations that say what kind of
+data comes next.</p>
+</div>
+<div class="paragraph">
+<p>To debug why you don&#8217;t get an expected cache hit for an object file, you can do
+something like this:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enable <code>debug</code> (<code>CCACHE_DEBUG</code>).</p>
+</li>
+<li>
+<p>Build.</p>
+</li>
+<li>
+<p>Clean and build again.</p>
+</li>
+<li>
+<p>Compare the <code>&lt;objectfile&gt;.&lt;timestamp&gt;.ccache-input-text</code> files for the two
+builds. This together with the <code>&lt;objectfile&gt;.&lt;timestamp&gt;.ccache-log</code> files
+should give you some clues about what is happening.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compiling_in_different_directories"><a class="anchor" href="#_compiling_in_different_directories"></a>Compiling in different directories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some information included in the hash that identifies a unique compilation can
+contain absolute paths:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The preprocessed source code may contain absolute paths to include files if
+the compiler option <code>-g</code> is used or if absolute paths are given to <code>-I</code> and
+similar compiler options.</p>
+</li>
+<li>
+<p>Paths specified by compiler options (such as <code>-I</code>, <code>-MF</code>, etc) on the command
+line may be absolute.</p>
+</li>
+<li>
+<p>The source code file path may be absolute, and that path may substituted for
+<code>__FILE__</code> macros in the source code or included in warnings emitted to
+standard error by the preprocessor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This means that if you compile the same code in different locations, you can&#8217;t
+share compilation results between the different build directories since you get
+cache misses because of the absolute build directory paths that are part of the
+hash.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s what can be done to enable cache hits between different build
+directories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you build with <code>-g</code> (or similar) to add debug information to the object
+file, you must either:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>use the compiler option <code>-fdebug-prefix-map=&lt;old&gt;=&lt;new&gt;</code> for relocating
+debug info to a common prefix (e.g. <code>-fdebug-prefix-map=$PWD=.</code>); or</p>
+</li>
+<li>
+<p>set <strong>hash_dir = false</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you use absolute paths anywhere on the command line (e.g. the source code
+file path or an argument to compiler options like <code>-I</code> and <code>-MF</code>), you must
+set <a href="#config_base_dir"><strong>base_dir</strong></a> to an absolute path to a &#8220;base
+directory&#8221;. Ccache will then rewrite absolute paths under that directory to
+relative before computing the hash.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_precompiled_headers"><a class="anchor" href="#_precompiled_headers"></a>Precompiled headers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ccache has support for precompiled headers with GCC and Clang. However, you have
+to do some things to make it work properly:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You must set <a href="#config_sloppiness"><strong>sloppiness</strong></a> to <strong>pch_defines,time_macros</strong>.
+The reason is that ccache can&#8217;t tell whether <code>__TIME__</code>, <code>__DATE__</code> or
+<code>__TIMESTAMP__</code> is used when using a precompiled header. Further, it can&#8217;t
+detect changes in <code>#define</code>s in the source code because of how preprocessing
+works in combination with precompiled headers.</p>
+</li>
+<li>
+<p>You may also want to include <strong>include_file_mtime,include_file_ctime</strong> in
+<a href="#config_sloppiness"><strong>sloppiness</strong></a>. See
+<em><a href="#_handling_of_newly_created_source_files">Handling of newly created source files</a></em>.</p>
+</li>
+<li>
+<p>You must either:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>use the compiler option <code>-include</code> to include the precompiled header (i.e.,
+don&#8217;t use <code>#include</code> in the source code to include the header; the filename
+itself must be sufficient to find the header, i.e. <code>-I</code> paths are not
+searched); or</p>
+</li>
+<li>
+<p>(for the Clang compiler) use the compiler option <code>-include-pch</code> to include
+the PCH file generated from the precompiled header; or</p>
+</li>
+<li>
+<p>(for the GCC compiler) add the compiler option <code>-fpch-preprocess</code> when
+compiling.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>If you use Clang, you must compile with <code>-fno-pch-timestamp</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t do this, either the non-precompiled version of the header file will
+be used (if available) or ccache will fall back to running the real compiler and
+increase the statistics counter &#8220;Preprocessing failed&#8221; (if the non-precompiled
+header file is not available).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_c_modules"><a class="anchor" href="#_c_modules"></a>C++ modules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ccache has support for Clang&#8217;s <code>-fmodules</code> option. In practice ccache only
+additionally hashes <code>module.modulemap</code> files; it does not know how Clang
+handles its cached binary form of modules so those are ignored. This should not
+matter in practice: as long as everything else (including <code>module.modulemap</code>
+files) is the same the cached result should work. Still, you must set
+<a href="#config_sloppiness"><strong>sloppiness</strong></a> to <strong>modules</strong> to allow caching.</p>
+</div>
+<div class="paragraph">
+<p>You must use both <a href="#_the_direct_mode"><strong>direct mode</strong></a> and
+<a href="#_the_depend_mode"><strong>depend mode</strong></a>. When using
+<a href="#_the_preprocessor_mode">the preprocessor mode</a> Clang does not provide enough
+information to allow hashing of <code>module.modulemap</code> files.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sharing_a_local_cache"><a class="anchor" href="#_sharing_a_local_cache"></a>Sharing a local cache</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A group of developers can increase the cache hit rate by sharing a local cache
+directory. To share a local cache without unpleasant side effects, the following
+conditions should to be met:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the same cache directory.</p>
+</li>
+<li>
+<p>Make sure that the configuration option <a href="#config_hard_link"><strong>hard_link</strong></a> is
+false (which is the default).</p>
+</li>
+<li>
+<p>Make sure that all users are in the same group.</p>
+</li>
+<li>
+<p>Set the configuration option <a href="#config_umask"><strong>umask</strong></a> to <strong>002</strong>. This ensures
+that cached files are accessible to everyone in the group.</p>
+</li>
+<li>
+<p>Make sure that all users have write permission in the entire cache directory
+(and that you trust all users of the shared cache).</p>
+</li>
+<li>
+<p>Make sure that the setgid bit is set on all directories in the cache. This
+tells the filesystem to inherit group ownership for new directories. The
+following command might be useful for this:</p>
+<div class="listingblock">
+<div class="content">
+<pre>find $CCACHE_DIR -type d | xargs chmod g+s</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The reason to avoid the hard link mode is that the hard links cause unwanted
+side effects, as all links to a cached file share the file&#8217;s modification
+timestamp. This results in false dependencies to be triggered by
+timestamp-based build systems whenever another user links to an existing file.
+Typically, users will see that their libraries and binaries are relinked
+without reason.</p>
+</div>
+<div class="paragraph">
+<p>You may also want to make sure that a base directory is set appropriately, as
+discussed in a previous section.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sharing_a_cache_on_nfs"><a class="anchor" href="#_sharing_a_cache_on_nfs"></a>Sharing a cache on NFS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is possible to put the cache directory on an NFS filesystem (or similar
+filesystems), but keep in mind that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Having the cache on NFS may slow down compilation. Make sure to do some
+benchmarking to see if it&#8217;s worth it.</p>
+</li>
+<li>
+<p>Ccache hasn&#8217;t been tested very thoroughly on NFS.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A tip is to set <a href="#config_temporary_dir"><strong>temporary_dir</strong></a> to a directory on the
+local host to avoid NFS traffic for temporary files.</p>
+</div>
+<div class="paragraph">
+<p>It is recommended to use the same operating system version when using a shared
+cache. If operating system versions are different then system include files
+will likely be different and there will be few or no cache hits between the
+systems. One way of improving cache hit rate in that case is to set
+<a href="#config_sloppiness"><strong>sloppiness</strong></a> to <strong>system_headers</strong> to ignore system
+headers.</p>
+</div>
+<div class="paragraph">
+<p>An alternative to putting the main cache directory on NFS is to set up a
+<a href="#config_remote_storage">remote storage</a> file cache.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_ccache_with_other_compiler_wrappers"><a class="anchor" href="#_using_ccache_with_other_compiler_wrappers"></a>Using ccache with other compiler wrappers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The recommended way of combining ccache with another compiler wrapper (such as
+&#8220;distcc&#8221;) is by letting ccache execute the compiler wrapper. This is
+accomplished by defining <a href="#config_prefix_command"><strong>prefix_command</strong></a>, for
+example by setting the environment variable <code>CCACHE_PREFIX</code> to the name of the
+wrapper (e.g. <code>distcc</code>). Ccache will then prefix the command line with the
+specified command when running the compiler. To specify several prefix
+commands, set <a href="#config_prefix_command"><strong>prefix_command</strong></a> to a colon-separated
+list of commands.</p>
+</div>
+<div class="paragraph">
+<p>Unless you set <a href="#config_compiler_check"><strong>compiler_check</strong></a> to a suitable command
+(see the description of that configuration option), it is not recommended to use
+the form <code>ccache anotherwrapper compiler args</code> as the compilation command. It&#8217;s
+also not recommended to use the masquerading technique for the other compiler
+wrapper. The reason is that by default, ccache will in both cases hash the mtime
+and size of the other wrapper instead of the real compiler, which means that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compiler upgrades will not be detected properly.</p>
+</li>
+<li>
+<p>The cached results will not be shared between compilations with and without
+the other wrapper.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Another minor thing is that if <a href="#config_prefix_command"><strong>prefix_command</strong></a> is
+used, ccache will not invoke the other wrapper when running the preprocessor,
+which increases performance. You can use
+<a href="#config_prefix_command_cpp"><strong>prefix_command_cpp</strong></a> if you also want to invoke
+the other wrapper when doing preprocessing (normally by adding <code>-E</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_caveats"><a class="anchor" href="#_caveats"></a>Caveats</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The direct mode fails to pick up new header files in some rare scenarios. See
+<em><a href="#_the_direct_mode">The direct mode</a></em> above.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_general"><a class="anchor" href="#_general"></a>General</h3>
+<div class="paragraph">
+<p>A general tip for getting information about what ccache is doing is to enable
+debug logging by setting the configuration option <a href="#config_debug"><strong>debug</strong></a> (or
+the environment variable <strong>CCACHE_DEBUG</strong>); see <em><a href="#_cache_debugging">Cache debugging</a></em>
+for more information. Another way of keeping track of what is
+happening is to check the output of <strong>ccache -s</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_performance"><a class="anchor" href="#_performance"></a>Performance</h3>
+<div class="paragraph">
+<p>Ccache has been written to perform well out of the box, but sometimes you may
+have to do some adjustments of how you use the compiler and ccache in order to
+improve performance.</p>
+</div>
+<div class="paragraph">
+<p>Since ccache works best when I/O is fast, put the cache directory on a fast
+storage device if possible. Having lots of free memory so that files in the
+cache directory stay in the disk cache is also preferable.</p>
+</div>
+<div class="paragraph">
+<p>A good way of monitoring how well ccache works is to run <code>ccache -s</code> before and
+after your build and then compare the statistics counters. Here are some common
+problems and what may be done to increase the hit rate:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the counter for preprocessed cache hits has been incremented instead of the
+one for direct cache hits, ccache has fallen back to preprocessor mode, which
+is generally slower. Some possible reasons are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The source code has been modified in such a way that the preprocessor output
+is not affected.</p>
+</li>
+<li>
+<p>Compiler arguments that are hashed in the direct mode but not in the
+preprocessor mode have changed (<code>-I</code>, <code>-include</code>, <code>-D</code>, etc) and they didn&#8217;t
+affect the preprocessor output.</p>
+</li>
+<li>
+<p>The compiler option <code>-Xpreprocessor</code> or <code>-Wp,*</code> (except <code>-Wp,-MD,&lt;path&gt;</code>,
+<code>-Wp,-MMD,&lt;path&gt;</code>, and <code>-Wp,-D&lt;define&gt;</code>) is used.</p>
+</li>
+<li>
+<p>This was the first compilation with a new value of the
+<a href="#config_base_dir">base directory</a>.</p>
+</li>
+<li>
+<p>A modification or status change time of one of the include files is too new .
+See <em><a href="#_handling_of_newly_created_source_files">Handling of newly created source files</a></em>.</p>
+</li>
+<li>
+<p>The <code>__TIME__</code> preprocessor macro is (potentially) being used. Ccache turns
+off direct mode if <code>__TIME__</code> is present in the source code. This is done
+as a safety measure since the string indicates that a <code>__TIME__</code> macro
+<em>may</em> affect the output. (To be sure, ccache would have to run the
+preprocessor, but the sole point of the direct mode is to avoid that.) If you
+know that <code>__TIME__</code> isn&#8217;t used in practise, or don&#8217;t care if ccache
+produces objects where <code>__TIME__</code> is expanded to something in the past, you
+can set <a href="#config_sloppiness"><strong>sloppiness</strong></a> to <strong>time_macros</strong>.</p>
+</li>
+<li>
+<p>The <code>__DATE__</code> preprocessor macro is (potentially) being used and the date
+has changed. This is similar to how <code>__TIME__</code> is handled. If <code>__DATE__</code>
+is present in the source code, ccache hashes the current date in order to be
+able to produce the correct object file if the <code>__DATE__</code> macro affects the
+output. If you know that <code>__DATE__</code> isn&#8217;t used in practise, or don&#8217;t care
+if ccache produces objects where <code>__DATE__</code> is expanded to something in the
+past, you can set <a href="#config_sloppiness"><strong>sloppiness</strong></a> to <strong>time_macros</strong>.</p>
+</li>
+<li>
+<p>The <code>__TIMESTAMP__</code> preprocessor macro is (potentially) being used and the
+source file&#8217;s modification time has changed. This is similar to how
+<code>__TIME__</code> is handled. If <code>__TIMESTAMP__</code> is present in the source code,
+ccache hashes the string representation of the source file&#8217;s modification
+time in order to be able to produce the correct object file if the
+<code>__TIMESTAMP__</code> macro affects the output. If you know that
+<code>__TIMESTAMP__</code> isn&#8217;t used in practise, or don&#8217;t care if ccache produces
+objects where <code>__TIMESTAMP__</code> is expanded to something in the past, you can
+set <a href="#config_sloppiness"><strong>sloppiness</strong></a> to <strong>time_macros</strong>.</p>
+</li>
+<li>
+<p>The input file path has changed. Ccache includes the input file path in the
+direct mode hash to be able to take relative include files into account and
+to produce a correct object file if the source code includes a <code>__FILE__</code>
+macro.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If a cache hit counter was not incremented even though the same code has been
+compiled and cached before, ccache has either detected that something has
+changed anyway or a cleanup has been performed (either explicitly or
+implicitly when a cache limit has been reached). Some perhaps unobvious things
+that may result in a cache miss are usage of <code>__TIME__</code>, <code>__DATE__</code> or
+<code>__TIMESTAMP__</code> macros, or use of automatically generated code that contains
+a timestamp, build counter or other volatile information.</p>
+</li>
+<li>
+<p>If &#8220;Multiple source files&#8221; has been incremented, it&#8217;s an indication that the
+compiler has been invoked on several source code files at once. Ccache doesn&#8217;t
+support that. Compile the source code files separately if possible.</p>
+</li>
+<li>
+<p>If &#8220;Unsupported compiler option&#8221; has been incremented, enable debug logging
+and check which compiler option was rejected.</p>
+</li>
+<li>
+<p>If &#8220;Preprocessing failed&#8221; has been incremented, one possible reason is that
+precompiled headers are being used. See <em><a href="#_precompiled_headers">Precompiled headers</a></em> for how to
+remedy this.</p>
+</li>
+<li>
+<p>If &#8220;Could not use precompiled header&#8221; has been incremented, see
+<em><a href="#_precompiled_headers">Precompiled headers</a></em>.</p>
+</li>
+<li>
+<p>If &#8220;Could not use modules&#8221; has been incremented, see <em><a href="#_c_modules">C++ modules</a></em>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_corrupt_object_files"><a class="anchor" href="#_corrupt_object_files"></a>Corrupt object files</h3>
+<div class="paragraph">
+<p>It should be noted that ccache is susceptible to general storage problems. If a
+bad object file sneaks into the cache for some reason, it will of course stay
+bad. Some possible reasons for erroneous object files are bad hardware (disk
+drive, disk controller, memory, etc), buggy drivers or file systems, a bad
+<a href="#config_prefix_command"><strong>prefix_command</strong></a> or compiler wrapper. If this
+happens, the easiest way of fixing it is this:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build so that the bad object file ends up in the build tree.</p>
+</li>
+<li>
+<p>Remove the bad object file from the build tree.</p>
+</li>
+<li>
+<p>Rebuild with <code>CCACHE_RECACHE</code> set.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An alternative is to clear the whole cache with <code>ccache -C</code> if you don&#8217;t mind
+losing other cached results.</p>
+</div>
+<div class="paragraph">
+<p>There are no reported issues about ccache producing broken object files
+reproducibly. That doesn&#8217;t mean it can&#8217;t happen, so if you find a repeatable
+case, please report it.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_more_information"><a class="anchor" href="#_more_information"></a>More information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Credits, mailing list information, bug reporting instructions, source code,
+etc, can be found on ccache&#8217;s web site: <a href="https://ccache.dev" class="bare">https://ccache.dev</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_author"><a class="anchor" href="#_author"></a>Author</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ccache was originally written by Andrew Tridgell and is currently developed and
+maintained by Joel Rosdahl. See AUTHORS.txt or AUTHORS.html and
+<a href="https://ccache.dev/credits.html" class="bare">https://ccache.dev/credits.html</a> for a list of contributors.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 4.10<br>
+Last updated 2024-05-29 22:20:33 +0200
+</div>
+</div>
+</body>
+</html>

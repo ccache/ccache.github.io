@@ -65,7 +65,7 @@ table {
 <div id="header">
 <h1>Ccache copyright and license</h1>
 <div class="details">
-<span id="revnumber">version 4.9.1</span>
+<span id="revnumber">version 4.10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -74,20 +74,14 @@ table {
 <li><a href="#_copyright_and_authors">Copyright and authors</a></li>
 <li><a href="#_files_derived_from_other_sources">Files derived from other sources</a>
 <ul class="sectlevel2">
-<li><a href="#_srcthird_partybase32hex">src/third_party/base32hex.*</a></li>
-<li><a href="#_srcthird_partyblake3blake3">src/third_party/blake3/blake3_*</a></li>
-<li><a href="#_srcthird_partydoctest_h">src/third_party/doctest.h</a></li>
-<li><a href="#_srcthird_partyfmt_h_and_srcthird_partyformat_cpp">src/third_party/fmt/*.h and src/third_party/format.cpp</a></li>
-<li><a href="#_srcthird_partygetopt_long">src/third_party/getopt_long.*</a></li>
-<li><a href="#_srcthird_partyhttplib">src/third_party/httplib.*</a></li>
-<li><a href="#_srcthird_partyminitrace">src/third_party/minitrace.*</a></li>
-<li><a href="#_srcthird_partynonstdspan_hpp">src/third_party/nonstd/span.hpp</a></li>
-<li><a href="#_srcthird_partytlexpected_hpp">src/third_party/tl/expected.hpp</a></li>
-<li><a href="#_srcthird_partyurl">src/third_party/url.*</a></li>
-<li><a href="#_srcthird_partywin32getopt">src/third_party/win32/getopt.*</a></li>
-<li><a href="#_srcthird_partywin32mktemp">src/third_party/win32/mktemp.*</a></li>
-<li><a href="#_srcthird_partywin32winerror_to_errno_h">src/third_party/win32/winerror_to_errno.h</a></li>
-<li><a href="#_srcthird_partyxxh">src/third_party/xxh*</a></li>
+<li><a href="#_srcthird_partyblake3blake3">src/third_party/blake3/blake3/*</a></li>
+<li><a href="#_srcthird_partycpp_httplibhttplib_h">src/third_party/cpp-httplib/httplib.h</a></li>
+<li><a href="#_srcthird_partycxxurlcxxurlurl">src/third_party/cxxurl/cxxurl/url.*</a></li>
+<li><a href="#_srcthird_partynonstd_spannonstdspan_hpp">src/third_party/nonstd-span/nonstd/span.hpp</a></li>
+<li><a href="#_srcthird_partytl_expectedtlexpected_hpp">src/third_party/tl-expected/tl/expected.hpp</a></li>
+<li><a href="#_srcthird_partywin32_compatwin32getopt">src/third_party/win32-compat/win32/getopt.*</a></li>
+<li><a href="#_srcthird_partywin32_compatwin32mktemp">src/third_party/win32-compat/win32/mktemp.*</a></li>
+<li><a href="#_srcthird_partywin32_compatwin32winerror_to_errno_h">src/third_party/win32-compat/win32/winerror_to_errno.h</a></li>
 </ul>
 </li>
 </ul>
@@ -154,33 +148,9 @@ the GPL: that is, if separated from the ccache sources, they may be usable
 under less restrictive terms.</p>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partybase32hex"><a class="anchor" href="#_srcthird_partybase32hex"></a>src/third_party/base32hex.*</h3>
+<h3 id="_srcthird_partyblake3blake3"><a class="anchor" href="#_srcthird_partyblake3blake3"></a>src/third_party/blake3/blake3/*</h3>
 <div class="paragraph">
-<p>This base32hex implementation comes from
-<a href="https://github.com/pmconrad/tinydnssec" class="bare">https://github.com/pmconrad/tinydnssec</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>(C) 2012 Peter Conrad &lt;conrad@quisquis.de&gt;
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License version 3 as
-published by the Free Software Foundation.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_srcthird_partyblake3blake3"><a class="anchor" href="#_srcthird_partyblake3blake3"></a>src/third_party/blake3/blake3_*</h3>
-<div class="paragraph">
-<p>This is a subset of <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a> 1.5.0 with the
+<p>This is a subset of <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a> 1.5.1 with the
 following license:</p>
 </div>
 <div class="listingblock">
@@ -519,127 +489,17 @@ express Statement of Purpose.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partydoctest_h"><a class="anchor" href="#_srcthird_partydoctest_h"></a>src/third_party/doctest.h</h3>
-<div class="paragraph">
-<p>This is the single header version of <a href="https://github.com/onqtam/doctest">doctest</a>
-2.4.10 with the following license:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>The MIT License (MIT)
-
-Copyright (c) 2016-2021 Viktor Kirilov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_srcthird_partyfmt_h_and_srcthird_partyformat_cpp"><a class="anchor" href="#_srcthird_partyfmt_h_and_srcthird_partyformat_cpp"></a>src/third_party/fmt/*.h and src/third_party/format.cpp</h3>
-<div class="paragraph">
-<p>This is a subset of <a href="https://fmt.dev">fmt</a> 10.1.1 with the following license:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Formatting library for C++
-
-Copyright (c) 2012 - present, Victor Zverovich
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is furnished
-to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
---- Optional exception to the license ---
-
-As an exception, if, as a result of your compiling your source code, portions
-of this Software are embedded into a machine-executable object form of such
-source code, you may redistribute such embedded portions in such object form
-without including the above copyright and permission notices.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_srcthird_partygetopt_long"><a class="anchor" href="#_srcthird_partygetopt_long"></a>src/third_party/getopt_long.*</h3>
-<div class="paragraph">
-<p>This implementation of <code>getopt_long()</code> was copied from
-<a href="https://www.postgresql.org">PostgreSQL</a> and has the following license text:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Portions Copyright (c) 1987, 1993, 1994
-The Regents of the University of California.  All rights reserved.
-
-Portions Copyright (c) 2003
-PostgreSQL Global Development Group
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-1. Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-3. Neither the name of the University nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGE.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_srcthird_partyhttplib"><a class="anchor" href="#_srcthird_partyhttplib"></a>src/third_party/httplib.*</h3>
+<h3 id="_srcthird_partycpp_httplibhttplib_h"><a class="anchor" href="#_srcthird_partycpp_httplibhttplib_h"></a>src/third_party/cpp-httplib/httplib.h</h3>
 <div class="paragraph">
 <p>cpp-httplib - A C++11 cross-platform HTTP/HTTPS library. Copied from cpp-httplib
-v0.14. downloaded from <a href="https://github.com/yhirose/cpp-httplib">cpp-httplib</a>. The
+v0.15.3 downloaded from <a href="https://github.com/yhirose/cpp-httplib">cpp-httplib</a>. The
 library has the following license:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>The MIT License (MIT)
 
-Copyright (c) 2023 yhirose
+Copyright (c) 2024 yhirose
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -662,16 +522,16 @@ SOFTWARE.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partyminitrace"><a class="anchor" href="#_srcthird_partyminitrace"></a>src/third_party/minitrace.*</h3>
+<h3 id="_srcthird_partycxxurlcxxurlurl"><a class="anchor" href="#_srcthird_partycxxurlcxxurlurl"></a>src/third_party/cxxurl/cxxurl/url.*</h3>
 <div class="paragraph">
-<p>A library for producing JSON traces suitable for Chrome&#8217;s built-in trace viewer
-(chrome://tracing). Downloaded from <a href="https://github.com/hrydgard/minitrace" class="bare">https://github.com/hrydgard/minitrace</a>.</p>
+<p>CxxUrl - A simple C++ URL class. Copied from CxxUrl v0.3 downloaded from
+<a href="https://github.com/chmike/CxxUrl" class="bare">https://github.com/chmike/CxxUrl</a>. It has the following license text:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>The MIT License (MIT)
 
-Copyright (c) 2014 Henrik Rydgård
+Copyright (c) 2015 Christophe Meessen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -694,10 +554,10 @@ SOFTWARE.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partynonstdspan_hpp"><a class="anchor" href="#_srcthird_partynonstdspan_hpp"></a>src/third_party/nonstd/span.hpp</h3>
+<h3 id="_srcthird_partynonstd_spannonstdspan_hpp"><a class="anchor" href="#_srcthird_partynonstd_spannonstdspan_hpp"></a>src/third_party/nonstd-span/nonstd/span.hpp</h3>
 <div class="paragraph">
 <p>This is the single header version of
-<a href="https://github.com/martinmoene/span-lite">expected-lite</a> 0.10.3 with the
+<a href="https://github.com/martinmoene/span-lite">span-lite</a> 0.11.0 with the
 following license:</p>
 </div>
 <div class="listingblock">
@@ -731,7 +591,7 @@ DEALINGS IN THE SOFTWARE.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partytlexpected_hpp"><a class="anchor" href="#_srcthird_partytlexpected_hpp"></a>src/third_party/tl/expected.hpp</h3>
+<h3 id="_srcthird_partytl_expectedtlexpected_hpp"><a class="anchor" href="#_srcthird_partytl_expectedtlexpected_hpp"></a>src/third_party/tl-expected/tl/expected.hpp</h3>
 <div class="paragraph">
 <p>This is <a href="https://github.com/TartanLlama/expected">TartanLlama expected</a> 1.1.0 with
 the following license:</p>
@@ -863,39 +723,7 @@ express Statement of Purpose.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partyurl"><a class="anchor" href="#_srcthird_partyurl"></a>src/third_party/url.*</h3>
-<div class="paragraph">
-<p>CxxUrl - A simple C++ URL class. Copied from CxxUrl v0.3 downloaded from
-<a href="https://github.com/chmike/CxxUrl" class="bare">https://github.com/chmike/CxxUrl</a>. It has the following license text:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>The MIT License (MIT)
-
-Copyright (c) 2015 Christophe Meessen
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_srcthird_partywin32getopt"><a class="anchor" href="#_srcthird_partywin32getopt"></a>src/third_party/win32/getopt.*</h3>
+<h3 id="_srcthird_partywin32_compatwin32getopt"><a class="anchor" href="#_srcthird_partywin32_compatwin32getopt"></a>src/third_party/win32-compat/win32/getopt.*</h3>
 <div class="paragraph">
 <p>This implementation of <code>getopt_long()</code> for Win32 was taken from
 <a href="https://www.codeproject.com/Articles/157001/Full-getopt-Port-for-Unicode-and-Multibyte-Microso" class="bare">https://www.codeproject.com/Articles/157001/Full-getopt-Port-for-Unicode-and-Multibyte-Microso</a>
@@ -907,7 +735,7 @@ and is licensed under the LGPL.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partywin32mktemp"><a class="anchor" href="#_srcthird_partywin32mktemp"></a>src/third_party/win32/mktemp.*</h3>
+<h3 id="_srcthird_partywin32_compatwin32mktemp"><a class="anchor" href="#_srcthird_partywin32_compatwin32mktemp"></a>src/third_party/win32-compat/win32/mktemp.*</h3>
 <div class="paragraph">
 <p>This implementation of <code>mkstemp()</code> for Win32 was adapted from
 <a href="https://github.com/openbsd/src/blob/99b791d14c0f1858d87a0c33b55880fb9b00be66/lib/libc/stdio/mktemp.c" class="bare">https://github.com/openbsd/src/blob/99b791d14c0f1858d87a0c33b55880fb9b00be66/lib/libc/stdio/mktemp.c</a>
@@ -933,7 +761,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_srcthird_partywin32winerror_to_errno_h"><a class="anchor" href="#_srcthird_partywin32winerror_to_errno_h"></a>src/third_party/win32/winerror_to_errno.h</h3>
+<h3 id="_srcthird_partywin32_compatwin32winerror_to_errno_h"><a class="anchor" href="#_srcthird_partywin32_compatwin32winerror_to_errno_h"></a>src/third_party/win32-compat/win32/winerror_to_errno.h</h3>
 <div class="paragraph">
 <p>The implementation of <code>winerror_to_errno()</code> was adapted from
 <a href="https://github.com/python/cpython/blob/1a79785e3e8fea80bcf6a800b45a04e06c787480/PC/errmap.h" class="bare">https://github.com/python/cpython/blob/1a79785e3e8fea80bcf6a800b45a04e06c787480/PC/errmap.h</a>
@@ -991,51 +819,13 @@ Agreement.</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_srcthird_partyxxh"><a class="anchor" href="#_srcthird_partyxxh"></a>src/third_party/xxh*</h3>
-<div class="paragraph">
-<p>xxHash - Extremely Fast Hash algorithm. Copied from xxHash v0.8.1 downloaded
-from <a href="https://github.com/Cyan4973/xxHash/releases" class="bare">https://github.com/Cyan4973/xxHash/releases</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Copyright (c) 2012-2021 Yann Collet
-All rights reserved.
-
-BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-copyright notice, this list of conditions and the following disclaimer
-in the documentation and/or other materials provided with the
-distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.9.1<br>
-Last updated 2024-02-05 20:34:49 +0100
+Version 4.10<br>
+Last updated 2024-05-29 22:20:33 +0200
 </div>
 </div>
 </body>
