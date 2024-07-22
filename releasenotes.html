@@ -65,15 +65,21 @@ table {
 <div id="header">
 <h1>Ccache news</h1>
 <div class="details">
-<span id="revnumber">version 4.10.1</span>
+<span id="revnumber">version 4.10.2</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_ccache_4_10_2">Ccache 4.10.2</a>
+<ul class="sectlevel2">
+<li><a href="#_build_improvements">Build improvements</a></li>
+<li><a href="#_test_improvements">Test improvements</a></li>
+</ul>
+</li>
 <li><a href="#_ccache_4_10_1">Ccache 4.10.1</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes">Bug fixes</a></li>
-<li><a href="#_build_improvements">Build improvements</a></li>
+<li><a href="#_build_improvements_2">Build improvements</a></li>
 <li><a href="#_documentation_improvements">Documentation improvements</a></li>
 </ul>
 </li>
@@ -81,7 +87,7 @@ table {
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_improvements">New features and improvements</a></li>
 <li><a href="#_bug_fixes_2">Bug fixes</a></li>
-<li><a href="#_build_improvements_2">Build improvements</a></li>
+<li><a href="#_build_improvements_3">Build improvements</a></li>
 <li><a href="#_documentation_improvements_2">Documentation improvements</a></li>
 </ul>
 </li>
@@ -94,23 +100,23 @@ table {
 <ul class="sectlevel2">
 <li><a href="#_new_features_and_improvements_2">New features and improvements</a></li>
 <li><a href="#_bug_fixes_4">Bug fixes</a></li>
-<li><a href="#_build_improvements_3">Build improvements</a></li>
+<li><a href="#_build_improvements_4">Build improvements</a></li>
 <li><a href="#_documentation_improvements_3">Documentation improvements</a></li>
-<li><a href="#_test_improvements">Test improvements</a></li>
+<li><a href="#_test_improvements_2">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_8_3">Ccache 4.8.3</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_5">Bug fixes</a></li>
-<li><a href="#_build_improvements_4">Build improvements</a></li>
+<li><a href="#_build_improvements_5">Build improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_8_2">Ccache 4.8.2</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_6">Bug fixes</a></li>
-<li><a href="#_build_improvements_5">Build improvements</a></li>
+<li><a href="#_build_improvements_6">Build improvements</a></li>
 <li><a href="#_documentation_improvements_4">Documentation improvements</a></li>
-<li><a href="#_test_improvements_2">Test improvements</a></li>
+<li><a href="#_test_improvements_3">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_8_1">Ccache 4.8.1</a>
@@ -146,20 +152,20 @@ table {
 <li><a href="#_bug_fixes_11">Bug fixes</a></li>
 <li><a href="#_other_minor_improvements_2">Other minor improvements</a></li>
 <li><a href="#_documentation_improvements_8">Documentation improvements</a></li>
-<li><a href="#_test_improvements_3">Test improvements</a></li>
+<li><a href="#_test_improvements_4">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_7_2">Ccache 4.7.2</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_12">Bug fixes</a></li>
-<li><a href="#_build_improvements_6">Build improvements</a></li>
-<li><a href="#_test_improvements_4">Test improvements</a></li>
+<li><a href="#_build_improvements_7">Build improvements</a></li>
+<li><a href="#_test_improvements_5">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_7_1">Ccache 4.7.1</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_13">Bug fixes</a></li>
-<li><a href="#_build_improvements_7">Build improvements</a></li>
+<li><a href="#_build_improvements_8">Build improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_7">Ccache 4.7</a>
@@ -169,23 +175,23 @@ table {
 <li><a href="#_new_and_improved_features">New and improved features</a></li>
 <li><a href="#_removed_features">Removed features</a></li>
 <li><a href="#_bug_fixes_14">Bug fixes</a></li>
-<li><a href="#_build_improvements_8">Build improvements</a></li>
-<li><a href="#_test_improvements_5">Test improvements</a></li>
+<li><a href="#_build_improvements_9">Build improvements</a></li>
+<li><a href="#_test_improvements_6">Test improvements</a></li>
 <li><a href="#_documentation_improvements_9">Documentation improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_6_3">Ccache 4.6.3</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_15">Bug fixes</a></li>
-<li><a href="#_build_improvements_9">Build improvements</a></li>
-<li><a href="#_test_improvements_6">Test improvements</a></li>
+<li><a href="#_build_improvements_10">Build improvements</a></li>
+<li><a href="#_test_improvements_7">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_6_2">Ccache 4.6.2</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_16">Bug fixes</a></li>
-<li><a href="#_build_improvements_10">Build improvements</a></li>
-<li><a href="#_test_improvements_7">Test improvements</a></li>
+<li><a href="#_build_improvements_11">Build improvements</a></li>
+<li><a href="#_test_improvements_8">Test improvements</a></li>
 <li><a href="#_documentation_improvements_10">Documentation improvements</a></li>
 </ul>
 </li>
@@ -193,8 +199,8 @@ table {
 <ul class="sectlevel2">
 <li><a href="#_new_features">New features</a></li>
 <li><a href="#_bug_fixes_17">Bug fixes</a></li>
-<li><a href="#_build_improvements_11">Build improvements</a></li>
-<li><a href="#_test_improvements_8">Test improvements</a></li>
+<li><a href="#_build_improvements_12">Build improvements</a></li>
+<li><a href="#_test_improvements_9">Test improvements</a></li>
 <li><a href="#_documentation_improvements_11">Documentation improvements</a></li>
 </ul>
 </li>
@@ -203,7 +209,7 @@ table {
 <li><a href="#_new_features_2">New features</a></li>
 <li><a href="#_bug_fixes_18">Bug fixes</a></li>
 <li><a href="#_documentation_improvements_12">Documentation improvements</a></li>
-<li><a href="#_test_improvements_9">Test improvements</a></li>
+<li><a href="#_test_improvements_10">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_5_1">Ccache 4.5.1</a>
@@ -221,15 +227,15 @@ table {
 <li><a href="#_ccache_4_4_2">Ccache 4.4.2</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_21">Bug fixes</a></li>
-<li><a href="#_test_improvements_10">Test improvements</a></li>
+<li><a href="#_test_improvements_11">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_4_1">Ccache 4.4.1</a>
 <ul class="sectlevel2">
 <li><a href="#_new_features_4">New features</a></li>
 <li><a href="#_bug_fixes_22">Bug fixes</a></li>
-<li><a href="#_build_improvements_12">Build improvements</a></li>
-<li><a href="#_test_improvements_11">Test improvements</a></li>
+<li><a href="#_build_improvements_13">Build improvements</a></li>
+<li><a href="#_test_improvements_12">Test improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_4">Ccache 4.4</a>
@@ -244,7 +250,7 @@ table {
 <ul class="sectlevel2">
 <li><a href="#_new_features_6">New features</a></li>
 <li><a href="#_bug_fixes_24">Bug fixes</a></li>
-<li><a href="#_build_improvements_13">Build improvements</a></li>
+<li><a href="#_build_improvements_14">Build improvements</a></li>
 </ul>
 </li>
 <li><a href="#_ccache_4_2_1">Ccache 4.2.1</a>
@@ -575,6 +581,42 @@ table {
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_ccache_4_10_2"><a class="anchor" href="#_ccache_4_10_2"></a>Ccache 4.10.2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Release date: 2024-07-22</p>
+</div>
+<div class="sect2">
+<h3 id="_build_improvements"><a class="anchor" href="#_build_improvements"></a>Build improvements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed detection of Fmt version 11 and newer.<br>
+<span class="small"><em>[contributed by Holger Hoffstätte and Joel Rosdahl]</em></span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test_improvements"><a class="anchor" href="#_test_improvements"></a>Test improvements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Made the &#8220;-fprofile-update=atomic&#8221; test only run when that option is
+supported by the compiler.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Made the color diagnostics tests work when the user running the tests has a
+non-POSIX login shell.<br>
+<span class="small"><em>[contributed by Anders F Björklund]</em></span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_ccache_4_10_1"><a class="anchor" href="#_ccache_4_10_1"></a>Ccache 4.10.1</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -592,7 +634,7 @@ table {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements"><a class="anchor" href="#_build_improvements"></a>Build improvements</h3>
+<h3 id="_build_improvements_2"><a class="anchor" href="#_build_improvements_2"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -806,7 +848,7 @@ true so that the coverage report won&#8217;t refer to a temporary preprocessed f
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_2"><a class="anchor" href="#_build_improvements_2"></a>Build improvements</h3>
+<h3 id="_build_improvements_3"><a class="anchor" href="#_build_improvements_3"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -997,7 +1039,7 @@ making it possible to shard on port number.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_3"><a class="anchor" href="#_build_improvements_3"></a>Build improvements</h3>
+<h3 id="_build_improvements_4"><a class="anchor" href="#_build_improvements_4"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1044,7 +1086,7 @@ MSVC.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements"><a class="anchor" href="#_test_improvements"></a>Test improvements</h3>
+<h3 id="_test_improvements_2"><a class="anchor" href="#_test_improvements_2"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1084,7 +1126,7 @@ automatic or explicit cleanup.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_4"><a class="anchor" href="#_build_improvements_4"></a>Build improvements</h3>
+<h3 id="_build_improvements_5"><a class="anchor" href="#_build_improvements_5"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1132,7 +1174,7 @@ mode hit rate when <code>-v</code> is on the compiler command line.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_5"><a class="anchor" href="#_build_improvements_5"></a>Build improvements</h3>
+<h3 id="_build_improvements_6"><a class="anchor" href="#_build_improvements_6"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1168,7 +1210,7 @@ mode hit rate when <code>-v</code> is on the compiler command line.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_2"><a class="anchor" href="#_test_improvements_2"></a>Test improvements</h3>
+<h3 id="_test_improvements_3"><a class="anchor" href="#_test_improvements_3"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1610,7 +1652,7 @@ are now added to the input hash.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_3"><a class="anchor" href="#_test_improvements_3"></a>Test improvements</h3>
+<h3 id="_test_improvements_4"><a class="anchor" href="#_test_improvements_4"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1651,7 +1693,7 @@ permissions.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_6"><a class="anchor" href="#_build_improvements_6"></a>Build improvements</h3>
+<h3 id="_build_improvements_7"><a class="anchor" href="#_build_improvements_7"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1662,7 +1704,7 @@ permissions.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_4"><a class="anchor" href="#_test_improvements_4"></a>Test improvements</h3>
+<h3 id="_test_improvements_5"><a class="anchor" href="#_test_improvements_5"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1693,7 +1735,7 @@ compiling an assembler file.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_7"><a class="anchor" href="#_build_improvements_7"></a>Build improvements</h3>
+<h3 id="_build_improvements_8"><a class="anchor" href="#_build_improvements_8"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2010,7 +2052,7 @@ destination object file exists and is read-only.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_8"><a class="anchor" href="#_build_improvements_8"></a>Build improvements</h3>
+<h3 id="_build_improvements_9"><a class="anchor" href="#_build_improvements_9"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2038,7 +2080,7 @@ Internet when unavailable.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_5"><a class="anchor" href="#_test_improvements_5"></a>Test improvements</h3>
+<h3 id="_test_improvements_6"><a class="anchor" href="#_test_improvements_6"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2106,7 +2148,7 @@ guide</a>.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_9"><a class="anchor" href="#_build_improvements_9"></a>Build improvements</h3>
+<h3 id="_build_improvements_10"><a class="anchor" href="#_build_improvements_10"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2117,7 +2159,7 @@ guide</a>.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_6"><a class="anchor" href="#_test_improvements_6"></a>Test improvements</h3>
+<h3 id="_test_improvements_7"><a class="anchor" href="#_test_improvements_7"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2238,7 +2280,7 @@ the real compiler.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_10"><a class="anchor" href="#_build_improvements_10"></a>Build improvements</h3>
+<h3 id="_build_improvements_11"><a class="anchor" href="#_build_improvements_11"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2253,7 +2295,7 @@ the real compiler.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_7"><a class="anchor" href="#_test_improvements_7"></a>Test improvements</h3>
+<h3 id="_test_improvements_8"><a class="anchor" href="#_test_improvements_8"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2403,7 +2445,7 @@ mode.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_11"><a class="anchor" href="#_build_improvements_11"></a>Build improvements</h3>
+<h3 id="_build_improvements_12"><a class="anchor" href="#_build_improvements_12"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2438,7 +2480,7 @@ mode.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_8"><a class="anchor" href="#_test_improvements_8"></a>Test improvements</h3>
+<h3 id="_test_improvements_9"><a class="anchor" href="#_test_improvements_9"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2586,7 +2628,7 @@ empty primary storage.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_9"><a class="anchor" href="#_test_improvements_9"></a>Test improvements</h3>
+<h3 id="_test_improvements_10"><a class="anchor" href="#_test_improvements_10"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2725,7 +2767,7 @@ hits in some situations if it decides to disable the direct mode temporarily
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_10"><a class="anchor" href="#_test_improvements_10"></a>Test improvements</h3>
+<h3 id="_test_improvements_11"><a class="anchor" href="#_test_improvements_11"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2781,7 +2823,7 @@ connection hung up.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_12"><a class="anchor" href="#_build_improvements_12"></a>Build improvements</h3>
+<h3 id="_build_improvements_13"><a class="anchor" href="#_build_improvements_13"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2805,7 +2847,7 @@ broken.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_improvements_11"><a class="anchor" href="#_test_improvements_11"></a>Test improvements</h3>
+<h3 id="_test_improvements_12"><a class="anchor" href="#_test_improvements_12"></a>Test improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3100,7 +3142,7 @@ object file path.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_improvements_13"><a class="anchor" href="#_build_improvements_13"></a>Build improvements</h3>
+<h3 id="_build_improvements_14"><a class="anchor" href="#_build_improvements_14"></a>Build improvements</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6462,8 +6504,8 @@ internal errors.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.10.1<br>
-Last updated 2024-06-30 20:49:23 +0200
+Version 4.10.2<br>
+Last updated 2024-07-22 16:05:49 +0200
 </div>
 </div>
 </body>
