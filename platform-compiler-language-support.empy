@@ -189,7 +189,7 @@
       <a href="https://en.wikipedia.org/wiki/TASKING">TASKING VX-toolset for
       TriCore</a> (ctc, cctc)
     </td>
-    <td></td>
+    <td>See <a href="https://github.com/ccache/ccache/pull/942">ccache PR #942.</a></td>
   </tr>
 </table>
 
