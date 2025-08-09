@@ -26,17 +26,18 @@ older_manual_versions = [s(x) for x in all_versions[1:]]
   <li>
     <a href="manual/@(latest_version).html">Version @latest_version (latest)</a>
   </li>
-  <li>
-    <a onclick="$(this).parent().hide(); $('.manual-version').show()">
-      Older versions
-    </a>
-  </li>
+</ul>
+
+<details>
+  <summary>Older versions</summary>
+<ul>
 @[for x in older_manual_versions]
-  <li class="manual-version" style="display: none">
+  <li>
     <a href="manual/@(x).html">Version @x</a>
   </li>
 @[end for]
 </ul>
+</details>
 
 <h2>Release notes</h2>
 

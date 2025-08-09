@@ -1,0 +1,15 @@
+@# -*- html -*-
+
+@{page_id = "contribution"}
+@{page_title = "Contribution"}
+@empy.include("header.empy")
+
+<ul>
+<li><a href="https://github.com/ccache/ccache">Source repository</a></li>
+<li><a href="https://github.com/ccache/ccache/blob/master/CONTRIBUTING.md">Notes on how to contribute</a></li>
+<li><a href="https://github.com/ccache/ccache/discussions">Discussions</a></li>
+<li><a href="https://lists.samba.org/mailman/listinfo/ccache/">Mailing list</a></li>
+<li><a href="https://ccache.dev/bugs.html">Bug report</a></li>
+<li><a href="https://github.com/ccache/ccache/issues">Issue tracker</a></li>
+
+@empy.include("footer.empy")

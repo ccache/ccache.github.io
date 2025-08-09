@@ -1,69 +1,143 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
 <title>Ccache &mdash; Compiler cache</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://ccache.dev/ccache.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="ccache.css">
 </head>
 <body>
-<div id="banner">
-<a href=".">
-<span style="font-size: 500%; text-shadow: 5px 5px 5px #aaa">Ccache</span>
-<span style="font-size: 150%">&mdash; a fast C/C++ compiler cache</span>
+<header>
+<div class="container">
+<h1>
+<a href="/">
+<span style="font-size: 150%; ">Ccache</span> &mdash; a fast C/C++ compiler cache
 </a>
+</h1>
+<button class="sidebar-toggle" aria-label="Toggle menu">☰</button>
 </div>
-<div id="navigation">
-<div class="group" style="margin-top: 0">About it:</div>
+</header>
+<script>
+document.querySelector(".sidebar-toggle").addEventListener("click", function () {
+document.querySelector(".sidebar").classList.toggle("show");
+});
+</script>
+<div class="layout">
+<aside class="sidebar">
+<nav>
 <ul>
-<li class="current"><a href="/">Overview</a></li>
-<li><a href="/platform-compiler-language-support.html">Supported platforms and compilers</a></li>
-<li><a href="/performance.html">Performance</a></li>
-<li><a href="/news.html">News</a></li>
-<li><a href="/credits.html">Credits</a></li>
-<li><a href="/license.html">License</a></li>
+<li>
+<a class="current" href="/">Overview</a>
+</li>
+<li>
+<a href="/download.html">Download</a>
+</li>
+<li>
+<a href="/documentation.html">Documentation</a>
+<ul>
+<li>
+<a href="/platform-compiler-language-support.html">Supported platforms and compilers</a>
+</li>
+<li>
+<a href="/performance.html">Performance</a>
+</li>
 </ul>
-<div class="group">Get it:</div>
+</li>
+<li>
+<a href="/contribution.html">Contribution</a>
 <ul>
-<li><a href="/download.html">Download</a></li>
-</ul>
-<div class="group">Use it:</div>
-<ul>
-<li><a href="/documentation.html">Documentation</a></li>
-</ul>
-<div class="group">Discuss it:</div>
-<ul>
+<li>
+<a href="/bugs.html">Bug report</a>
+</li>
+<li>
+<a href="/repo.html">Source repository</a>
+</li>
+<li>
 <li class="level1"><a href="https://github.com/ccache/ccache/discussions">Discussions</a></li>
+</li>
+<li>
 <li class="level1"><a href="https://lists.samba.org/mailman/listinfo/ccache/">Mailing list</a></li>
+</li>
+</ul>
+</li>
+<li>
+<a href="/news.html">News</a>
+</li>
+<li>
+<a href="/credits.html">Credits</a>
+</li>
+<li>
+<a href="/license.html">License</a>
+</li>
+</ul>
+</nav>
+</aside>
+<!-- ====================================================================== -->
+<!-- <div id="navigation"> -->
+<!--   <div class="group" style="margin-top: 0">About it:</div> -->
+<!--   <ul> -->
+<!--
+<a class="current" href="/">Overview</a>
+-->
+<!--
+<a href="/platform-compiler-language-support.html">Supported platforms and compilers</a>
+-->
+<!--
+<a href="/performance.html">Performance</a>
+-->
+<!--
+<a href="/news.html">News</a>
+-->
+<!--
+<a href="/credits.html">Credits</a>
+-->
+<!--
+<a href="/license.html">License</a>
+-->
+<!--   </ul> -->
+<!--   <div class="group">Get it:</div> -->
+<!--   <ul> -->
+<!--
+<a href="/download.html">Download</a>
+-->
+<!--   </ul> -->
+<!--   <div class="group">Use it:</div> -->
+<!--   <ul> -->
+<!--
+<a href="/documentation.html">Documentation</a>
+-->
+<!--   </ul> -->
+<!--   <div class="group">Discuss it:</div> -->
+<!--   <ul> -->
+<!--
+<li class="level1"><a href="https://github.com/ccache/ccache/discussions">Discussions</a></li>
+-->
+<!--
+<li class="level1"><a href="https://lists.samba.org/mailman/listinfo/ccache/">Mailing list</a></li>
+-->
+<!--
 <li class="level2"><a href="http://www.mail-archive.com/ccache@lists.samba.org">&ndash; Archive</a></li>
-</ul>
-<div class="group">Improve it:</div>
-<ul>
-<li><a href="/bugs.html">Bug report</a></li>
+-->
+<!--   </ul> -->
+<!--   <div class="group">Improve it:</div> -->
+<!--   <ul> -->
+<!--
+<a href="/bugs.html">Bug report</a>
+-->
+<!--
 <li class="level2"><a href="https://github.com/ccache/ccache/issues">&ndash; View existing</a></li>
-<li><a href="/repo.html">Source repository</a></li>
+-->
+<!--
+<a href="/repo.html">Source repository</a>
+-->
+<!--
 <li class="level2"><a href="https://github.com/ccache/ccache">&ndash; Browse</a></li>
-</ul>
-</div>
-<div id="content">
-<div style="float: right; font-size: 90%; margin: 0 1em 0 2em;">
-<h1>News</h1>
-<ul class="news">
-<li><i>2025-05-03:</i> <a href="news.html#2025-05-03"><b>Version 4.11.3 has been released</b></a></li>
-<li><i>2025-03-22:</i> <a href="news.html#2025-03-22"><b>Version 4.11.2 has been released</b></a></li>
-<li><i>2025-03-17:</i> <a href="news.html#2025-03-17"><b>Version 4.11.1 has been released</b></a></li>
-<li><i>2025-03-09:</i> <a href="news.html#2025-03-09"><b>Version 4.11 has been released</b></a></li>
-<li><i>2024-07-22:</i> <a href="news.html#2024-07-22"><b>Version 4.10.2 has been released</b></a></li>
-<li><i>2024-06-30:</i> <a href="news.html#2024-06-30"><b>Version 4.10.1 has been released</b></a></li>
-<li><i>2024-05-29:</i> <a href="news.html#2024-05-29"><b>Version 4.10 has been released</b></a></li>
-<li><i>2024-02-05:</i> <a href="news.html#2024-02-05"><b>Version 4.9.1 has been released</b></a></li>
-<li><i>2023-12-30:</i> <a href="news.html#2023-12-30"><b>Version 4.9 has been released</b></a></li>
-<li><i>2023-08-29:</i> <a href="news.html#2023-08-29"><b>Version 4.8.3 has been released</b></a></li>
-<li><a href="news.html">All news</a></li>
-</ul>
-</div>
-<h1>About</h1>
+-->
+<!--   </ul> -->
+<!-- </div> -->
+<main class="content">
+<h1>Overview</h1>
 <p>
 Ccache is a compiler cache. It <a href="performance.html">speeds up
 recompilation</a> by caching previous compilations and detecting when the same
@@ -72,6 +146,12 @@ the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License
 version 3</a> or later. See also the <a href="license.html">license page</a>.
 </p>
 <p>Latest release: <a href="download.html">version 4.11.3</a></p>
+<h2>News</h2>
+<div class="news"><i>2025-05-03:</i> <a href="news.html#2025-05-03"><b>Version 4.11.3 has been released</b></a></div>
+<div class="news"><i>2025-03-22:</i> <a href="news.html#2025-03-22"><b>Version 4.11.2 has been released</b></a></div>
+<div class="news"><i>2025-03-17:</i> <a href="news.html#2025-03-17"><b>Version 4.11.1 has been released</b></a></div>
+<a href="news.html">All news</a>
+</ul>
 <h2 style="clear: right;">Features</h2>
 <ul>
 <li>
@@ -196,6 +276,7 @@ false positive cache hits. This and other minor limitations are listed under
 </ul>
 <p>If you experience any bugs or undocumented limitations, please
 <a href="bugs.html">report them</a>.</p>
-</div>
+</main>
+</div> <!-- layout -->
 </body>
 </html>

@@ -4,24 +4,7 @@
 @{page_title = "Compiler cache"}
 @empy.include("header.empy")
 
-<div style="float: right; font-size: 90%; margin: 0 1em 0 2em;">
-
-<h1>News</h1>
-
-@{
-import yaml
-news = list(yaml.safe_load_all(open("news.yaml")))
-}@
-
-  <ul class="news">
-    @[for x in news[:10]]
-    <li><i>@(x["date"]):</i> <a href="news.html#@(x["date"])"><b>@(x["header"])</b></a></li>
-    @[end for]
-    <li><a href="news.html">All news</a></li>
-  </ul>
-</div>
-
-<h1>About</h1>
+<h1>Overview</h1>
 
 <p>
   Ccache is a compiler cache. It <a href="performance.html">speeds up
@@ -32,6 +15,19 @@ news = list(yaml.safe_load_all(open("news.yaml")))
 </p>
 
 <p>Latest release: <a href="download.html">version @(latest_version)</a></p>
+
+<h2>News</h2>
+
+@{
+import yaml
+news = list(yaml.safe_load_all(open("news.yaml")))
+}@
+
+@[for x in news[:3]]
+<div class="news"><i>@(x["date"]):</i> <a href="news.html#@(x["date"])"><b>@(x["header"])</b></a></div>
+@[end for]
+<a href="news.html">All news</a>
+</ul>
 
 <h2 style="clear: right;">Features</h2>
 
