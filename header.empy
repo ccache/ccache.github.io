@@ -21,17 +21,8 @@
     <a@cl href="@link">@name</a>
 @[end def]
 
-@[def ext_link(name, link, level=1)]
-    @[if level == 2]
-        @{pre = "&ndash; "}
-    @[else]
-        @{pre = ""}
-    @[end if]
-    <li class="level@level"><a href="@link">@pre@name</a></li>
-@[end def]
-
-@[def ext_link2(name, link)]
-    @ext_link(name, link, 2)
+@[def ext_link(name, link)]
+    <a href="@link">@name</a>
 @[end def]
 
 @{latest_version = "4.11.3"}
@@ -44,7 +35,6 @@
   <meta charset="utf-8">
   <title>Ccache &mdash; @page_title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="ccache.css">
 </head>
 <body>
@@ -103,45 +93,6 @@
         </ul>
       </nav>
     </aside>
-
-<!-- ====================================================================== -->
-
-<!-- <div id="navigation"> -->
-<!--   <div class="group" style="margin-top: 0">About it:</div> -->
-<!--   <ul> -->
-<!--     @nav_link("overview", "Overview", "/") -->
-<!--     @nav_link("platform-compiler-language-support", "Supported platforms and compilers") -->
-<!--     @nav_link("performance", "Performance") -->
-<!--     @nav_link("news", "News") -->
-<!--     @nav_link("credits", "Credits") -->
-<!--     @nav_link("license", "License", "/license.html") -->
-<!--   </ul> -->
-
-<!--   <div class="group">Get it:</div> -->
-<!--   <ul> -->
-<!--     @nav_link("download", "Download") -->
-<!--   </ul> -->
-
-<!--   <div class="group">Use it:</div> -->
-<!--   <ul> -->
-<!--     @nav_link("documentation", "Documentation", "/documentation.html") -->
-<!--   </ul> -->
-
-<!--   <div class="group">Discuss it:</div> -->
-<!--   <ul> -->
-<!--     @ext_link("Discussions", "https://github.com/ccache/ccache/discussions") -->
-<!--     @ext_link("Mailing list", "https://lists.samba.org/mailman/listinfo/ccache/") -->
-<!--     @ext_link2("Archive", "http://www.mail-archive.com/ccache@lists.samba.org") -->
-<!--   </ul> -->
-
-<!--   <div class="group">Improve it:</div> -->
-<!--   <ul> -->
-<!--     @nav_link("bugs", "Bug report") -->
-<!--     @ext_link2("View existing", "https://github.com/ccache/ccache/issues") -->
-<!--     @nav_link("repo", "Source repository") -->
-<!--     @ext_link2("Browse", "https://github.com/ccache/ccache") -->
-<!--   </ul> -->
-<!-- </div> -->
 
 <main class="content">
 @[if page_title != "Compiler cache"]

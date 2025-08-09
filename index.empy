@@ -27,7 +27,6 @@ news = list(yaml.safe_load_all(open("news.yaml")))
 <div class="news"><i>@(x["date"]):</i> <a href="news.html#@(x["date"])"><b>@(x["header"])</b></a></div>
 @[end for]
 <a href="news.html">All news</a>
-</ul>
 
 <h2 style="clear: right;">Features</h2>
 
