@@ -344,10 +344,10 @@
     <td>
       Windows native with <a href="http://mingw-w64.org">Mingw-w64</a>
     </td>
-    <td>Regularly built.</td>
+    <td></td>
   </tr>
   <tr>
-    <td class="support-level-c">C</td>
+    <td class="support-level-b">B</td>
     <td>
       Windows native with
       <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
@@ -387,7 +387,7 @@
     <td></td>
   </tr>
   <tr>
-    <td class="support-level-c">C</td>
+    <td class="support-level-b">B</td>
     <td>
       <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
       C++)
