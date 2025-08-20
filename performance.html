@@ -17,12 +17,8 @@
 <button class="sidebar-toggle" aria-label="Toggle menu">☰</button>
 </div>
 </header>
-<script>
-document.querySelector(".sidebar-toggle").addEventListener("click", function () {
-document.querySelector(".sidebar").classList.toggle("show");
-});
-</script>
 <div class="layout">
+<div class="overlay"></div>
 <aside class="sidebar">
 <nav>
 <ul>
@@ -227,5 +223,18 @@ overhead is higher. The depend mode really shines here since it avoids making
 costly preprocessor calls.</p>
 </main>
 </div> <!-- layout -->
+<script>
+const sidebar = document.querySelector(".sidebar");
+const overlay = document.querySelector(".overlay");
+const toggle = document.querySelector(".sidebar-toggle");
+toggle.addEventListener("click", () => {
+sidebar.classList.toggle("show");
+overlay.classList.toggle("show");
+});
+overlay.addEventListener("click", () => {
+sidebar.classList.remove("show");
+overlay.classList.remove("show");
+});
+</script>
 </body>
 </html>

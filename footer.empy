@@ -2,5 +2,22 @@
 
 </main>
 </div> <!-- layout -->
+
+<script>
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.querySelector(".overlay");
+  const toggle = document.querySelector(".sidebar-toggle");
+
+  toggle.addEventListener("click", () => {
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
+  });
+
+  overlay.addEventListener("click", () => {
+    sidebar.classList.remove("show");
+    overlay.classList.remove("show");
+  });
+</script>
+
 </body>
 </html>

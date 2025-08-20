@@ -49,13 +49,8 @@
     </div>
   </header>
 
-  <script>
-    document.querySelector(".sidebar-toggle").addEventListener("click", function () {
-      document.querySelector(".sidebar").classList.toggle("show");
-    });
-  </script>
-
   <div class="layout">
+    <div class="overlay"></div>
     <aside class="sidebar">
       <nav>
         <ul>

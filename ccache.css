@@ -115,6 +115,15 @@ header a:hover {
   max-width: 70rem;
 }
 
+/* Overlay for mobile */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0; /* top, right, bottom, left = 0 */
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 900; /* below sidebar but above content */
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .layout {
@@ -124,16 +133,19 @@ header a:hover {
   .sidebar {
     display: none;
     position: absolute;
-    top: 60px; /* Height of header */
     left: 0;
     width: 250px;
     height: calc(100% - 60px);
     background-color: #e9ecef;
     box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-    z-index: 1000;
+    z-index: 1000; /* above overlay */
   }
 
   .sidebar.show {
+    display: block;
+  }
+
+  .overlay.show {
     display: block;
   }
 
