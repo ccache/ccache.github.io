@@ -81,62 +81,69 @@
 <td>All (source code release)</td>
 <td>
 <a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3.tar.gz">ccache-4.11.3.tar.gz</a>
-<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3.tar.gz.asc">signature</a>)</small>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3.tar.gz.minisig">signature</a>)</small>
 <br>
 <a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3.tar.xz">ccache-4.11.3.tar.xz</a>
-<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3.tar.xz.asc">signature</a>)</small>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3.tar.xz.minisig">signature</a>)</small>
 </td>
 </tr>
 <tr>
 <td>Darwin (macOS) universal binary release</td>
 <td>
 <a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-darwin.tar.gz">ccache-4.11.3-darwin.tar.gz</a>
-<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-darwin.tar.gz.asc">signature</a>)</small>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-darwin.tar.gz.minisig">signature</a>)</small>
 </td>
 </tr>
 <tr>
 <td>Linux x86_64 binary release</td>
 <td>
 <a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-linux-x86_64.tar.xz">ccache-4.11.3-linux-x86_64.tar.xz</a>
-<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-linux-x86_64.tar.xz.asc">signature</a>)</small>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-linux-x86_64.tar.xz.minisig">signature</a>)</small>
 </td>
 </tr>
 <tr>
 <td>Windows i686 binary release<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
 <td>
 <a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-windows-i686.zip">ccache-4.11.3-windows-i686.zip</a>
-<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-windows-i686.zip.asc">signature</a>)</small>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-windows-i686.zip.minisig">signature</a>)</small>
 </td>
 </tr>
 <tr>
 <td>Windows x86_64 binary release<br><small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small></td>
 <td>
 <a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-windows-x86_64.zip">ccache-4.11.3-windows-x86_64.zip</a>
-<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-windows-x86_64.zip.asc">signature</a>)</small>
+<small>(<a href="https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-windows-x86_64.zip.minisig">signature</a>)</small>
 </td>
 </tr>
 </table>
 <p>
 See also the <a href="releasenotes.html#_ccache_4_11_3">ccache 4.11.3 release notes</a>.
 </p>
-<h3>Notes</h3>
 <p>
-You can also find older releases on
+Starting with version 4.12, release archives are signed
+with <a href="https://jedisct1.github.io/minisign/">minisign</a> (public
+key: <a href="minisign.pub">minisign.pub</a>). To verify the validity of a
+downloaded <code>example.tar.xz</code>, also
+download <code>example.tar.xz<b>.minisig</b></code>, place it next
+to <code>example.tar.xz</code> and run <code>minisign</code> like this:
+</p>
+<p>
+<code>minisign -P RWQX7yXbBedVfI4PNx6FLdFXu9GHUFsr28s4BVGxm4BeybtnX3P06saF
+-Vm example.tar.xz</code>
+</p>
+<h2>Older releases</h2>
+<p>
+You can find older releases on
 <a href="https://github.com/ccache/ccache/releases/">the releases page on
 GitHub</a>.
 </p>
 <p>
-The release archives are signed with
+Releases older than 4.12 are signed with
 <a href="release-signing-public-key.txt">Joel Rosdahl's OpenPGP key</a>
 (fingerprint: <code>5A93 9A71 A467 92CF 5786 6A51 996D DA07 5594 ADB8</code>).
-To verify the integrity of a source archive, install the key, download the
-archive and the corresponding OpenPGP signature file and run <code>gpg
---verify <b><i>file.asc</i></b></code>.
-</p>
-<p>
-Note that the releases above only are meant to be used when installing ccache.
-If you want to develop ccache, fix bugs, etc, you should get the full source
-code from the <a href="repo.html">repository</a> instead.
+To verify the validity of a file, install the key, download the archive and
+the corresponding OpenPGP signature file and run <code>gpg
+--verify <b><i>file.minisig</i></b></code>.
 </p>
 <h2>Other package sources</h2>
 <table>

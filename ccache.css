@@ -6,8 +6,6 @@ body {
   color: black;;
 }
 
-/*  */
-
 header {
   background-color: #bfcbdb;
   color: black;
@@ -220,4 +218,9 @@ summary {
 
 blockquote {
     font-style: italic;
+}
+
+pre {
+  border: 1px #777 dashed;
+  padding: 1em;
 }
