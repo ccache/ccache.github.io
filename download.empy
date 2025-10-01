@@ -83,8 +83,8 @@ minisign -P RWQX7yXbBedVfI4PNx6FLdFXu9GHUFsr28s4BVGxm4BeybtnX3P06saF -Vm example
   <a href="release-signing-public-key.txt">Joel Rosdahl's OpenPGP key</a>
   (fingerprint: <code>5A93 9A71 A467 92CF 5786 6A51 996D DA07 5594 ADB8</code>).
   To verify the validity of a file, install the key, download the archive and
-  the corresponding OpenPGP signature file and run <code>gpg
-  --verify <b><i>file.minisig</i></b></code>.
+  the corresponding OpenPGP signature file (<code>.asc</code>) and run <code>gpg
+  --verify <b><i>file.asc</i></b></code>.
 </p>
 
 <h2>Other package sources</h2>
