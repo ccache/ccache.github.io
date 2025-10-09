@@ -52,7 +52,7 @@ older_manual_versions = [s(x) for x in all_versions[1:]]
 
 <ul>
   <li>
-    <a href="https://github.com/ccache/ccache/blob/master/doc/INSTALL.md">
+    <a href="https://github.com/ccache/ccache/blob/master/doc/install.md">
       Installation instructions for version 4.x
     </a>
   </li>
