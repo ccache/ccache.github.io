@@ -65,8 +65,13 @@ news = list(yaml.safe_load_all(open("news.yaml")))
   </li>
   <li>Supports compression using <a href="http://zstd.net">Zstandard</a>.</li>
   <li>
-    Checksums cache content using <a href="http://xxhash.com">XXH3</a> to detect data
-    corruption.
+    Uses the fast and secure
+    <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3-XXX</a> algorithm for
+    the main input hash.
+  </li>
+  <li>
+    Checksums cache content using <a href="https://xxhash.com">XXH3</a> to
+    detect data corruption.
   </li>
   <li>
     Keeps statistics on hits/misses.
