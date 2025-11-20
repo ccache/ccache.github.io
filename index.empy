@@ -66,7 +66,7 @@ news = list(yaml.safe_load_all(open("news.yaml")))
   <li>Supports compression using <a href="http://zstd.net">Zstandard</a>.</li>
   <li>
     Uses the fast and secure
-    <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3-XXX</a> algorithm for
+    <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a> algorithm for
     the main input hash.
   </li>
   <li>
