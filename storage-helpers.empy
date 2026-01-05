@@ -16,8 +16,10 @@
 <h2>Known helpers</h2>
 
 <ul>
-  <li><a href="https://github.com/ccache/ccache-storage-http-cpp">HTTP/HTTPS (reference implementation in C++)</a></li>
-  <li><a href="https://github.com/ccache/ccache-storage-http-go">HTTP/HTTPS (reference implementation in Go)</a></li>
+  <li><a href="https://github.com/ccache/ccache-storage-http-cpp">HTTP/HTTPS
+  (reference implementation written in C++)</a></li>
+  <li><a href="https://github.com/ccache/ccache-storage-http-go">HTTP/HTTPS
+  (reference implementation written in Go)</a></li>
 </ul>
 
 <p>
@@ -31,7 +33,7 @@
 
 <ul>
   <li><a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/remote_storage_helper.md">Ccache remote storage helper specification</a></li>
-  <li><a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#remote-storage-backends">Remote storage backends</a></li>
+  <li><a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#remote-storage-backends">Ccache remote storage configuration</a></li>
 </ul>
 
 <h2>Starting a helper explicitly</h2>
