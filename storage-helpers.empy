@@ -5,10 +5,10 @@
 @empy.include("header.empy")
 
 <p>
-  To be able to communicate with remote storage servers in an efficient way,
-  ccache spawns a long-lived local helper process that can keep connections
-  alive, thus amortizing the session setup cost. The helper process is shared by
-  all ccache processes that use the same
+  To communicate with remote storage servers in an efficient way, ccache spawns
+  a long-lived local helper process that can keep connections alive, thus
+  amortizing the session setup cost. The helper process is shared by all ccache
+  processes that use the same
   <a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#remote-storage-backends">remote
   storage settings</a>.
 </p>
@@ -39,10 +39,10 @@
 <h2>Starting a helper explicitly</h2>
 
 <p>
-  A storage helper is normally started by ccache on demand. It is however
+  A storage helper is usually started by ccache on demand. However, it is
   possible to start the helper explicitly, for instance when developing or
-  debugging a storage helper, or in special setups where the helper program is
-  managed externally. Example:
+  debugging a storage helper, or in custom deployment scenarios where the helper
+  program is managed externally. Example:
 </p>
 
 <pre>
