@@ -39,10 +39,10 @@
 <h2>Starting a helper explicitly</h2>
 
 <p>
-  A storage helper is usually started by ccache on demand. However, it is
-  possible to start the helper explicitly, for instance when developing or
-  debugging a storage helper, or in custom deployment scenarios where the helper
-  program is managed externally. Example:
+  A storage helper is usually started automatically by ccache when needed.
+  However, it is possible to start the helper explicitly, for instance when
+  developing or debugging a storage helper, or in custom deployment scenarios
+  where the helper program is managed externally. Example:
 </p>
 
 <pre>
