@@ -4,6 +4,8 @@
 @{page_title = "Storage helpers"}
 @empy.include("header.empy")
 
+<img src="storage-helpers.svg" size="600" alt="ccache <-> storage helper <-> remote storage server" />
+
 <p>
   To communicate with remote storage servers in an efficient way, ccache spawns
   a long-lived local helper process that can keep connections alive, thus
@@ -17,8 +19,8 @@
 
 <table>
   <tr>
-    <th>Supported protocols</th>
-    <th>URL</th>
+    <th>Protocol(s)</th>
+    <th>Project</th>
     <th>Notes</th>
   </tr>
   <tr>
@@ -51,8 +53,9 @@
     automatically when needed.
   </li>
   <li>
-    Set <code>CCACHE_REMOTE_STORAGE</code> (or <code>remote_storage</code> in
-    ccache's configuration file) to the URL of the remote storage server,
+    Set <code>CCACHE_REMOTE_STORAGE</code> (or
+    <a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#config_remote_storage"><code>remote_storage</code></a>
+    in ccache's configuration file) to the URL of the remote storage server,
     e.g. <code>http://example.com/cache</code>.
   </li>
 </ol>
