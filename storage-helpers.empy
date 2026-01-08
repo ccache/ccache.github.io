@@ -81,13 +81,14 @@ ccache-storage-http
 </pre>
 
 <p>
-  Ccache can then be told to connect to the socket using the
+  Ccache can then be told to connect to the IPC endpoint using the
   <a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#crsh-storage-backend">CRSH
   backend</a>:
 </p>
 
 <pre>
-export CCACHE_REMOTE_STORAGE=crsh:/tmp/example.sock
+export CCACHE_REMOTE_STORAGE=crsh:/tmp/ccache-example.sock # On Linux/POSIX
+export CCACHE_REMOTE_STORAGE=crsh:ccache-example-pipe      # On Windows
 </pre>
 
 @empy.include("footer.empy")
