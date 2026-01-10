@@ -220,9 +220,10 @@ blockquote {
     font-style: italic;
 }
 
-img {
+.content img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 pre {
