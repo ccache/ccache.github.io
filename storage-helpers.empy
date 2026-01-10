@@ -31,7 +31,7 @@
   <tr>
     <td><code>http</code>, <code>https</code></td>
     <td><a href="https://github.com/ccache/ccache-storage-http-go">ccache/ccache-storage-http-go</a></td>
-    <td>Reference implementation (Go)</td>
+    <td>Reference implementation (Go), prebuilt binaries available</td>
   </tr>
 </table>
 

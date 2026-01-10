@@ -220,6 +220,11 @@ blockquote {
     font-style: italic;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 pre {
   border: 1px #777 dashed;
   padding: 1em;
