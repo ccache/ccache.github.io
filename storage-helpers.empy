@@ -73,12 +73,12 @@
   A storage helper is usually started automatically by ccache when needed.
   However, it is possible to start the helper explicitly, for instance when
   developing or debugging a storage helper, or in custom deployment scenarios
-  where the helper program is managed externally. Example:
+  where the helper service is managed externally. Example:
 </p>
 
 <pre>
-export CRSH_IPC_ENDPOINT=/tmp/ccache-example.sock # On Linux/POSIX
-export CRSH_IPC_ENDPOINT=ccache-example-pipe      # On Windows
+export CRSH_IPC_ENDPOINT=/tmp/ccache-example.sock   # On Linux/POSIX
+export CRSH_IPC_ENDPOINT=ccache-example-pipe        # On Windows
 export CRSH_URL=http://example.com/cache
 ccache-storage-http
 </pre>
@@ -90,8 +90,8 @@ ccache-storage-http
 </p>
 
 <pre>
-export CCACHE_REMOTE_STORAGE=crsh:/tmp/ccache-example.sock # On Linux/POSIX
-export CCACHE_REMOTE_STORAGE=crsh:ccache-example-pipe      # On Windows
+export CCACHE_REMOTE_STORAGE=crsh:/tmp/ccache-example.sock   # On Linux/POSIX
+export CCACHE_REMOTE_STORAGE=crsh:ccache-example-pipe        # On Windows
 </pre>
 
 @empy.include("footer.empy")
