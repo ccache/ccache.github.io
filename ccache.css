@@ -223,4 +223,6 @@ blockquote {
 pre {
   border: 1px #777 dashed;
   padding: 1em;
+  overflow-x: auto;
+  max-width: 100%;
 }
