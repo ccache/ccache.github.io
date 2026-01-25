@@ -35,6 +35,9 @@
 <a href="/platform-compiler-language-support.html">Supported platforms and compilers</a>
 </li>
 <li>
+<a class="current" href="/storage-helpers.html">Storage helpers</a>
+</li>
+<li>
 <a href="/performance.html">Performance</a>
 </li>
 </ul>
@@ -76,12 +79,12 @@ To communicate with remote storage servers in an efficient way, ccache spawns
 a long-lived local helper process that can keep connections alive, thus
 amortizing the session setup cost. The helper process is shared by all ccache
 processes that use the same
-<a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#remote-storage-backends">remote
+<a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#remote-storage-backends">remote
 storage settings</a>.
 </p>
 <p>
-<b>NOTE:</b> Support for storage helpers is planned for ccache version 4.13,
-see <a href="https://github.com/ccache/ccache/pull/1672">PR #1672</a>.
+<b>NOTE:</b> Support for storage helpers will be available in ccache version
+4.13+: <a href="https://github.com/ccache/ccache/pull/1672">PR #1672</a>.
 </p>
 <h2>Available storage helpers</h2>
 <table>
@@ -112,21 +115,21 @@ repository</a>.
 <ol>
 <li>
 Install a helper for the protocol you want (e.g. <code>http</code>) in a
-<a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#storage-helper-process">location
+<a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#storage-helper-process">location
 where ccache looks for helper programs</a>. Ccache will start the helper
 automatically when needed.
 </li>
 <li>
 Set <code>CCACHE_REMOTE_STORAGE</code> (or
-<a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#config_remote_storage"><code>remote_storage</code></a>
+<a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#config_remote_storage"><code>remote_storage</code></a>
 in ccache's configuration file) to the URL of the remote storage server,
 e.g. <code>http://example.com/cache</code>.
 </li>
 </ol>
 <h2>Documentation</h2>
 <ul>
-<li><a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#remote-storage-backends">Remote storage configuration</a></li>
-<li><a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/remote_storage_helper_spec.md">Remote storage helper specification</a></li>
+<li><a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#remote-storage-backends">Remote storage configuration</a></li>
+<li><a href="https://github.com/ccache/ccache/blob/master/doc/remote_storage_helper_spec.md">Remote storage helper specification</a></li>
 </ul>
 <h2>Starting a helper explicitly</h2>
 <p>
@@ -143,7 +146,7 @@ ccache-storage-http
 </pre>
 <p>
 Ccache can then be told to connect to the IPC endpoint using the
-<a href="https://github.com/jrosdahl/ccache/blob/crsh/doc/manual.adoc#crsh-storage-backend">CRSH
+<a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#crsh-storage-backend">CRSH
 backend</a>:
 </p>
 <pre>

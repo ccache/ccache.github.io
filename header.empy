@@ -62,6 +62,7 @@
               <li>
                 @nav_link("platform-compiler-language-support", "Supported platforms and compilers")
               </li>
+              <li>@nav_link("storage-helpers", "Storage helpers")</li>
               <li>@nav_link("performance", "Performance")</li>
             </ul>
           </li>
