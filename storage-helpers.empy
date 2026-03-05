@@ -16,8 +16,7 @@
 </p>
 
 <p>
-  <b>NOTE:</b> Support for storage helpers will be available in ccache version
-  4.13+: <a href="https://github.com/ccache/ccache/pull/1672">PR #1672</a>.
+  <b>NOTE:</b> Support for storage helpers is available in ccache 4.13+.
 </p>
 
 <h2>Available storage helpers</h2>
