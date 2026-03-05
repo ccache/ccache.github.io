@@ -1,4 +1,4 @@
-version := 4.12.3
+version := 4.13
 version_stamp := version_$(version).stamp
 
 CCACHE_REPO ?= ../ccache
@@ -29,7 +29,7 @@ gendocs/%/stamp:
 	cmake -S gendocs/$*/ccache -B gendocs/$*/ccache/build
 	cmake --build gendocs/$*/ccache/build -- doc-html
 	cp gendocs/$*/ccache/build/doc/*.html gendocs/$*
-	cp $(CCACHE_REPO)/doc/AUTHORS.adoc gendocs/$*
+	cp $(CCACHE_REPO)/doc/authors.adoc gendocs/$*
 	rm -rf gendocs/$*/ccache
 	touch $@
 
