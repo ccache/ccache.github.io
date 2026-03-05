@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <td class="support-level-c">C</td>
-    <td>Not supported. May work in some scenarios.</td>
+    <td>Not officially supported. Has known compatibility gaps. May work in some scenarios</td>
   </tr>
 </table>
 
@@ -60,37 +60,36 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
-    <td>Regularly tested on Ubuntu 22.04 and 24.04.</td>
+    <td>Regularly tested on Ubuntu 22.04 and 24.04</td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-    <td>Regularly tested on macOS 13 and 14</a>.</td>
+    <td>Regularly tested on macOS 14</a></td>
+  </tr>
+  <tr>
+    <td class="support-level-a">A</td>
+    <td>
+      Windows native
+    </td>
+    <td>
+      Regularly built with <a href="http://mingw-w64.org">Mingw-w64</a> and
+      tested on Windows 2025
+    </td>
+  </tr>
+  <tr>
+    <td class="support-level-b">B</td>
+    <td>
+      Windows with <a href="https://www.msys2.org">MSYS2</a>
+    </td>
+    <td></td>
   </tr>
   <tr>
     <td class="support-level-b">B</td>
     <td>Other Unix-like platforms</td>
     <td>
       See also the <a href="https://repology.org/project/ccache/versions">ccache
-      page on Repology</a>.
-    </td>
-  </tr>
-  <tr>
-    <td class="support-level-b">B</td>
-    <td>
-      Windows with <a href="https://www.msys2.org/">MSYS2</a>
-    </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="support-level-b">B</td>
-    <td>
-      Windows native
-    </td>
-    <td>
-      Regularly built with <a href="http://mingw-w64.org">Mingw-w64</a> but not
-      regularly tested. However, it seems to work quite well in practice
-      according to users.
+      page on Repology</a>
     </td>
   </tr>
 </table>
@@ -111,15 +110,22 @@
   </tr>
   <tr>
     <td class="support-level-a">A</td>
-    <td><a href="https://gcc.gnu.org/">GCC</a></td>
+    <td><a href="https://gcc.gnu.org">GCC</a></td>
     <td></td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
-    <td><a href="https://clang.llvm.org/">Clang</a></td>
+    <td><a href="https://clang.llvm.org">Clang</a></td>
     <td>
-      See separate entry for clang-cl below.
+      See separate entry for clang-cl below
     </td>
+  </tr>
+  <tr>
+    <td class="support-level-a">A</td>
+    <td>
+      <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual C++)
+    </td>
+    <td></td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
@@ -168,14 +174,6 @@
     <td></td>
   </tr>
   <tr>
-    <td class="support-level-b">B</td>
-    <td>
-      <a href="https://docs.microsoft.com/en-us/cpp/">MSVC</a> (Microsoft Visual
-      C++)
-    </td>
-    <td></td>
-  </tr>
-  <tr>
     <td class="support-level-c">C</td>
     <td>
       <a href="https://ispc.github.io">ISPC</a> (Intel Implicit SPMD Program
@@ -189,7 +187,7 @@
       <a href="https://en.wikipedia.org/wiki/TASKING">TASKING VX-toolset for
       TriCore</a> (ctc, cctc)
     </td>
-    <td>See <a href="https://github.com/ccache/ccache/pull/942">ccache PR #942.</a></td>
+    <td>See <a href="https://github.com/ccache/ccache/pull/942">ccache PR #942</a></td>
   </tr>
 </table>
 
@@ -212,7 +210,7 @@
     <td>Assembler (<code>.s</code>, <code>.sx</code>, <code>.S</code>)</td>
     <td>
       <code>.sx</code> and <code>.S</code> are assembler with a C preprocessor
-      pass.
+      pass
     </td>
   </tr>
   <tr>
@@ -223,7 +221,7 @@
   <tr>
     <td class="support-level-a">A</td>
     <td>C header (<code>.h</code>)</td>
-    <td>For precompilation.</td>
+    <td>For precompilation</td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
@@ -238,7 +236,7 @@
       <code>.c++</code>, <code>.C</code>)
     </td>
     <td>
-      Also uppercase variants of extensions.
+      Also uppercase variants of extensions
     </td>
   </tr>
   <tr>
@@ -249,7 +247,7 @@
       <code>.h++</code>, <code>.H</code>)
     </td>
     <td>
-      For precompilation. Also uppercase variants of extensions.
+      For precompilation; also uppercase variants of extensions
     </td>
   </tr>
   <tr>
@@ -317,32 +315,32 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/Linux">Linux</a> (GNU/Linux)</td>
-    <td>Regularly tested on Ubuntu 22.04 and 24.04.</td>
+    <td>Regularly tested on Ubuntu 22.04 and 24.04</td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-    <td>Regularly tested on macOS 13 and 14.</td>
+    <td>Regularly tested on macOS 14</td>
+  </tr>
+  <tr>
+    <td class="support-level-a">A</td>
+    <td>
+      Windows native with <a href="http://mingw-w64.org">Mingw-w64</a>
+    </td>
+    <td>Regularly tested on Windows 2025</td>
   </tr>
   <tr>
     <td class="support-level-b">B</td>
     <td>Other Unix-like platforms</td>
     <td>
       See also the <a href="https://repology.org/project/ccache/versions">ccache
-        page on Repology</a>.
+        page on Repology</a>
     </td>
   </tr>
   <tr>
     <td class="support-level-b">B</td>
     <td>
       Windows with <a href="https://www.msys2.org/">MSYS2</a>
-    </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="support-level-b">B</td>
-    <td>
-      Windows native with <a href="http://mingw-w64.org">Mingw-w64</a>
     </td>
     <td></td>
   </tr>
