@@ -101,7 +101,6 @@ minisign -P RWQX7yXbBedVfI4PNx6FLdFXu9GHUFsr28s4BVGxm4BeybtnX3P06saF -Vm example
     </td>
     <td>
       <a href="https://chocolatey.org/packages/ccache">ccache Chocolatey package</a><br>
-      <small><b>Note</b>: <a href="platform-compiler-language-support.html">B-level support</a></small>
     </td>
   </tr>
 </table>
