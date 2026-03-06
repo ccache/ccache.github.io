@@ -31,17 +31,17 @@
     </td>
   </tr>
   <tr>
-    <td>Linux x86_64 binary release</td>
+    <td>Linux x86_64 binary release (glibc)</td>
     <td>
-      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64.tar.xz">ccache-@(latest_version)-linux-x86_64.tar.xz</a>
-      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64.tar.xz.minisig">signature</a>)</small>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-glibc.tar.xz">ccache-@(latest_version)-linux-x86_64-glibc.tar.xz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-glibc.tar.xz.minisig">signature</a>)</small>
     </td>
   </tr>
   <tr>
-    <td>Windows i686 binary release</td>
+    <td>Linux x86_64 binary release (musl static)</td>
     <td>
-      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-i686.zip">ccache-@(latest_version)-windows-i686.zip</a>
-      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-windows-i686.zip.minisig">signature</a>)</small>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-musl-static.tar.xz">ccache-@(latest_version)-linux-x86_64-musl-static.tar.xz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-musl-static.tar.xz.minisig">signature</a>)</small>
     </td>
   </tr>
   <tr>
