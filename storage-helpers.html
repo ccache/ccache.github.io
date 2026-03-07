@@ -79,7 +79,7 @@ To communicate with remote storage servers in an efficient way, ccache spawns
 a long-lived local helper process that can keep connections alive, thus
 amortizing the session setup cost. The helper process is shared by all ccache
 processes that use the same
-<a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#remote-storage-backends">remote
+<a href="https://ccache.dev/manual/latest.html#config_remote_storage">remote
 storage settings</a>.
 </p>
 <p>
@@ -114,20 +114,20 @@ repository</a>.
 <ol>
 <li>
 Install a helper for the protocol you want (e.g. <code>http</code>) in a
-<a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#storage-helper-process">location
+<a href="https://ccache.dev/manual/latest.html#_storage_helper_process">location
 where ccache looks for helper programs</a>. Ccache will start the helper
 automatically when needed.
 </li>
 <li>
 Set <code>CCACHE_REMOTE_STORAGE</code> (or
-<a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#config_remote_storage"><code>remote_storage</code></a>
+<a href="https://ccache.dev/manual/latest.html#config_remote_storage"><code>remote_storage</code></a>
 in ccache's configuration file) to the URL of the remote storage server,
 e.g. <code>http://example.com/cache</code>.
 </li>
 </ol>
 <h2>Documentation</h2>
 <ul>
-<li><a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#remote-storage-backends">Remote storage configuration</a></li>
+<li><a href="https://ccache.dev/manual/latest.html#config_remote_storage">Remote storage configuration</a></li>
 <li><a href="https://github.com/ccache/ccache/blob/master/doc/remote_storage_helper_spec.md">Remote storage helper specification</a></li>
 </ul>
 <h2>Starting a helper explicitly</h2>
