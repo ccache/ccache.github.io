@@ -65,11 +65,17 @@ table {
 <div id="header">
 <h1>Ccache news</h1>
 <div class="details">
-<span id="revnumber">version 4.13</span>
+<span id="revnumber">version 4.13.1</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_ccache_4_13_1">Ccache 4.13.1</a>
+<ul class="sectlevel2">
+<li><a href="#_bug_fixes_and_improvements">Bug fixes and improvements</a></li>
+<li><a href="#_build_fixes">Build fixes</a></li>
+</ul>
+</li>
 <li><a href="#_ccache_4_13">Ccache 4.13</a>
 <ul class="sectlevel2">
 <li><a href="#_upgrade_notes">Upgrade notes</a></li>
@@ -91,7 +97,7 @@ table {
 <li><a href="#_ccache_4_12_2">Ccache 4.12.2</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_3">Bug fixes</a></li>
-<li><a href="#_build_fixes">Build fixes</a></li>
+<li><a href="#_build_fixes_2">Build fixes</a></li>
 <li><a href="#_test_improvements_2">Test improvements</a></li>
 <li><a href="#_documentation_improvements_3">Documentation improvements</a></li>
 <li><a href="#_other">Other</a></li>
@@ -100,7 +106,7 @@ table {
 <li><a href="#_ccache_4_12_1">Ccache 4.12.1</a>
 <ul class="sectlevel2">
 <li><a href="#_bug_fixes_4">Bug fixes</a></li>
-<li><a href="#_build_fixes_2">Build fixes</a></li>
+<li><a href="#_build_fixes_3">Build fixes</a></li>
 <li><a href="#_other_2">Other</a></li>
 </ul>
 </li>
@@ -654,6 +660,68 @@ table {
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_ccache_4_13_1"><a class="anchor" href="#_ccache_4_13_1"></a>Ccache 4.13.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Release date: 2026-03-09</p>
+</div>
+<div class="sect2">
+<h3 id="_bug_fixes_and_improvements"><a class="anchor" href="#_bug_fixes_and_improvements"></a>Bug fixes and improvements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed handling of extensionless input files passed with <code>-x assembler</code>
+(regression in 4.13).<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Fixed a crash when searching for a storage helper next to the ccache
+executable.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Fixed atime restoration when the recompressor fails to read a file.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Improved storage helper lookup order to prefer libexec directories over
+<code>PATH</code>.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Improved reliability of finding the ccache executable path by using
+OS-specific APIs instead of relying on <code>argv[0]</code>, which is not guaranteed to
+reflect the actual executable location.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Improved handling of <code>-fstack-usage</code> and <code>-fcallgraph-info</code> output files when
+LTO is used: ccache now correctly skips looking for <code>.su</code> and <code>.ci</code> files that
+are not generated during compilation with LTO.<br>
+<span class="small"><em>[contributed by Kristian Sloth Lauszus]</em></span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_fixes"><a class="anchor" href="#_build_fixes"></a>Build fixes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed build on systems that have <code>utimes(2)</code> but not <code>utimensat(2)</code>.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+<li>
+<p>Fixed <code>mktemp(1)</code> calls in build scripts to pass a template argument for
+portability to macOS/BSD.<br>
+<span class="small"><em>[contributed by Joel Rosdahl]</em></span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_ccache_4_13"><a class="anchor" href="#_ccache_4_13"></a>Ccache 4.13</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -935,7 +1003,7 @@ when executing the compiler.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_fixes"><a class="anchor" href="#_build_fixes"></a>Build fixes</h3>
+<h3 id="_build_fixes_2"><a class="anchor" href="#_build_fixes_2"></a>Build fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1030,7 +1098,7 @@ when executing the compiler.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_fixes_2"><a class="anchor" href="#_build_fixes_2"></a>Build fixes</h3>
+<h3 id="_build_fixes_3"><a class="anchor" href="#_build_fixes_3"></a>Build fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7484,8 +7552,8 @@ internal errors.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.13<br>
-Last updated 2026-03-05 15:43:55 +0100
+Version 4.13.1<br>
+Last updated 2026-03-09 21:30:57 +0100
 </div>
 </div>
 </body>
