@@ -37,9 +37,8 @@ news = list(yaml.safe_load_all(open("news.yaml")))
     (<a href="platform-compiler-language-support.html">details</a>)
   </li>
   <li>
-    Works on Linux, macOS, other Unix-like operating
-    systems<sup class="footnote">[1]</sup> and
-    Windows<sup class="footnote">[1]</sup>.
+    Works on Linux, Windows, macOS and other Unix-like operating
+    systems<sup class="footnote">[1]</sup>.
     (<a href="platform-compiler-language-support.html">details</a>)
   </li>
   <li>
@@ -49,9 +48,8 @@ news = list(yaml.safe_load_all(open("news.yaml")))
     (<a href="platform-compiler-language-support.html">details</a>)
   </li>
   <li>
-    Supports remote caching over HTTP (e.g., using Nginx or Google Cloud
-    Storage), Redis or NFS, with optional sharding across a server cluster.
-    (<a href="manual/@(latest_version).html#_remote_storage_backends">details</a>)
+    Supports remote caching using custom storage backends that can be adapted to
+    any remote storage protocol. (<a href="storage-helpers.html">details</a>)
   </li>
   <li>
     Supports fast "direct" and "depend" modes that avoid running the
