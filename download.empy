@@ -31,8 +31,31 @@
     </td>
   </tr>
   <tr>
+    <td>Linux aarch64 binary release (glibc)</td>
+    <td>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-glibc.tar.gz">ccache-@(latest_version)-linux-aarch64-glibc.tar.gz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-glibc.tar.gz.minisig">signature</a>)</small>
+      <br>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-glibc.tar.xz">ccache-@(latest_version)-linux-aarch64-glibc.tar.xz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-glibc.tar.xz.minisig">signature</a>)</small>
+    </td>
+  </tr>
+  <tr>
+    <td>Linux aarch64 binary release (musl static)</td>
+    <td>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-musl-static.tar.gz">ccache-@(latest_version)-linux-aarch64-musl-static.tar.gz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-musl-static.tar.gz.minisig">signature</a>)</small>
+      <br>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-musl-static.tar.xz">ccache-@(latest_version)-linux-aarch64-musl-static.tar.xz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-aarch64-musl-static.tar.xz.minisig">signature</a>)</small>
+    </td>
+  </tr>
+  <tr>
     <td>Linux x86_64 binary release (glibc)</td>
     <td>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-glibc.tar.gz">ccache-@(latest_version)-linux-x86_64-glibc.tar.gz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-glibc.tar.gz.minisig">signature</a>)</small>
+      <br>
       <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-glibc.tar.xz">ccache-@(latest_version)-linux-x86_64-glibc.tar.xz</a>
       <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-glibc.tar.xz.minisig">signature</a>)</small>
     </td>
@@ -40,6 +63,9 @@
   <tr>
     <td>Linux x86_64 binary release (musl static)</td>
     <td>
+      <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-musl-static.tar.gz">ccache-@(latest_version)-linux-x86_64-musl-static.tar.gz</a>
+      <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-musl-static.tar.gz.minisig">signature</a>)</small>
+      <br>
       <a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-musl-static.tar.xz">ccache-@(latest_version)-linux-x86_64-musl-static.tar.xz</a>
       <small>(<a href="https://github.com/ccache/ccache/releases/download/v@(latest_version)/ccache-@(latest_version)-linux-x86_64-musl-static.tar.xz.minisig">signature</a>)</small>
     </td>
