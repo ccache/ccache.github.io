@@ -67,7 +67,7 @@
     <td></td>
   </tr>
   <tr>
-    <td>Redis (`redis://` + `rediss://`)</td>
+    <td>Redis (<code>redis://</code> + <code>rediss://</code>)</td>
     <td>
       Not yet implemented, but will be before the Redis backend is removed from
       ccache
