@@ -121,7 +121,7 @@ ccache-storage-http
 
 <p>
   Ccache can then be told to connect to the IPC endpoint using the
-  <a href="https://github.com/ccache/ccache/blob/master/doc/manual.adoc#crsh-storage-backend">CRSH
+  <a href="https://ccache.dev/manual/latest.html##crsh-storage-backend">CRSH
   backend</a>:
 </p>
 
