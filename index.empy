@@ -54,9 +54,9 @@ news = list(yaml.safe_load_all(open("news.yaml")))
   <li>
     Supports multi-level caches: one local cache
     (or <a href="manual/@(latest_version).html#config_remote_only">no local
-    cache</a>) and one or several remote caches. "Remote" can here also mean
-    another secondary directory on the same machine, using
-    the <code>file://</code> remote storage backend.
+    cache</a>) and one or several remote caches. Using a secondary directory on
+    the local machine is also possible with the <code>file://</code> remote
+    storage backend.
     (<a href="manual/@(latest_version).html#config_remote_storage">details</a>)
   </li>
   <li>
