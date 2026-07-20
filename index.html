@@ -109,6 +109,14 @@ Supports remote caching using custom storage backends that can be adapted to
 any remote storage protocol. (<a href="storage-helpers.html">details</a>)
 </li>
 <li>
+Supports multi-level caches: one local cache
+(or <a href="manual/4.13.6.html#config_inode_cache">no local
+cache</a>) and one or several remote caches. "Remote" can here also mean
+another secondary directory on the same machine, using
+the <code>file://</code> remote storage backend.
+(<a href="manual/4.13.6.html#config_remote_storage">details</a>)
+</li>
+<li>
 Supports fast "direct" and "depend" modes that avoid running the
 preprocessor.
 (<a href="manual/4.13.6.html#_how_ccache_works">details</a>)
