@@ -37,6 +37,11 @@
     <td><a href="https://github.com/ccache/ccache-storage-http-go">ccache/ccache-storage-http-go</a></td>
     <td>Reference implementation (Go), prebuilt binaries available</td>
   </tr>
+  <tr>
+    <td><code>redis</code>, <code>rediss</code>, <code>redis+unix</code></td>
+    <td><a href="https://github.com/ccache/ccache-storage-redis">ccache/ccache-storage-redis</a></td>
+    <td></td>
+  </tr>
 </table>
 
 <p>
@@ -65,13 +70,6 @@
   <tr>
     <td>Google Cloud Storage</td>
     <td></td>
-  </tr>
-  <tr>
-    <td>Redis (incl. encrypted)</td>
-    <td>
-      Not yet implemented, but will be before the Redis backend is removed from
-      ccache
-    </td>
   </tr>
   <tr>
     <td>Redis Cluster</td>
