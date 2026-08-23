@@ -152,11 +152,6 @@
   </tr>
   <tr>
     <td class="support-level-b">B</td>
-    <td>Other GCC-like compilers</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="support-level-b">B</td>
     <td>
       Some <a href="https://www.edg.com">EDG</a>-based compilers,
       e.g. <a href="https://www.ghs.com/products/compiler.html">GHS</a> (Green
@@ -195,6 +190,11 @@
       TriCore</a> (ctc, cctc)
     </td>
     <td>See <a href="https://github.com/ccache/ccache/pull/942">ccache PR #942</a></td>
+  </tr>
+  <tr>
+    <td class="support-level-b">B</td>
+    <td>Other GCC-like compilers</td>
+    <td></td>
   </tr>
 </table>
 
