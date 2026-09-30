@@ -40,7 +40,7 @@
   <tr>
     <td><code>redis</code>, <code>rediss</code>, <code>redis+unix</code></td>
     <td><a href="https://github.com/ccache/ccache-storage-redis">ccache/ccache-storage-redis</a></td>
-    <td></td>
+    <td>Prebuilt binaries available</td>
   </tr>
 </table>
 
