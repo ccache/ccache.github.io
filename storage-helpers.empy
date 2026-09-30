@@ -52,6 +52,19 @@
   repository</a>.
 </p>
 
+<h2>Available storage helper libraries</h2>
+
+<table>
+  <tr>
+    <th>Language</th>
+    <th>Project</th>
+  </tr>
+  <tr>
+    <td>Go</td>
+    <td><a href="https://github.com/ccache/ccache-go-storage-helper"</a>ccache-go-storage-helper</th>
+  </tr>
+</table>
+
 <h2>Wanted storage helpers</h2>
 
 <table>
