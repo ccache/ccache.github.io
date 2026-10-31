@@ -65,7 +65,7 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-    <td>Regularly tested on macOS 14</a></td>
+    <td>Regularly tested on macOS 15/26</a></td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
@@ -327,7 +327,7 @@
   <tr>
     <td class="support-level-a">A</td>
     <td><a href="https://en.wikipedia.org/wiki/MacOS">macOS</a> (OS X)</td>
-    <td>Regularly tested on macOS 14/15/26</td>
+    <td>Regularly tested on macOS 15/26</td>
   </tr>
   <tr>
     <td class="support-level-a">A</td>
